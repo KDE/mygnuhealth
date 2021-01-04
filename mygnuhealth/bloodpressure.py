@@ -3,6 +3,7 @@ from uuid import uuid4
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
+from mygnuhealth.core import PageOfLife
 
 
 class BloodPressure(QObject):
@@ -13,29 +14,62 @@ class BloodPressure(QObject):
         blood_pressure = self.db.table('bloodpressure')
         hr = self.db.table('heart_rate')
         current_date = datetime.datetime.now().isoformat()
+        bpmon = hrmon = False  # Init to false the bp and hr monitoring process
 
         if (systolic > 0) and (diastolic > 0):
-            event_id = str(uuid4())
+            bpmon = True
+            bp_event_id = str(uuid4())
             synced = False
             blood_pressure.insert({'timestamp': current_date,
-                                   'event_id': event_id,
+                                   'event_id': bp_event_id,
                                    'synced': synced,
                                    'systolic': systolic,
                                    'diastolic': diastolic})
 
-            print("Saved blood pressure", event_id, synced, systolic,
+            print("Saved blood pressure", bp_event_id, synced, systolic,
                   diastolic, current_date)
 
         if heart_rate > 0:
-            event_id = str(uuid4())
+            hrmon = True
+            hr_event_id = str(uuid4())
             synced = False
             hr.insert({'timestamp': current_date,
-                       'event_id': event_id,
+                       'event_id': hr_event_id,
                        'synced': synced,
                        'heart_rate': heart_rate})
 
-            print("Saved Heart rate", event_id, synced,
+            print("Saved Heart rate", hr_event_id, synced,
                   heart_rate, current_date)
+
+        if (bpmon or hrmon):
+            # This block is related to the Page of Life creation
+            if (bpmon and hrmon):
+                # Group both HR and BP monitors in one PoL if both readings
+                # where taken at the same moment / device
+                # The event_id will be unique
+                event_id = str(uuid4())
+                monitor_readings = [
+                    {'bp': {'systolic': systolic, 'diastolic': diastolic}},
+                    {'hr': heart_rate}
+                    ]
+            elif (bpmon and not hrmon):
+                event_id = bp_event_id
+                monitor_readings = [
+                    {'bp': {'systolic': systolic, 'diastolic': diastolic}},
+                    ]
+            else:
+                event_id = hr_event_id
+                monitor_readings = [{'hr': heart_rate}]
+
+            pol_vals = {
+                'page': event_id,
+                'page_date': current_date,
+                'measurements': monitor_readings
+                }
+
+            # Create the Page of Life associated to this reading
+            PageOfLife.create_pol(PageOfLife, pol_vals, 'medical',
+                                  'self_monitoring')
 
     @Slot(int, int, int)
     def getvals(self, *args):

@@ -19,6 +19,26 @@ Kirigami.Page {
         id: content
         anchors.fill: parent
 
+
+        TextField {
+            id: userFedacct
+            Layout.alignment: Qt.AlignHCenter
+            placeholderText: qsTr("Fed Acct")
+            horizontalAlignment: TextInput.AlignHCenter
+            Kirigami.FormData.label: qsTr("Federation Acct")
+        }
+
+        Button {
+            id: fedAcctsetbutton
+            Layout.alignment: Qt.AlignHCenter
+
+            text: qsTr("Set")
+            onClicked: {
+                profile_settings.get_fedacct(userFedacct.text);
+            }
+
+        }
+
         TextField {
             id: userPassword
             Layout.alignment: Qt.AlignHCenter
@@ -53,7 +73,7 @@ Kirigami.Page {
             id: buttonSetSettings
             Layout.alignment: Qt.AlignHCenter
 
-            text: qsTr("Done")
+            text: qsTr("Update")
             flat: false
             onClicked: {
                 profile_settings.getvals(userPassword.text,newPassword1.text,

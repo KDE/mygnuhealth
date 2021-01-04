@@ -8,8 +8,8 @@
 ##############################################################################
 #
 #    GNU Health: The Free Health and Hospital Information System
-#    Copyright (C) 2008-2020 Luis Falcon <falcon@gnuhealth.org>
-#    Copyright (C) 2011-2020 GNU Solidario <health@gnusolidario.org>
+#    Copyright (C) 2008-2021 Luis Falcon <falcon@gnuhealth.org>
+#    Copyright (C) 2011-2021 GNU Solidario <health@gnusolidario.org>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -56,6 +56,7 @@ def main():
         from mygnuhealth.glucose import Glucose
         from mygnuhealth.weight import Weight
         from mygnuhealth.osat import Osat
+        from mygnuhealth.bol import GHBol
 
     app = QApplication(sys.argv)
 
@@ -91,9 +92,9 @@ def main():
     qmlRegisterType(GHBio, "GHBio", 0, 1,
                     "GHBio")
 
-    # Register GHPol to use in QML
-    # qmlRegisterType(GHPol, "GHPol", 0, 1,
-    #                "GHPol")
+    # Register GHBol to use in QML
+    qmlRegisterType(GHBol, "GHBol", 0, 1,
+                    "GHBol")
 
     engine = QQmlApplicationEngine()
 

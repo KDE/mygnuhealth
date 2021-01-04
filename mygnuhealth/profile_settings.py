@@ -10,6 +10,8 @@ class ProfileSettings(QObject):
 
     db = TinyDB(dbfile)
 
+    # TODO: Include date of birth, height and sex
+
     def check_current_password(self, current_password):
         personal_key = get_personal_key(self.db)
         cpw = current_password.encode()
@@ -33,6 +35,18 @@ class ProfileSettings(QObject):
 
         print("Saved personal key", encrypted_key)
 
+    def update_fedacct(self, fedacct):
+        credentials = self.db.table('federation')
+        credentials.update({'federation_account': fedacct})
+
+        print("Saved personal key", fedacct)
+
+    @Slot(str)
+    def get_fedacct(self, userfedacct):
+        if (userfedacct):
+            self.update_fedacct(userfedacct)
+            self.setOK.emit()
+
     @Slot(str, str, str)
     def getvals(self, current_password, password, password_repeat):
         if (self.check_current_password(current_password) and
@@ -40,5 +54,6 @@ class ProfileSettings(QObject):
             self.update_personalkey(password)
             self.setOK.emit()
 
-    # Signal to emit to QML if the password was stored correctly
+    # Signal to emit to QML if the password or
+    # the federation account was stored correctly
     setOK = Signal()

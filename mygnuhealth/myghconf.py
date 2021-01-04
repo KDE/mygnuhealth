@@ -3,8 +3,8 @@
 ##############################################################################
 #
 #    GNU Health: The Free Health and Hospital Information System
-#    Copyright (C) 2008-2020 Luis Falcon <falcon@gnu.org>
-#    Copyright (C) 2011-2020 GNU Solidario <health@gnusolidario.org>
+#    Copyright (C) 2008-2021 Luis Falcon <falcon@gnu.org>
+#    Copyright (C) 2011-2021 GNU Solidario <health@gnusolidario.org>
 #
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -36,6 +36,10 @@ homedir = str(Path.home())
 gh_dir = os.path.join(homedir, 'mygh')
 config_file = os.path.join(gh_dir, 'ghealth.conf')
 dbfile = os.path.join(gh_dir, 'ghealth.db')
+
+# The boldb holds the Book of Life
+# containing all pages of life and their sync status on the federation
+bolfile = os.path.join(gh_dir, 'bol.db')
 GH_KEY = "mygh"
 
 

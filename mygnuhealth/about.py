@@ -37,4 +37,4 @@ __team__ = [
     ]
 
 __license__ = "GPL v3+"
-__copyright__ = "Copyright 2008-2020 {0}".format(__author__)
+__copyright__ = "Copyright 2008-2021 {0}".format(__author__)

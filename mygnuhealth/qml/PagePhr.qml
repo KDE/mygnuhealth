@@ -29,7 +29,7 @@ Kirigami.ScrollablePage {
         }
 
         ItemDelegate {
-            //onClicked: pageStack.push(Qt.resolvedUrl("PageBoL.qml"))
+            onClicked: pageStack.push(Qt.resolvedUrl("PageBoL.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
             Layout.preferredHeight: 100
