@@ -6,7 +6,7 @@ import Qt.labs.qmlmodels 1.0
 import GHBol 0.1
 
 
-Kirigami.Page
+Kirigami.ScrollablePage
 {
     id: bolpage
     title: qsTr("My Book of Life")
@@ -15,12 +15,12 @@ Kirigami.Page
 
     ColumnLayout {
         id:bollayout
-        spacing: 5
+        spacing: Kirigami.Units.largeSpacing
         RowLayout {
             id:poldomains
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
-            Layout.preferredHeight: 85
+            Layout.preferredHeight: Kirigami.Units.gridUnit * 4
             Rectangle {
                 id:rectbio
                 Layout.fillHeight: true
