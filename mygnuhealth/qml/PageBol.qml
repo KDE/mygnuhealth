@@ -10,6 +10,54 @@ Kirigami.ScrollablePage {
     id: bolpage
     title: qsTr("My Book of Life")
 
+    header: RowLayout {
+        id:poldomains
+        height: Kirigami.Units.gridUnit * 3
+        width: bolpage.width
+        spacing: Kirigami.Units.smallSpcing
+        Item {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Image {
+                anchors.fill: parent
+                source: "../images/medical-square-icon.svg"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+
+        Item {
+            id:rectpsycho
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Image {
+                anchors.fill: parent
+                source: "../images/psycho-square-icon.svg"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+
+        Item {
+            id:rectsocial
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Image {
+                anchors.fill: parent
+                source: "../images/social-square-icon.svg"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+
+        Item {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Image {
+                anchors.fill: parent
+                source: "../images/activity-square-icon.svg"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+    }
+
     TableView {
         id: bolview
         columnSpacing: 1
@@ -19,60 +67,6 @@ Kirigami.ScrollablePage {
         GHBol {
             // GHBol object registered at mygh.py
             id: ghbol
-        }
-
-        header: RowLayout {
-            id:poldomains
-            Layout.alignment: Qt.AlignCenter
-            Layout.fillWidth: true
-            Layout.preferredHeight: Kirigami.Units.gridUnit * 4
-            Rectangle {
-                id:rectbio
-                Layout.fillHeight: true
-                Layout.preferredWidth: 85
-                Image {
-                    id:bioIcon
-                    Layout.preferredWidth: 85
-                    anchors.fill: parent
-                    source: "../images/medical-square-icon.svg"
-                }
-            }
-
-            Rectangle {
-                id:rectpsycho
-                Layout.fillHeight: true
-                Layout.preferredWidth: 85
-                Image {
-                    id: psychoIcon
-                    source: "../images/psycho-square-icon.svg"
-                    Layout.preferredWidth: 85
-                    anchors.fill: parent
-                    fillMode:Image.PreserveAspectFit
-                }
-            }
-
-            Rectangle {
-                id:rectsocial
-                Layout.fillHeight: true
-                Layout.preferredWidth: 85
-                Image {
-                    id: socialIcon
-                    source: "../images/social-square-icon.svg"
-                    anchors.fill: parent
-                }
-            }
-
-            Rectangle {
-                id:rectday
-                Layout.fillHeight: true
-                Layout.preferredWidth: 85
-                Image {
-                    id: dayIcon
-                    source: "../images/activity-square-icon.svg"
-                    fillMode:Image.PreserveAspectFit
-                    anchors.fill: parent
-                }
-            }
         }
 
         model: TableModel {
