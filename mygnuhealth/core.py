@@ -40,6 +40,15 @@ def datefromisotz(isotz):
         return dateutil.parser.parse(isotz)
 
 
+def get_user_profile(db):
+    """Retrives the user profile (DoB, sex, height ...)"""
+
+    user_profile = db.table('profile')
+    # Credentials table holds a singleton, so only one record
+    profile = user_profile.all()[0]['personal_key']
+    return profile
+
+
 def get_personal_key(db):
     """Retrives the user personal key"""
 

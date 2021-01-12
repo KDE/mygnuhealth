@@ -4,6 +4,7 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 import matplotlib.pyplot as plt
 import base64
+import numpy as np
 from mygnuhealth.core import datefromisotz
 from mygnuhealth.myghconf import dbfile
 
@@ -219,8 +220,8 @@ class GHBio(QObject):
 
     def read_weight(self):
         # Retrieve the weight levels history
-        weight = self.db.table('weight')
-        weighthist = weight.all()
+        weighttable = self.db.table('weight')
+        weighthist = weighttable.all()
         return (weighthist)
 
     def getWeight(self):
@@ -251,6 +252,7 @@ class GHBio(QObject):
         weighthist = self.read_weight()
         weight = []
         weight_date = []
+        bmi = []
         lastreading = ''
         for element in weighthist:
             # dateobj = datetime.datetime.fromisoformat(element['timestamp'])
@@ -260,15 +262,23 @@ class GHBio(QObject):
             # if (lastreading != date_repr):
             weight_date.append(dateobj)
             weight.append(element['weight'])
+            if ('bmi' in element.keys()):
+                # BMI depends on the height, so it will be present
+                # only if the user has set the height on her profile
+                bmi.append(element['bmi'])
+            else:
+                # Use numpy NaN for null values
+                bmi.append(np.NaN)
 
-        fig = plt.figure()
-        ax = fig.add_subplot(1, 1, 1)
+        fig, axes = plt.subplots(nrows=2, ncols=1, figsize=(6, 8))
 
-        ax.plot(weight_date, weight, color="blue")
+        axes[0].plot(weight_date, weight, color="blue")
+        axes[1].plot(weight_date, bmi, color="teal")
 
-        ax.set_ylabel('kg', size=13)
+        axes[0].set_ylabel('kg', size=13)
+        axes[1].set_ylabel('kg/m2', size=13)
         fig.autofmt_xdate()
-        fig.suptitle("Weight (kg)", size=20)
+        fig.suptitle("Weight & Body Mass Index", size=20)
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")

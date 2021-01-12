@@ -22,25 +22,38 @@ class Weight(QObject):
     db = TinyDB(dbfile)
 
     def insert_values(self, body_weight):
-        weight = self.db.table('weight')
+        weighttable = self.db.table('weight')
+        profiletable = self.db.table('profile')
         current_date = datetime.datetime.now().isoformat()
 
         if body_weight > 0:
             event_id = str(uuid4())
             synced = False
-            weight.insert({'timestamp': current_date,
-                           'event_id': event_id,
-                           'synced': synced,
-                           'weight': body_weight})
+            height = profiletable.all()[0]['height']
+            vals = {'timestamp': current_date,
+                    'event_id': event_id,
+                    'synced': synced,
+                    'weight': body_weight}
+            measurements = {'wt': body_weight}
 
-            print("Saved weight", event_id, synced, body_weight, current_date)
+            # If height is in the person profile, calculate the BMI
+            if height:
+                bmi = body_weight/((height/100)**2)
+                bmi = round(bmi, 1)  # Use one decimal
+                vals['bmi'] = bmi
+                measurements['bmi'] = bmi
+
+            weighttable.insert(vals)
+
+            print("Saved weight", event_id, synced, body_weight, bmi,
+                  current_date)
 
             # Create a new PoL with the values
             # within the medical domain and the self monitoring context
             pol_vals = {
                 'page': event_id,
                 'page_date': current_date,
-                'measurements': [{'wt': body_weight}]
+                'measurements': [measurements]
                 }
 
             # Create the Page of Life associated to this reading

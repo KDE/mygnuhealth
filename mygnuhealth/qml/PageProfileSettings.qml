@@ -19,24 +19,52 @@ Kirigami.Page {
         id: content
         anchors.fill: parent
 
+        RowLayout {
+            Label {
+                text: "Height"
+            }
+            SpinBox {
+                id: heightspin
+                from: 40
+                value: 160
+                to: 230
+                stepSize: 1
+            }
+            Button {
+                id: profilebutton
+                Layout.alignment: Qt.AlignHCenter
 
-        TextField {
-            id: userFedacct
-            Layout.alignment: Qt.AlignHCenter
-            placeholderText: qsTr("Fed Acct")
-            horizontalAlignment: TextInput.AlignHCenter
-            Kirigami.FormData.label: qsTr("Federation Acct")
+                text: qsTr("Update")
+                onClicked: {
+                    profile_settings.get_profile(heightspin.value);
+                }
+
+            }
         }
 
-        Button {
-            id: fedAcctsetbutton
-            Layout.alignment: Qt.AlignHCenter
-
-            text: qsTr("Set")
-            onClicked: {
-                profile_settings.get_fedacct(userFedacct.text);
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+        }
+        RowLayout {
+            TextField {
+                id: userFedacct
+                Layout.alignment: Qt.AlignHCenter
+                placeholderText: qsTr("Fed Acct")
+                horizontalAlignment: TextInput.AlignHCenter
+                Kirigami.FormData.label: qsTr("Federation Acct")
             }
+            Button {
+                id: fedAcctsetbutton
+                Layout.alignment: Qt.AlignHCenter
 
+                text: qsTr("Set")
+                onClicked: {
+                    profile_settings.get_fedacct(userFedacct.text);
+                }
+            }
+        }
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
         }
 
         TextField {
@@ -48,40 +76,35 @@ Kirigami.Page {
             Kirigami.FormData.label: qsTr("Current key")
         }
 
-        TextField {
-            id: newPassword1
-            Layout.alignment: Qt.AlignHCenter
-            placeholderText: qsTr("New Password")
-            horizontalAlignment: TextInput.AlignHCenter
-            echoMode: TextInput.Password
-            Kirigami.FormData.label: qsTr("New password")
-            focus: true
+        RowLayout {
+            TextField {
+                id: newPassword1
+                Layout.alignment: Qt.AlignHCenter
+                placeholderText: qsTr("New Password")
+                horizontalAlignment: TextInput.AlignHCenter
+                echoMode: TextInput.Password
+                Kirigami.FormData.label: qsTr("New password")
+                focus: true
+            }
+            TextField {
+                id: newPassword2
+                Layout.alignment: Qt.AlignHCenter
+                placeholderText: qsTr("Repeat")
+                horizontalAlignment: TextInput.AlignHCenter
+                echoMode: TextInput.Password
+                Kirigami.FormData.label: qsTr("Repeat")
+                focus: true
+            }
         }
-
-        TextField {
-            id: newPassword2
-            Layout.alignment: Qt.AlignHCenter
-            placeholderText: qsTr("Repeat")
-            horizontalAlignment: TextInput.AlignHCenter
-            echoMode: TextInput.Password
-            Kirigami.FormData.label: qsTr("Repeat")
-            focus: true
-        }
-
-
         Button {
             id: buttonSetSettings
             Layout.alignment: Qt.AlignHCenter
-
             text: qsTr("Update")
             flat: false
             onClicked: {
                 profile_settings.getvals(userPassword.text,newPassword1.text,
-                                         newPassword2.text);
+                                        newPassword2.text);
             }
-
         }
-
     }
-
 }

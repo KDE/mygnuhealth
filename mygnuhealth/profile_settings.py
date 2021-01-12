@@ -10,8 +10,6 @@ class ProfileSettings(QObject):
 
     db = TinyDB(dbfile)
 
-    # TODO: Include date of birth, height and sex
-
     def check_current_password(self, current_password):
         personal_key = get_personal_key(self.db)
         cpw = current_password.encode()
@@ -30,18 +28,44 @@ class ProfileSettings(QObject):
         encrypted_key = bcrypt.hashpw(password.encode('utf-8'),
                                       bcrypt.gensalt()).decode('utf-8')
 
-        credentials = self.db.table('credentials')
-        credentials.update({'personal_key': encrypted_key})
+        credentialstable = self.db.table('credentials')
+        if (len(credentialstable) > 0):
+            credentialstable.update({'personal_key': encrypted_key})
+        else:
+            print("Initializing credentials table")
+            credentialstable.insert({'personal_key': encrypted_key})
 
         print("Saved personal key", encrypted_key)
 
     def update_fedacct(self, fedacct):
-        credentials = self.db.table('federation')
-        credentials.update({'federation_account': fedacct})
+        fedtable = self.db.table('federation')
+        if (len(fedtable) > 0):
+            fedtable.update({'federation_account': fedacct})
+        else:
+            print("Initializing federation settings")
+            fedtable.insert({'federation_account': fedacct})
 
         print("Saved personal key", fedacct)
 
+    def update_profile(self, profile):
+        # TODO: Include date of birth and sex
+        profiletable = self.db.table('profile')
+        if (len(profiletable) > 0):
+            profiletable.update({'height': profile['height']})
+
+        else:
+            print("Initializing profile")
+            profiletable.insert({'height': profile['height']})
+
     @Slot(str)
+    def get_profile(self, height):
+        height = int(height)
+        profile = {'height': height}
+        if (height):
+            self.update_profile(profile)
+            self.setOK.emit()
+
+    @Slot(int)
     def get_fedacct(self, userfedacct):
         if (userfedacct):
             self.update_fedacct(userfedacct)

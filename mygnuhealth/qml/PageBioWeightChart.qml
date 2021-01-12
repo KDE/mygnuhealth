@@ -21,7 +21,7 @@ title: qsTr("Body Weight")
             id: weighthistchart
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: 350
-            Layout.preferredHeight: 250
+            Layout.preferredHeight: 450
             border.width: 2
             border.color: "#108498"
 
