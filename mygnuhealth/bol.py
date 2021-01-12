@@ -51,6 +51,9 @@ class GHBol(QObject):
                 if 'wt' in measure.keys():
                     summ = summ + f"Weight: {measure['wt']} kg\n"
 
+                if 'bmi' in measure.keys():
+                    summ = summ + f"BMI: {measure['bmi']} kg/m2\n"
+
                 if 'osat' in measure.keys():
                     summ = summ + f"osat: {measure['osat']} %\n"
 
