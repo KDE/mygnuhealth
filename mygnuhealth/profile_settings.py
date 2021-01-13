@@ -3,10 +3,13 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 import bcrypt
 from mygnuhealth.myghconf import dbfile
-from mygnuhealth.core import get_personal_key
+from mygnuhealth.core import get_personal_key, get_user_profile, \
+    get_federation_account
 
 
 class ProfileSettings(QObject):
+    def __init__(self):
+        QObject.__init__(self)
 
     db = TinyDB(dbfile)
 
@@ -37,16 +40,6 @@ class ProfileSettings(QObject):
 
         print("Saved personal key", encrypted_key)
 
-    def update_fedacct(self, fedacct):
-        fedtable = self.db.table('federation')
-        if (len(fedtable) > 0):
-            fedtable.update({'federation_account': fedacct})
-        else:
-            print("Initializing federation settings")
-            fedtable.insert({'federation_account': fedacct})
-
-        print("Saved personal key", fedacct)
-
     def update_profile(self, profile):
         # TODO: Include date of birth and sex
         profiletable = self.db.table('profile')
@@ -57,6 +50,8 @@ class ProfileSettings(QObject):
             print("Initializing profile")
             profiletable.insert({'height': profile['height']})
 
+        return True
+
     @Slot(str)
     def get_profile(self, height):
         height = int(height)
@@ -65,19 +60,44 @@ class ProfileSettings(QObject):
             self.update_profile(profile)
             self.setOK.emit()
 
-    @Slot(int)
+    def update_fedacct(self, fedacct):
+        fedtable = self.db.table('federation')
+        if (len(fedtable) > 0):
+            fedtable.update({'federation_account': fedacct})
+        else:
+            print("Initializing federation settings")
+            fedtable.insert({'federation_account': fedacct})
+
+        print("Saved personal key", fedacct)
+        return True
+
+    @Slot(str)
     def get_fedacct(self, userfedacct):
         if (userfedacct):
             self.update_fedacct(userfedacct)
             self.setOK.emit()
 
     @Slot(str, str, str)
-    def getvals(self, current_password, password, password_repeat):
+    def get_personalkey(self, current_password, password, password_repeat):
         if (self.check_current_password(current_password) and
                 self.check_new_password(password, password_repeat)):
             self.update_personalkey(password)
             self.setOK.emit()
 
-    # Signal to emit to QML if the password or
-    # the federation account was stored correctly
+    # Signal to emit to QML if the password, profile values or
+    # the federation account were stored correctly
     setOK = Signal()
+
+    def default_height(self):
+        return get_user_profile(self.db)['height']
+
+    def default_fedacct(self):
+        return get_federation_account()
+
+    # Properties block
+
+    # Expose to QML the value of the person height
+    height = Property(int, default_height, constant=True)
+
+    # Expose to QML the value of federation account
+    fedacct = Property(str, default_fedacct, constant=True)

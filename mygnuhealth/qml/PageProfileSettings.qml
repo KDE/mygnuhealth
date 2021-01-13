@@ -8,7 +8,7 @@ Kirigami.Page {
     id: phrpage
     title: qsTr("MyGNUHealth Profile Settings")
 
-    ProfileSettings { // ProfileSettings object registered at main.py
+    ProfileSettings { // ProfileSettings object registered at mygh.py
         id: profile_settings
         onSetOK: {
             pageStack.layers.pop() // Return to main PHR page
@@ -24,9 +24,10 @@ Kirigami.Page {
                 text: "Height"
             }
             SpinBox {
+                property var ht: profile_settings.height
                 id: heightspin
                 from: 40
-                value: 160
+                value: ht
                 to: 230
                 stepSize: 1
             }
@@ -46,12 +47,16 @@ Kirigami.Page {
             Kirigami.FormData.isSection: true
         }
         RowLayout {
+            Label {
+                text: "Fed Acct"
+            }
             TextField {
                 id: userFedacct
+                property var fedacct: profile_settings.fedacct
                 Layout.alignment: Qt.AlignHCenter
                 placeholderText: qsTr("Fed Acct")
+                text: fedacct
                 horizontalAlignment: TextInput.AlignHCenter
-                Kirigami.FormData.label: qsTr("Federation Acct")
             }
             Button {
                 id: fedAcctsetbutton
@@ -73,7 +78,7 @@ Kirigami.Page {
             placeholderText: qsTr("Current Key")
             horizontalAlignment: TextInput.AlignHCenter
             echoMode: TextInput.Password
-            Kirigami.FormData.label: qsTr("Current key")
+            Kirigami.FormData.label: qsTr("Personal key")
         }
 
         RowLayout {
@@ -102,7 +107,7 @@ Kirigami.Page {
             text: qsTr("Update")
             flat: false
             onClicked: {
-                profile_settings.getvals(userPassword.text,newPassword1.text,
+                profile_settings.get_personalkey(userPassword.text,newPassword1.text,
                                         newPassword2.text);
             }
         }

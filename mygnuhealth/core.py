@@ -43,18 +43,18 @@ def datefromisotz(isotz):
 def get_user_profile(db):
     """Retrives the user profile (DoB, sex, height ...)"""
 
-    user_profile = db.table('profile')
+    profile_table = db.table('profile')
     # Credentials table holds a singleton, so only one record
-    profile = user_profile.all()[0]['personal_key']
+    profile = profile_table.all()[0]
     return profile
 
 
 def get_personal_key(db):
     """Retrives the user personal key"""
 
-    credentials = db.table('credentials')
+    credentials_table = db.table('credentials')
     # Credentials table holds a singleton, so only one record
-    personal_key = credentials.all()[0]['personal_key']
+    personal_key = credentials_table.all()[0]['personal_key']
     return personal_key.encode()
 
 
@@ -62,10 +62,10 @@ def get_federation_account():
     """Retrieves the user GH Federation account, if any."""
 
     db = TinyDB(dbfile)
-    fedtable = db.table('federation')
+    federation_table = db.table('federation')
 
     # Federation Account table holds a singleton, so only one record
-    fedacct = fedtable.all()[0]['federation_account']
+    fedacct = federation_table.all()[0]['federation_account']
     return fedacct
 
 
