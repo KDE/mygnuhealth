@@ -8,12 +8,23 @@ Kirigami.Page {
     id: phrpage
     title: qsTr("MyGNUHealth Profile Settings")
 
-    ProfileSettings { // ProfileSettings object registered at mygh.py
-        id: profile_settings
-        onSetOK: {
-            pageStack.layers.pop() // Return to main PHR page
+    header: Control {
+        padding: Kirigami.Units.smallSpacing
+        contentItem: Kirigami.InlineMessage {
+            id: errorMessage
+            visible: false
+            text: qsTr("Error on password change")
+            type: Kirigami.MessageType.Error
+            showCloseButton: true
         }
     }
+
+    ProfileSettings { // ProfileSettings object registered at mygh.py
+        id: profile_settings
+        onSetOK: pageStack.layers.pop() // Return to main PHR page
+        onErrorPassword: errorMessage.visible = true
+    }
+
 
     Kirigami.FormLayout {
         id: content

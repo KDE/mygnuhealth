@@ -19,12 +19,14 @@ class ProfileSettings(QObject):
         rc = bcrypt.checkpw(cpw, personal_key)
         if not rc:
             print("Wrong current password")
+            self.errorPassword.emit()
         return rc
 
     def check_new_password(self, password, password_repeat):
         rc = password == password_repeat
         if not rc:
             print("New passwords do not match")
+            self.errorPassword.emit()
         return rc
 
     def update_personalkey(self, password):
@@ -87,6 +89,9 @@ class ProfileSettings(QObject):
     # Signal to emit to QML if the password, profile values or
     # the federation account were stored correctly
     setOK = Signal()
+
+    # Error signal to emit when the there is an error setting the new password
+    errorPassword = Signal()
 
     def default_height(self):
         return get_user_profile(self.db)['height']
