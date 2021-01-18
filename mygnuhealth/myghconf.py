@@ -3,7 +3,7 @@
 ##############################################################################
 #
 #    GNU Health: The Free Health and Hospital Information System
-#    Copyright (C) 2008-2021 Luis Falcon <falcon@gnu.org>
+#    Copyright (C) 2008-2021 Luis Falcon <falcon@gnuhealth.org>
 #    Copyright (C) 2011-2021 GNU Solidario <health@gnusolidario.org>
 #
 #
@@ -40,7 +40,6 @@ dbfile = os.path.join(gh_dir, 'ghealth.db')
 # The boldb holds the Book of Life
 # containing all pages of life and their sync status on the federation
 bolfile = os.path.join(gh_dir, 'bol.db')
-GH_KEY = "mygh"
 
 
 def check_inst_dir():
@@ -67,9 +66,7 @@ def check_db():
     if os.path.isfile(dbfile):
         print("MyGNUHealth DB exists.. skipping")
     else:
-        print("DB file not found. Initializing MyGNUHealth...")
-        db = TinyDB(dbfile)
-        init_db(db)
+        print("DB file not found.")
 
 
 def set_default_config_file():
@@ -81,16 +78,6 @@ def set_default_config_file():
     config.set('security', 'key_method', 'bcrypt')
     output_file = open(config_file, 'w')
     config.write(output_file)
-
-
-def init_db(db):
-    encrypted_key = bcrypt.hashpw(GH_KEY.encode('utf-8'),
-                                  bcrypt.gensalt()).decode('utf-8')
-
-    credentials = db.table('credentials')
-    credentials.insert({'personal_key': encrypted_key})
-
-    print("MyGNUHealth DB initialized !")
 
 
 def verify_installation_status():
