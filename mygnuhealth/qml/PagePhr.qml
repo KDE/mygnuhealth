@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.3
 
 Kirigami.ScrollablePage {
     id: phrpage
-    title: qstr("Home")
+    title: qsTr("Home")
     ColumnLayout {
         spacing: Kirigami.Units.gridUnit
 
@@ -14,7 +14,7 @@ Kirigami.ScrollablePage {
             onClicked: pageStack.push(Qt.resolvedUrl("PageBio.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
-            Layout.preferredHeight: 100
+            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
 
             background: Rectangle {
                 color: "#108498"
@@ -33,7 +33,7 @@ Kirigami.ScrollablePage {
             onClicked: pageStack.push(Qt.resolvedUrl("PageBol.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
-            Layout.preferredHeight: 100
+            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
 
             background: Rectangle {
                 color: "#108498"
@@ -52,7 +52,7 @@ Kirigami.ScrollablePage {
             //onClicked: pageStack.push(Qt.resolvedUrl("PageDocuments.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
-            Layout.preferredHeight: 100
+            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
 
             background: Rectangle {
                 color: "#108498"
@@ -71,7 +71,7 @@ Kirigami.ScrollablePage {
             //onClicked: pageStack.push(Qt.resolvedUrl("SocialPsycho.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
-            Layout.preferredHeight: 100
+            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
 
             background: Rectangle {
                 color: "#108498"
