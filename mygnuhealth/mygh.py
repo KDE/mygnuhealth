@@ -49,7 +49,7 @@ def main():
     if (verify_installation_status()):
         from mygnuhealth.profile_settings import ProfileSettings
         from mygnuhealth.network_settings import NetworkSettings
-        from mygnuhealth.ghlogin import GHLogin
+        from mygnuhealth.local_account_manager import LocalAccountManager
         from mygnuhealth.bio import GHBio
 
         from mygnuhealth.bloodpressure import BloodPressure
@@ -85,8 +85,8 @@ def main():
                     "Osat")
 
     # Register GHLogin to use in QML
-    qmlRegisterType(GHLogin, "GHLogin", 0, 1,
-                    "GHLogin")
+    qmlRegisterType(LocalAccountManager, "org.kde.mygnuhealth", 1, 0,
+                    "LocalAccountManager")
 
     # Register GHBio to use in QML
     qmlRegisterType(GHBio, "GHBio", 0, 1,
