@@ -52,7 +52,7 @@ Kirigami.ScrollablePage
                     }
 
                     Label {
-                        text: qsTr("%1 / %2 mmHg", bphist.bpsystolic, bphist.bpdiastolic)
+                        text: qsTr("%1 / %2 mmHg").arg(bphist.bpsystolic).arg(bphist.bpdiastolic)
                         horizontalAlignment: Text.AlignHCenter
                         width: parent.width
                         font.weight: Font.Bold
@@ -99,7 +99,7 @@ Kirigami.ScrollablePage
                     }
 
                     Label {
-                        text: qsTr("%1 mg/dl", glucosehist.glucose)
+                        text: qsTr("%1 mg/dl").arg(glucosehist.glucose)
                         font.weight: Font.Bold
                         horizontalAlignment: Text.AlignHCenter
                         width: parent.width
@@ -140,7 +140,7 @@ Kirigami.ScrollablePage
                     }
 
                     Label {
-                        text: qsTr("%1 kg", weighthist.weight)
+                        text: qsTr("%1 kg").arg(weighthist.weight)
                         horizontalAlignment: Text.AlignHCenter
                         width: parent.width
                         font.weight: Font.Bold
