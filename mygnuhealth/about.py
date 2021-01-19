@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-##############################################################################
-#
-#    MyGNUHealth : Mobile and Desktop PHR node for GNU Health
-#
-#           MyGNUHealth is part of the GNU Health project
-#
-##############################################################################
+####################################################################
+#   Copyright (C) 2020-2021 Luis Falcon <falcon@gnuhealth.org>
+#   Copyright (C) 2020-2021 GNU Solidario <health@gnusolidario.org>
+#   License: GPL v3+
+#   Please read the COPYRIGHT and LICENSE files of the package
+####################################################################
 
 __version__ = "0.7a11"
 

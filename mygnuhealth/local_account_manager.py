@@ -1,6 +1,10 @@
-# SPDX-FileCopyrightText: 2020 Carl Schwan <carlschwan@kde.org>
-#
-# SPDX-License-Identifier: GPL-3.0-or-later
+####################################################################
+#   Copyright (C) 2020-2021 Luis Falcon <falcon@gnuhealth.org>
+#   Copyright (C) 2020-2021 GNU Solidario <health@gnusolidario.org>
+#   Copyright (C) 2020-2021 Carl Schwan <carlschwan@kde.org>
+#   License: GPL v3+
+#   Please read the COPYRIGHT and LICENSE files of the package
+####################################################################
 
 from PySide2.QtCore import QObject, Signal, Slot, Property
 import bcrypt
@@ -9,6 +13,7 @@ from mygnuhealth.myghconf import dbfile
 from mygnuhealth.core import get_personal_key
 
 import logging
+
 
 class LocalAccountManager(QObject):
     """This class manages the login and initialization of the personal key

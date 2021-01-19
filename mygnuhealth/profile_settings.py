@@ -1,3 +1,10 @@
+####################################################################
+#   Copyright (C) 2020-2021 Luis Falcon <falcon@gnuhealth.org>
+#   Copyright (C) 2020-2021 GNU Solidario <health@gnusolidario.org>
+#   GPL v3+
+#   Please read the COPYRIGHT and LICENSE files of the package
+####################################################################
+
 import datetime
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query

@@ -7,7 +7,7 @@
 #
 ##############################################################################
 #
-#    GNU Health: The Free Health and Hospital Information System
+#    GNU Health: The Libre Digital Health Ecosystem
 #    Copyright (C) 2008-2021 Luis Falcon <falcon@gnuhealth.org>
 #    Copyright (C) 2011-2021 GNU Solidario <health@gnusolidario.org>
 #
