@@ -14,274 +14,180 @@ Kirigami.ScrollablePage
     }
 
     ColumnLayout {
-        spacing: 5
+        spacing: Kirigami.Units.gridUnit
 
-        // Blood pressure / Heart Rate
-        RowLayout {
-            id:bpitem
-            Layout.alignment: Qt.AlignCenter
-            Layout.fillWidth: true
-            Layout.preferredHeight: 100
+        Kirigami.CardsLayout {
 
-            Rectangle {
-                id:bprectangle
-                Layout.fillHeight: true
-                Layout.preferredWidth: 100
+            // Blood pressure / Heart Rate
+            Kirigami.Card {
+                banner {
+                    iconSource: Qt.resolvedUrl("../images/bp-icon.svg")
+                    title: qsTr("Blood pressure / Heart Rate")
+                }
+                actions: [
+                    Kirigami.Action {
+                        icon.name: "view-visible"
+                        text: qsTr("View Chart")
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageBioBPChart.qml"))
+                    },
+                    Kirigami.Action {
+                        icon.name: "document-edit"
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageBloodpressure.qml"))
+                        text: qsTr("Add Blood Pressure Entry")
+                    }
+                ]
+                contentItem: Column {
+                    id: bphist
+                    readonly property var bpinfo: ghbio.bp
+                    readonly property var bpdate: bpinfo[0]
+                    readonly property var bpsystolic: bpinfo[1]
+                    readonly property var bpdiastolic: bpinfo[2]
+                    readonly property var heartrate: bpinfo[3] + ' bpm'
 
-                Image {
-                    id: bpIcon
-                    source: "../images/bp-icon.svg"
-                    anchors.fill: parent
-                    fillMode:Image.PreserveAspectFit
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: pageStack.push(Qt.resolvedUrl("PageBloodpressure.qml"))
+                    Label {
+                        id: txtBpdate
+                        horizontalAlignment: Text.AlignHCenter
+                        text: bphist.bpdate
+                        width: parent.width
+                    }
+
+                    Label {
+                        text: qsTr("%1 / %2 mmHg", bphist.bpsystolic, bphist.bpdiastolic)
+                        horizontalAlignment: Text.AlignHCenter
+                        width: parent.width
+                        font.weight: Font.Bold
+                    }
+
+                    Label {
+                        horizontalAlignment: Text.AlignHCenter
+                        text: bphist.heartrate
+                        width: parent.width
                     }
                 }
             }
-            Rectangle {
-                id:bphist
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                // Layout.preferredWidth does not work here.
-                property var bpinfo: ghbio.bp
-                property var bpdate: bpinfo[0]
-                property var bpsystolic: bpinfo[1]
-                property var bpdiastolic: bpinfo[2]
-                property var heartrate: bpinfo[3] + ' bpm'
 
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: pageStack.push(Qt.resolvedUrl("PageBioBPChart.qml"))
+            // GLUCOSE
+            Kirigami.Card {
+                banner {
+                    iconSource: Qt.resolvedUrl("../images/glucose-icon.svg")
+                    title: qsTr("Glucose")
                 }
 
-                Text {
-                    id: txtBpdate
-                    anchors.top: parent.top
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.topMargin:5
-                    text: bphist.bpdate
-                    color: "#108498"
-                    font.pointSize: 10
-                }
+                actions: [
+                    Kirigami.Action {
+                        icon.name: "view-visible"
+                        text: qsTr("View Chart")
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageBioGlucoseChart.qml"))
+                    },
+                    Kirigami.Action {
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageGlucose.qml"))
+                        icon.name: "document-edit"
+                        text: qsTr("Add Glucose Entry")
+                    }
+                ]
 
-                Text {
-                    id: txtBp
-                    anchors.centerIn: parent
-                    text: bphist.bpsystolic + ' / ' + bphist.bpdiastolic
-                    color: "#108498"
-                    font.bold: true
-                    font.pointSize: 12
+                contentItem: Column {
+                    id: glucosehist
+                    readonly property var glucoseinfo: ghbio.glucose
+                    readonly property var glucosedate: glucoseinfo[0]
+                    readonly property var glucose: glucoseinfo[1]
+
+                    Label {
+                        text: glucosehist.glucosedate
+                        horizontalAlignment: Text.AlignHCenter
+                        width: parent.width
                     }
 
-                Text {
-                    id: txtHr
-                    anchors.bottom: parent.bottom
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: bphist.heartrate
-                    color: "#108498"
-                    font.pointSize: 10
-                }
-            }
-        }
-
-        Kirigami.Separator {
-            Layout.fillWidth: true
-            height: 15
-            visible: true
-        }
-
-        // GLUCOSE
-
-        RowLayout {
-            id:glucoseitem
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 350
-            Layout.preferredHeight: 100
-            Rectangle {
-                id:glucoserectangle
-                Layout.fillHeight: true
-                Layout.preferredWidth: 100
-
-                Image {
-                    id: glucoseIcon
-                    source: "../images/glucose-icon.svg"
-                    anchors.fill: parent
-                    fillMode:Image.PreserveAspectFit
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: pageStack.push(Qt.resolvedUrl("PageGlucose.qml"))
+                    Label {
+                        text: qsTr("%1 mg/dl", glucosehist.glucose)
+                        font.weight: Font.Bold
+                        horizontalAlignment: Text.AlignHCenter
+                        width: parent.width
                     }
-               }
-            }
-
-            Rectangle {
-                id:glucosehist
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                property var glucoseinfo: ghbio.glucose
-                property var glucosedate: glucoseinfo[0]
-                property var glucose: glucoseinfo[1]
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: pageStack.push(Qt.resolvedUrl("PageBioGlucoseChart.qml"))
-                }
-
-                Text {
-                    id: txtGlucoseDate
-                    anchors.top: parent.top
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.topMargin:5
-                    text: glucosehist.glucosedate
-                    color: "#108498"
-                    font.pointSize: 10
-                }
-
-                Text {
-                    id: txtGlucose
-                    anchors.centerIn: parent
-                    text: glucosehist.glucose + ' mg/dl'
-                    horizontalAlignment: TextInput.AlignHCenter
-                    color: "#108498"
-                    font.bold: true
-                    font.pointSize: 12
                 }
             }
-        }
 
-        Kirigami.Separator {
-            Layout.fillWidth: true
-            height: 15
-            visible: true
-        }
+            // WEIGHT
+            Kirigami.Card {
+                banner {
+                    iconSource: Qt.resolvedUrl("../images/weight-icon.svg")
+                    title: qsTr("Weight")
+                }
 
-        // WEIGHT
-
-        RowLayout {
-            id:weightitem
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 350
-            Layout.preferredHeight: 100
-            Rectangle {
-                id:weightrectangle
-                Layout.fillHeight: true
-                Layout.preferredWidth: 100
-
-                Image {
-                    id: weightIcon
-                    source: "../images/weight-icon.svg"
-                    anchors.fill: parent
-                    fillMode:Image.PreserveAspectFit
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: pageStack.push(Qt.resolvedUrl("PageWeight.qml"))
+                actions: [
+                    Kirigami.Action {
+                        icon.name: "view-visible"
+                        text: qsTr("View Chart")
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageBioWeightChart.qml"))
+                    },
+                    Kirigami.Action {
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageWeight.qml"))
+                        icon.name: "document-edit"
+                        text: qsTr("Add Weight Entry")
                     }
-               }
-            }
+                ]
 
-            Rectangle {
-                id:weighthist
-                property var weightinfo: ghbio.weight
-                property var weightdate: weightinfo[0]
-                property var weight: weightinfo[1]
+                contentItem: Column {
+                    id: weighthist
+                    readonly property var weightinfo: ghbio.weight
+                    readonly property var weightdate: weightinfo[0]
+                    readonly property var weight: weightinfo[1]
 
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-
-                MouseArea {
-                anchors.fill: parent
-                onClicked: pageStack.push(Qt.resolvedUrl("PageBioWeightChart.qml"))
-                }
-
-                Text {
-                    id: txtWeightDate
-                    anchors.top: parent.top
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.topMargin:5
-                    text: weighthist.weightdate
-                    color: "#108498"
-                    font.pointSize: 10
-                }
-
-                Text {
-                    id: txtWeight
-                    anchors.centerIn: parent
-                    text: weighthist.weight + ' kg'
-                    horizontalAlignment: TextInput.AlignHCenter
-                    color: "#108498"
-                    font.bold: true
-                    font.pointSize: 12
-                }
-            }
-        }
-
-        Kirigami.Separator {
-            Layout.fillWidth: true
-            height: 15
-            visible: true
-        }
-
-        // OSAT
-
-        RowLayout {
-            id:osatitem
-            Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: 350
-            Layout.preferredHeight: 100
-            Rectangle {
-                id:osatrectangle
-                Layout.fillHeight: true
-                Layout.preferredWidth: 100
-
-                Image {
-                    id: osatIcon
-                    source: "../images/osat-icon.svg"
-                    anchors.fill: parent
-                    fillMode:Image.PreserveAspectFit
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: pageStack.push(Qt.resolvedUrl("PageOsat.qml"))
+                    Label {
+                        text: weighthist.weightdate
+                        horizontalAlignment: Text.AlignHCenter
+                        width: parent.width
                     }
-               }
+
+                    Label {
+                        text: qsTr("%1 kg", weighthist.weight)
+                        horizontalAlignment: Text.AlignHCenter
+                        width: parent.width
+                        font.weight: Font.Bold
+                    }
+                }
             }
 
-            Rectangle {
-                id:osathist
-                property var osatinfo: ghbio.osat
-                property var osatdate: osatinfo[0]
-                property var osat: osatinfo[1]
-
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: pageStack.push(Qt.resolvedUrl("PageBioOsatChart.qml"))
+            // Oxygen  Saturation (Hb)
+            Kirigami.Card {
+                banner {
+                    iconSource: Qt.resolvedUrl("../images/osat-icon.svg")
+                    title: qsTr("Oxygen Saturation (Hb)")
                 }
 
-                Text {
-                    id: txtOsatDate
-                    anchors.top: parent.top
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.topMargin:5
-                    text: osathist.osatdate
-                    color: "#108498"
-                    font.pointSize: 10
-                }
+                actions: [
+                    Kirigami.Action {
+                        icon.name: "view-visible"
+                        text: qsTr("View Chart")
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageBioOsatChart.qml"))
+                    },
+                    Kirigami.Action {
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageOsat.qml"))
+                        icon.name: "document-edit"
+                        text: qsTr("Add Oxygen Saturation Entry")
+                    }
+                ]
 
-                Text {
-                    id: txtOsat
-                    anchors.centerIn: parent
-                    text: osathist.osat + ' %'
-                    horizontalAlignment: TextInput.AlignHCenter
-                    color: "#108498"
-                    font.bold: true
-                    font.pointSize: 12
+                contentItem: Column {
+                    id: osathist
+                    property var osatinfo: ghbio.osat
+                    property var osatdate: osatinfo[0]
+                    property var osat: osatinfo[1]
+
+                    Label {
+                        text: osathist.osatdate
+                        horizontalAlignment: Text.AlignHCenter
+                        width: parent.width
+                    }
+
+                    Text {
+                        text: osathist.osat + ' %'
+                        horizontalAlignment: Text.AlignHCenter
+                        width: parent.width
+                        font.weight: Font.Bold
+                    }
                 }
             }
         }
-
     }
-
 }
