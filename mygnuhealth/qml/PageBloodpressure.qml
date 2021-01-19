@@ -4,10 +4,12 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import BloodPressure 0.1
 
-Kirigami.Page
-{
-id: bloodpressurePage
-title: qsTr("Blood Pressure Monitor")
+Kirigami.ScrollablePage {
+
+    id: bloodpressurePage
+    title: qsTr("Add Blood Pressure Entry")
+
+    font.pointSize: Kirigami.Theme.defaultFont.pointSize * 2
 
     BloodPressure { // BloodPressure object registered at main.py
         id: bloodpressure
@@ -16,61 +18,35 @@ title: qsTr("Blood Pressure Monitor")
         }
     }
 
-
     Kirigami.FormLayout {
         id: content
-        anchors.fill: parent
 
-        TextField {
+        SpinBox {
             id: txtSystolic
-            placeholderText: qsTr("Sys")
-            maximumLength: 3
-            font.pointSize: 50
-            font.bold: true
-            horizontalAlignment: TextInput.AlignHCenter
-            background: Rectangle {
-                implicitWidth: 40
-                implicitHeight: 200
-                }
-            }
-
-        TextField {
-            id: txtDiastolic
-            placeholderText: qsTr("Dia")
-            maximumLength: 3
-            font.pointSize: 50
-            font.bold: true
-            horizontalAlignment: TextInput.AlignHCenter
-            background: Rectangle {
-                implicitWidth: 40
-                implicitHeight: 200
-            }
+            Kirigami.FormData.label: qsTr("Systolic")
+            from: 0
+            to: 999
         }
 
-        TextField {
+        SpinBox {
+            id: txtDiastolic
+            Kirigami.FormData.label: qsTr("Diastolic")
+            from: 0
+            to: 999
+        }
+
+        SpinBox {
             id: txtRate
-            placeholderText: qsTr("Rate")
-            maximumLength: 3
-            font.pointSize: 20
-            font.bold: true
-            horizontalAlignment: TextInput.AlignHCenter
-            background: Rectangle {
-                implicitWidth: 20
-                implicitHeight: 100
-            }
+            Kirigami.FormData.label: qsTr("Rate")
+            from: 0
+            to: 999
         }
 
         Button {
             id: buttonSetBP
-            anchors.horizontalCenter: txtDiastolic.horizontalCenter
-            anchors.top: txtRate.bottom
-            text: qsTr("Done")
-            flat: false
-            onClicked: {
-                bloodpressure.getvals(txtSystolic.text, txtDiastolic.text,
-                                      txtRate.text);
-            }
-
+            text: qsTr("Add")
+            icon.name: "list-add"
+            onClicked: bloodpressure.getvals(txtSystolic.text, txtDiastolic.text, txtRate.text);
         }
     }
 }
