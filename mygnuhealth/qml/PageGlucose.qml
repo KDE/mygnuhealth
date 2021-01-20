@@ -17,17 +17,37 @@ Kirigami.ScrollablePage {
         onSetOK: pageStack.pop() // Return to main monitor page once values are stored
     }
 
-    Kirigami.FormLayout {
+    GridLayout {
         id: content
-        SpinBox {
-            id: txtGlucose
-            height: 200
-            font.pixelSize:height*0.9
+        columns: 1
+        Rectangle {
+            id: glucoseRect
+            Layout.preferredWidth: (parent.width)/2
+            Layout.preferredHeight: 100
+            anchors.horizontalCenter: content.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
+            Text {
+                text: "Blood glucose level"
+                font.bold: true
+                anchors.top: parent.top
+            }
+
+            SpinBox {
+                id: txtGlucose
+                editable: true
+                anchors.centerIn: parent
+                height: parent.height*0.7
+                width: parent.width*0.7
+                font.pixelSize:height*0.5     
+                from: 0
+                to: 700
+            }
         }
 
         Button {
             id: buttonSetGlucose
-            text: qsTr("Add")
+            Layout.alignment: Qt.AlignHCenter
+            text: qsTr("Set")
             icon.name: "list-add"
             onClicked: blood_glucose.getvals(txtGlucose.value);
         }
