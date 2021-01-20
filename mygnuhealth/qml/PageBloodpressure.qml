@@ -1,52 +1,99 @@
 import QtQuick 2.7
 import org.kde.kirigami 2.5 as Kirigami
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
 import BloodPressure 0.1
 
 Kirigami.ScrollablePage {
 
     id: bloodpressurePage
-    title: qsTr("Add Blood Pressure Entry")
+    title: qsTr("Blood Pressure")
 
-    font.pointSize: Kirigami.Theme.defaultFont.pointSize * 2
+    // font.pointSize: Kirigami.Theme.defaultFont.pointSize * 2
 
-    BloodPressure { // BloodPressure object registered at main.py
+    BloodPressure { // BloodPressure object registered at mygh.py
         id: bloodpressure
         onSetOK: {
             pageStack.pop() // Return to main monitor page once values are stored
         }
     }
 
-    Kirigami.FormLayout {
-        id: content
-
-        SpinBox {
-            id: txtSystolic
-            Kirigami.FormData.label: qsTr("Systolic")
-            from: 0
-            to: 999
+    GridLayout {
+        id: bpgrid
+        Layout.fillWidth: true
+        columns: 2
+        Rectangle {
+            Layout.preferredWidth: (parent.width)/parent.columns*0.9
+            Layout.preferredHeight: 100
+            Text {
+                text: "Systolic"
+                font.bold: true
+                anchors.top: parent.top
+            }
+            SpinBox {
+                id: txtSystolic
+                editable: true
+                anchors.centerIn: parent
+                height: parent.height*0.7
+                width: parent.width*0.7
+                font.pixelSize:height*0.5
+                from: 0
+                to: 300
+            }
         }
-
-        SpinBox {
-            id: txtDiastolic
-            Kirigami.FormData.label: qsTr("Diastolic")
-            from: 0
-            to: 999
+        Rectangle {
+            Layout.preferredWidth: (parent.width)/parent.columns*0.9
+            Layout.preferredHeight: 100
+            Text {
+                text: "Diastolic"
+                font.bold: true
+                anchors.top: parent.top
+            }
+            SpinBox {
+                id: txtDiastolic
+                editable: true
+                anchors.centerIn: parent
+                height: parent.height*0.7
+                width: parent.width*0.7
+                font.pixelSize:height*0.5
+                from: 0
+                to: 250
+            }
         }
-
-        SpinBox {
-            id: txtRate
-            Kirigami.FormData.label: qsTr("Rate")
-            from: 0
-            to: 999
+        Rectangle {
+            Layout.preferredWidth: (parent.width)/parent.columns*0.9
+            Layout.preferredHeight: 100
+            anchors.horizontalCenter: bpgrid.horizontalCenter
+            Text {
+                text: "Rate"
+                font.bold: true
+                anchors.top: parent.top
+            }
+            SpinBox {
+                id: txtRate
+                editable: true
+                anchors.centerIn: parent
+                height: parent.height*0.7
+                width: parent.width*0.7
+                font.pixelSize:height*0.5     
+                from: 0
+                to: 350
+            }
         }
 
         Button {
             id: buttonSetBP
-            text: qsTr("Add")
-            icon.name: "list-add"
-            onClicked: bloodpressure.getvals(txtSystolic.text, txtDiastolic.text, txtRate.text);
-        }
+            anchors.horizontalCenter: bpgrid.horizontalCenter
+            anchors.top: bpgrid.bottom
+            text: qsTr("Set")
+            flat: false
+            onClicked: {
+                bloodpressure.getvals(txtSystolic.value, txtDiastolic.value,
+                                        txtRate.value);
+            }
     }
+
+    }
+
 }
+

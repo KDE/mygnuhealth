@@ -21,14 +21,15 @@ Kirigami.ScrollablePage {
         id: content
         SpinBox {
             id: txtGlucose
-            Kirigami.FormData.label: qsTr("Blood Glucose")
+            height: 200
+            font.pixelSize:height*0.9
         }
 
         Button {
             id: buttonSetGlucose
             text: qsTr("Add")
             icon.name: "list-add"
-            onClicked: blood_glucose.getvals(txtGlucose.text);
+            onClicked: blood_glucose.getvals(txtGlucose.value);
         }
     }
 }
