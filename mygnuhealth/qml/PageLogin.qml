@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.3
 import org.kde.mygnuhealth 1.0
 
 
-Kirigami.ScrollablePage {
+Kirigami.Page {
     id: loginPage
     title: qsTr("Login")
 
@@ -33,6 +33,7 @@ Kirigami.ScrollablePage {
 
     ColumnLayout {
         id: pwdinit
+         anchors.centerIn: parent
         visible: accountManager.accountExist
 
         Item {
@@ -71,6 +72,7 @@ Kirigami.ScrollablePage {
 
     ColumnLayout {
         id: content
+        anchors.centerIn: parent
         visible: !accountManager.accountExist
         Image {
             id: padlockicon
