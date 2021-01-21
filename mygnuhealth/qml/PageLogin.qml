@@ -62,7 +62,7 @@ Kirigami.Page {
             Button {
                 // Show the "set key" button when the two keys are equal
                 id: buttonInit
-                enabled: initKey1.text.length > 0 && (initKey1.text === initKey2.text)
+                enabled: initKey1.text.length > 3 && (initKey1.text === initKey2.text)
                 Layout.alignment: Qt.AlignHCenter
                 text: qsTr("Set Key")
                 onClicked: accountManager.createAccount(initKey1.text.trim())
@@ -83,17 +83,18 @@ Kirigami.Page {
         Kirigami.FormLayout {
             Kirigami.PasswordField {
                 id: txtKey
-                Kirigami.FormData.label: qsTr("Key")
                 focus: true
                 onAccepted: accountManager.login(txtKey.text.trim())
             }
-
-            Button {
-                id: buttonKey
-                text: qsTr("Enter")
-                enabled: txtKey.trim().length
-                onClicked: accountManager.login(txtKey.text.trim())
-            }
         }
+        
+        Button {
+            id: buttonKey
+            anchors.horizontalCenter: content.horizontalCenter
+            text: qsTr("Enter")
+            enabled: txtKey.text.trim().length
+            onClicked: accountManager.login(txtKey.text.trim())
+        }
+        
     }
 }
