@@ -21,6 +21,7 @@ Kirigami.Page {
         Button {
             Layout.alignment: Qt.AlignHCenter
             text: qsTr("Start")
+            focus: true
             onClicked: pageStack.replace(Qt.resolvedUrl("PageLogin.qml"))
         }
     }
