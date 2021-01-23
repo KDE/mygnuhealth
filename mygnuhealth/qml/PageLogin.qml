@@ -33,9 +33,8 @@ Kirigami.Page {
 
     ColumnLayout {
         id: pwdinit
-         anchors.centerIn: parent
-        visible: accountManager.accountExist
-
+        anchors.centerIn: parent
+        visible: accountManager.accountExist === false
         Item {
             Kirigami.FormData.label: qsTr("Welcome! Please initialize for personal Key")
             Kirigami.FormData.isSection: true
@@ -61,6 +60,7 @@ Kirigami.Page {
             }
             Button {
                 // Show the "set key" button when the two keys are equal
+                // and length of the password > 3
                 id: buttonInit
                 enabled: initKey1.text.length > 3 && (initKey1.text === initKey2.text)
                 Layout.alignment: Qt.AlignHCenter
@@ -71,9 +71,10 @@ Kirigami.Page {
     }
 
     ColumnLayout {
-        id: content
+        id: login
         anchors.centerIn: parent
-        visible: !accountManager.accountExist
+        visible: accountManager.accountExist === true
+
         Image {
             id: padlockicon
             Layout.alignment: Qt.AlignHCenter
@@ -90,7 +91,7 @@ Kirigami.Page {
         
         Button {
             id: buttonKey
-            anchors.horizontalCenter: content.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
             text: qsTr("Enter")
             enabled: txtKey.text.trim().length
             onClicked: accountManager.login(txtKey.text.trim())

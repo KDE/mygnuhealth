@@ -38,19 +38,27 @@ class LocalAccountManager(QObject):
 
     def __init__(self):
         QObject.__init__(self)
-        self._db = TinyDB(dbfile)
+        self.db = TinyDB(dbfile)
 
-    def _account_exist(self):
+    def account_exist(self):
         """
         Check if an account exist in the database.
         """
-        return self._db.table('credentials')
+        if (self.db.table('credentials')):
+            print("DB is initialized")
+            rc = True
 
-    def _init_personal_key(self, key):
+        else:
+            print("We need to init the personal Key")
+            rc = False
+
+        return rc
+
+    def init_personal_key(self, key):
         encrypted_key = bcrypt.hashpw(key.encode('utf-8'),
                                       bcrypt.gensalt()).decode('utf-8')
 
-        credentialstable = self._db.table('credentials')
+        credentialstable = self.db.table('credentials')
         if (len(credentialstable) > 0):
             credentialstable.update({'personal_key': encrypted_key})
         else:
@@ -64,7 +72,7 @@ class LocalAccountManager(QObject):
     def login(self, key):
         key = key.encode()
 
-        personal_key = get_personal_key(self._db)
+        personal_key = get_personal_key(self.db)
 
         if bcrypt.checkpw(key, personal_key):
             logging.info("Login correct - Move to main PHR page")
@@ -75,13 +83,13 @@ class LocalAccountManager(QObject):
     @Slot(str)
     def createAccount(self, key):
         key = key.encode()
-        if (self._init_personal_key(key.decode('utf-8'))):
+        if (self.init_personal_key(key.decode('utf-8'))):
             self.loginSuccess.emit()
         else:
             self.errorOccurred.emit()
 
     # Properties
-    accountExist = Property(bool, _account_exist, constant=True)
+    accountExist = Property(bool, account_exist, constant=True)
 
     # Signals
     loginSuccess = Signal()
