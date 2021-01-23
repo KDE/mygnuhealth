@@ -63,9 +63,10 @@ def get_federation_account():
 
     db = TinyDB(dbfile)
     federation_table = db.table('federation')
-
-    # Federation Account table holds a singleton, so only one record
-    fedacct = federation_table.all()[0]['federation_account']
+    fedacct = None
+    if (len(federation_table) > 0):
+        # Federation Account table holds a singleton, so only one record
+        fedacct = federation_table.all()[0]['federation_account']
     return fedacct
 
 
@@ -161,6 +162,10 @@ class PageOfLife():
         med_cxt = self.medical_context
 
         if (fed_acct):
+            #  If the Federation account does not exist, it will be
+            #  a private entry, not linked to a book or author
+            #  and it won't be shared in the GNU Health Federation
+
             print("Retrieved Federation Account: ", fed_acct)
             page_of_life['book'] = fed_acct
             page_of_life['author'] = fed_acct
