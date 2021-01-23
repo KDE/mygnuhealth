@@ -34,7 +34,7 @@ Kirigami.Page {
     ColumnLayout {
         id: pwdinit
          anchors.centerIn: parent
-        visible: accountManager.accountExist
+        visible: !accountManager.accountExist
 
         Item {
             Kirigami.FormData.label: qsTr("Welcome! Please initialize for personal Key")
@@ -73,7 +73,7 @@ Kirigami.Page {
     ColumnLayout {
         id: content
         anchors.centerIn: parent
-        visible: !accountManager.accountExist
+        visible: accountManager.accountExist
         Image {
             id: padlockicon
             Layout.alignment: Qt.AlignHCenter
