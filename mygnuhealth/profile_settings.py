@@ -53,10 +53,11 @@ class ProfileSettings(QObject):
         # TODO: Include date of birth and sex
         profiletable = self.db.table('profile')
         if (len(profiletable) > 0):
+            print(f"Updating height to {profile['height']}")
             profiletable.update({'height': profile['height']})
 
         else:
-            print("Initializing profile")
+            print(f"Initializing profile. Setting height {profile['height']}")
             profiletable.insert({'height': profile['height']})
 
         return True
@@ -101,7 +102,8 @@ class ProfileSettings(QObject):
     errorPassword = Signal()
 
     def default_height(self):
-        return get_user_profile(self.db)['height']
+        if get_user_profile(self.db):
+            return get_user_profile(self.db)['height']
 
     def default_fedacct(self):
         return get_federation_account()

@@ -44,8 +44,10 @@ def get_user_profile(db):
     """Retrives the user profile (DoB, sex, height ...)"""
 
     profile_table = db.table('profile')
+    profile = None
     # Credentials table holds a singleton, so only one record
-    profile = profile_table.all()[0]
+    if (len(profile_table) > 0):
+        profile = profile_table.all()[0]
     return profile
 
 

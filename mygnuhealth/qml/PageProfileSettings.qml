@@ -35,10 +35,11 @@ Kirigami.Page {
                 text: "Height"
             }
             SpinBox {
-                property var ht: profile_settings.height
                 id: heightspin
                 from: 40
-                value: ht
+                // Use initial value of 1.60 mts if profile is initialized
+                // It won't be saved until the user presses "set"
+                value: profile_settings.height ? profile_settings.height:160
                 to: 230
                 stepSize: 1
             }
