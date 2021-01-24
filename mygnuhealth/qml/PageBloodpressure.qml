@@ -26,7 +26,7 @@ Kirigami.ScrollablePage {
             Layout.preferredWidth: (parent.width)/parent.columns*0.9
             Layout.preferredHeight: 100
             Text {
-                text: "Systolic"
+                text: qsTr("Systolic")
                 font.bold: true
                 anchors.top: parent.top
             }
@@ -45,7 +45,7 @@ Kirigami.ScrollablePage {
             Layout.preferredWidth: (parent.width)/parent.columns*0.9
             Layout.preferredHeight: 100
             Text {
-                text: "Diastolic"
+                text: qsTr("Diastolic")
                 font.bold: true
                 anchors.top: parent.top
             }
@@ -65,7 +65,7 @@ Kirigami.ScrollablePage {
             Layout.preferredHeight: 100
             anchors.horizontalCenter: bpgrid.horizontalCenter
             Text {
-                text: "Rate"
+                text: qsTr("Rate")
                 font.bold: true
                 anchors.top: parent.top
             }

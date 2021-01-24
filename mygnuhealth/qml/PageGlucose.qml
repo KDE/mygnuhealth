@@ -27,7 +27,7 @@ Kirigami.ScrollablePage {
             anchors.horizontalCenter: content.horizontalCenter
             Layout.alignment: Qt.AlignHCenter
             Text {
-                text: "Blood glucose level"
+                text: qsTr("Blood glucose level")
                 font.bold: true
                 anchors.top: parent.top
             }

@@ -32,7 +32,7 @@ Kirigami.Page {
 
         RowLayout {
             Label {
-                text: "Height"
+                text: qsTr("Height")
             }
             SpinBox {
                 id: heightspin
@@ -60,7 +60,7 @@ Kirigami.Page {
         }
         RowLayout {
             Label {
-                text: "Fed Acct"
+                text: qsTr("Fed Acct")
             }
             TextField {
                 id: userFedacct
