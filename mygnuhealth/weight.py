@@ -28,6 +28,14 @@ class Weight(QObject):
 
     db = TinyDB(dbfile)
 
+    def default_weight(self):
+        weighttable = self.db.table('weight')
+        if (len(weighttable) > 0):
+            last_weight = weighttable.all()[-1]
+            return (last_weight['weight'])
+        else:
+            return 0
+
     def insert_values(self, body_weight):
         weighttable = self.db.table('weight')
         profiletable = self.db.table('profile')
@@ -36,7 +44,10 @@ class Weight(QObject):
         if body_weight > 0:
             event_id = str(uuid4())
             synced = False
-            height = profiletable.all()[0]['height']
+            height = None
+            bmi = None
+            if (len(profiletable) > 0):
+                height = profiletable.all()[0]['height']
             vals = {'timestamp': current_date,
                     'event_id': event_id,
                     'synced': synced,
@@ -74,3 +85,6 @@ class Weight(QObject):
 
     # Signal to emit to QML if the body weight values were stored correctly
     setOK = Signal()
+
+    # Expose to QML the value of the last weight recording
+    last_weight = Property(float, default_weight, constant=True)
