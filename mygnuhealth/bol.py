@@ -64,6 +64,11 @@ class GHBol(QObject):
                 if 'osat' in measure.keys():
                     summ = summ + f"osat: {measure['osat']} %\n"
 
+                if 'mood_energy' in measure.keys():
+                    summ = summ + \
+                        f"mood: {measure['mood_energy']['mood']} " \
+                        f"energy: {measure['mood_energy']['energy']}\n"
+
             pol['summary'] = summ
 
             book.append(pol)

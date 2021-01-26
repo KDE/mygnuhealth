@@ -58,6 +58,9 @@ def main():
         from mygnuhealth.osat import Osat
         from mygnuhealth.bol import GHBol
 
+        from mygnuhealth.psycho import GHPsycho
+        from mygnuhealth.moodenergy import MoodEnergy
+
     app = QApplication(sys.argv)
 
     # Register ProfileSettings to use in QML
@@ -95,6 +98,14 @@ def main():
     # Register GHBol to use in QML
     qmlRegisterType(GHBol, "GHBol", 0, 1,
                     "GHBol")
+
+    # Register Psycho to use in QML
+    qmlRegisterType(GHPsycho, "GHPsycho", 0, 1,
+                    "GHPsycho")
+
+    # Register MoodEnergy to use in QML
+    qmlRegisterType(MoodEnergy, "MoodEnergy", 0, 1,
+                    "MoodEnergy")
 
     engine = QQmlApplicationEngine()
 

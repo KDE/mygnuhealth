@@ -30,6 +30,44 @@ Kirigami.ScrollablePage {
         }
 
         ItemDelegate {
+            onClicked: pageStack.push(Qt.resolvedUrl("PagePsycho.qml"))
+            Layout.alignment: Qt.AlignCenter
+            Layout.fillWidth: true
+            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
+
+            background: Rectangle {
+                color: "#108498"
+                radius: Kirigami.Units.largeSpacing
+
+                Image {
+                    id: pyschoIcon
+                    anchors.fill: parent
+                    source: "../images/psycho-icon.svg"
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+        }
+
+        ItemDelegate {
+            onClicked: pageStack.push(Qt.resolvedUrl("PageLifestyle.qml"))
+            Layout.alignment: Qt.AlignCenter
+            Layout.fillWidth: true
+            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
+
+            background: Rectangle {
+                color: "#108498"
+                radius: Kirigami.Units.largeSpacing
+
+                Image {
+                    id: lifestyleIcon
+                    anchors.fill: parent
+                    source: "../images/lifestyle-icon.svg"
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+        }
+
+        ItemDelegate {
             onClicked: pageStack.push(Qt.resolvedUrl("PageBol.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
