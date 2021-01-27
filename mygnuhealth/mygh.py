@@ -85,7 +85,7 @@ def main():
                     "Osat")
 
     # Register LocalAccountManager to use in QML
-    qmlRegisterType(LocalAccountManager, "org.kde.mygnuhealth", 1, 0,
+    qmlRegisterType(LocalAccountManager, "LocalAccountManager", 0, 1,
                     "LocalAccountManager")
 
     # Register GHBio to use in QML

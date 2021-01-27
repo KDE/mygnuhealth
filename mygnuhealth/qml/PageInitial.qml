@@ -14,7 +14,7 @@ Kirigami.Page {
             source: "../images/my-gnu-health.png"
             MouseArea {
                 anchors.fill: parent
-                onClicked: pageStack.replace(Qt.resolvedUrl("PageLogin.qml"))
+                onClicked: pageStack.replace(Qt.resolvedUrl("PageLocalAccountManager.qml"))
             }
         }
 
@@ -22,7 +22,7 @@ Kirigami.Page {
             Layout.alignment: Qt.AlignHCenter
             text: qsTr("Start")
             focus: true
-            onClicked: pageStack.replace(Qt.resolvedUrl("PageLogin.qml"))
+            onClicked: pageStack.replace(Qt.resolvedUrl("PageLocalAccountManager.qml"))
         }
     }
 }

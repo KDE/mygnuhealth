@@ -2,7 +2,7 @@ import QtQuick 2.7
 import org.kde.kirigami 2.10 as Kirigami
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.3
-import org.kde.mygnuhealth 1.0
+import LocalAccountManager 0.1
 
 
 Kirigami.Page {

@@ -35,10 +35,12 @@ Kirigami.ApplicationWindow {
     visible: true
     title: qsTr("MyGNUHealth")
 
-    width: app.initialGeometry.width>=10 ? app.initialGeometry.width : Kirigami.Units.gridUnit * 45
-    height: app.initialGeometry.height>=10 ? app.initialGeometry.height : Kirigami.Units.gridUnit * 30
+    width: Kirigami.Units.gridUnit * 20
+    height: Kirigami.Units.gridUnit * 35
+
     minimumWidth: 400
     minimumHeight: 600
+
     pageStack.initialPage: PageInitial {}
 
     globalDrawer: GHDrawer {
