@@ -5,11 +5,9 @@ import QtQuick.Layouts 1.3
 import MoodEnergy 0.1
 
 Kirigami.Page {
-
     id: moodPage
     title: qsTr("Today I feel...")
-
-    // font.pointSize: Kirigami.Theme.defaultFont.pointSize * 2
+    Kirigami.Theme.backgroundColor: "white"
 
     MoodEnergy { // MoodEnergy object registered at mygh.py
         id: moodenergy
@@ -18,62 +16,78 @@ Kirigami.Page {
         }
     }
 
-    Rectangle{
-        id:mainarea
-        color: "white"
-        height: 500
-        width: 350
-        GridLayout {
-            anchors.horizontalCenter: mainarea.horizontalCenter
-            id: moodgrid
-            columns: 2
-            Slider {
-                id: moodLevel
-                Layout.alignment: Qt.AlignLeft
-                property var moodfocus: false
-                orientation: Qt.Vertical
-                from: -3
-                to: 3
-                stepSize: 1
-                onMoved: moodfocus = true 
-            }
-            Rectangle {
-                width: 200
-                height: 200
-                Image {
-                    height: 200
-                    anchors.centerIn: parent
-                    fillMode: Image.PreserveAspectFit
-                    source: "../images/" + "mood" + moodLevel.value + ".svg"
-                }
-            }
-            Slider {
-                id: energyLevel
-                property var energyfocus: false
-                orientation: Qt.Vertical
-                from: 0
-                to: 3
-                stepSize: 1
-                onMoved: energyfocus = true 
+    GridLayout {
+        Layout.fillWidth: true
+        anchors.fill: parent
+        id: moodgrid
 
-            }
-            Rectangle {
-                Layout.alignment: Qt.AlignHCenter
-                width: 200
+        Slider {
+            id: moodLevel
+            Layout.alignment: Qt.AlignLeft
+            Layout.row: 1
+            Layout.column: 1
+
+            property var moodfocus: false
+            orientation: Qt.Vertical
+            from: -3
+            to: 3
+            stepSize: 1
+            onMoved: moodfocus = true 
+        }
+        Rectangle {
+            Layout.alignment: Qt.AlignRight
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.row: 1
+            Layout.column: 2
+
+            Image {
                 height: 200
-                Image {
-                    height: 200
-                    anchors.centerIn: parent
-                    fillMode: Image.PreserveAspectFit
-                    source: "../images/" + "energy" + energyLevel.value + ".svg"
-                }
+                anchors.centerIn: parent
+                fillMode: Image.PreserveAspectFit
+                source: "../images/" + "mood" + moodLevel.value + ".svg"
             }
         }
+        
+        Slider {
+            id: energyLevel
+            Layout.alignment: Qt.AlignLeft
+            Layout.row: 2
+            Layout.column: 1
+
+            property var energyfocus: false
+            orientation: Qt.Vertical
+            from: 0
+            to: 3
+            stepSize: 1
+            onMoved: energyfocus = true 
+
+        }
+
+
+        Rectangle {
+            Layout.alignment: Qt.AlignRight
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.row: 2
+            Layout.column: 2
+
+            Image {
+                height: 200
+                anchors.centerIn: parent
+                fillMode: Image.PreserveAspectFit
+                source: "../images/" + "energy" + energyLevel.value + ".svg"
+            }
+        }
+
+
         Button {
             id: buttonSetMood
-            anchors.horizontalCenter: mainarea.horizontalCenter
-            anchors.bottom: mainarea.bottom
-
+            Layout.alignment: Qt.AlignCenter
+            Layout.row: 3
+            Layout.column: 1
+            Layout.columnSpan: 2
+            
             text: qsTr("Set")
             flat: false
             // Enable only if the user has interacted with the sliders
@@ -82,6 +96,6 @@ Kirigami.Page {
             onClicked: moodenergy.getvals(moodLevel.value, energyLevel.value);
         }
     }
-
+ 
 }
 
