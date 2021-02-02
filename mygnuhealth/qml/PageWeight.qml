@@ -5,7 +5,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import QtQuick 2.7
-import org.kde.kirigami 2.5 as Kirigami
+import org.kde.kirigami 2.10 as Kirigami
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import Weight 0.1
@@ -48,7 +48,7 @@ Kirigami.Page {
                 property real factor: 10
                 from: 0 * factor
                 to: 500 * factor
-                stepSize: factor
+                stepSize: factor / 10
 
                 value: body_weight.last_weight * factor
 
