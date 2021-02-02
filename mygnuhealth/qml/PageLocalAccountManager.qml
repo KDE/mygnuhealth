@@ -50,8 +50,9 @@ Kirigami.Page {
             Kirigami.PasswordField {
                 id: initKey1
                 Kirigami.FormData.label: qsTr("Key")
+                focus: accountManager.accountExist === false
+
                 onAccepted: initKey2.forceActiveFocus()
-                focus: true
             }
             Kirigami.PasswordField {
                 id: initKey2

@@ -7,6 +7,7 @@ import QtQuick.Layouts 1.3
 Kirigami.ScrollablePage {
     id: phrpage
     title: qsTr("Home")
+
     ColumnLayout {
         spacing: Kirigami.Units.gridUnit
 
