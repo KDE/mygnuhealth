@@ -22,7 +22,7 @@ title: qsTr("Network Settings")
 
         TextField {
             id: txtFederationProtocol
-            placeholderText: qsTr("htpps")
+            placeholderText: qsTr("https")
             text: qsTr("https")
             horizontalAlignment: TextInput.AlignHCenter
             Kirigami.FormData.label: qsTr("Protocol")

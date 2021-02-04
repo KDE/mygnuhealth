@@ -14,8 +14,8 @@ Kirigami.Page {
         contentItem: Kirigami.InlineMessage {
             id: errorMessage
             visible: false
-            text: accountManager.accountExist ? qsTr("An error occured during the creation of the account")
-                                              : qsTr("An error occured during login")
+            text: accountManager.accountExist ? qsTr("An error occurred during the creation of the account")
+                                              : qsTr("An error occurred during login")
             type: Kirigami.MessageType.Error
             showCloseButton: true
         }
@@ -56,7 +56,7 @@ Kirigami.Page {
             }
             Kirigami.PasswordField {
                 id: initKey2
-                Kirigami.FormData.label: qsTr("Confrm Key")
+                Kirigami.FormData.label: qsTr("Confirm Key")
                 onAccepted: buttonInit.forceActiveFocus()
             }
             Button {
