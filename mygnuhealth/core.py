@@ -26,6 +26,7 @@
 #
 ##############################################################################
 
+import datetime
 import dateutil.parser
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile, bolfile
@@ -70,6 +71,18 @@ def get_federation_account():
         # Federation Account table holds a singleton, so only one record
         fedacct = federation_table.all()[0]['federation_account']
     return fedacct
+
+
+def check_date(date):
+    """ Verifies that the entered date is valid"""
+    year, month, day = date
+    try:
+        datetime.date(year, month, day)
+        return True
+    except ValueError:
+        print("Invalid date")
+        return False
+
 
 
 class PageOfLife():

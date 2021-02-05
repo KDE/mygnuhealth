@@ -10,9 +10,10 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 import bcrypt
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile
-from mygnuhealth.core import get_personal_key
+from mygnuhealth.core import get_personal_key, check_date, get_user_profile
 
 import logging
+import datetime
 
 
 class LocalAccountManager(QObject):
@@ -21,10 +22,12 @@ class LocalAccountManager(QObject):
         Attributes:
         -----------
             loginSuccess: Signal to emit when entering the correct personal key
-            errorOccurred: Signal to emit when enteting the wrong key
+            invalidCredentials: Signal to emit when entering the wrong key
+            wrongDate: Signal to emit when an invalid date is found
 
-            initKey: Property that exposes the initialization status of
-                    personal key.
+            accountExist: Property that checks if the user account
+                has been created
+            todayDate: Property with current date
 
         Methods:
         --------
@@ -40,6 +43,17 @@ class LocalAccountManager(QObject):
         QObject.__init__(self)
         self.db = TinyDB(dbfile)
 
+    def get_date(self):
+        """
+        Returns the date packed into an array (day,month,year)
+        """
+        rightnow = datetime.datetime.now()
+        dateobj = []
+        dateobj.append(rightnow.day)
+        dateobj.append(rightnow.month)
+        dateobj.append(rightnow.year)
+        return dateobj
+
     def account_exist(self):
         """
         Check if an account exist in the database.
@@ -53,6 +67,17 @@ class LocalAccountManager(QObject):
             rc = False
 
         return rc
+
+    def update_profile(self, profile):
+        # Include height and other user settings at initialization
+        profiletable = self.db.table('profile')
+        if (len(profiletable) > 0):
+            print(f"Updating profile ... {profile}")
+            profiletable.update(profile)
+
+        else:
+            print(f"Initializing profile. Setting profile {profile}")
+            profiletable.insert(profile)
 
     def init_personal_key(self, key):
         encrypted_key = bcrypt.hashpw(key.encode('utf-8'),
@@ -68,6 +93,10 @@ class LocalAccountManager(QObject):
         logging.info("Initialized personal key: {}".format(encrypted_key))
         return encrypted_key
 
+    def get_username(self):
+        if get_user_profile(self.db):
+            return get_user_profile(self.db)['username']
+
     @Slot(str)
     def login(self, key):
         key = key.encode()
@@ -78,20 +107,49 @@ class LocalAccountManager(QObject):
             logging.info("Login correct - Move to main PHR page")
             self.loginSuccess.emit()
         else:
-            self.errorOccurred.emit()
+            self.invalidCredentials.emit()
 
-    @Slot(str)
-    def createAccount(self, key):
+    @Slot(str, str, str, list)
+    def createAccount(self, key, height, personname, birthdate):
+        # Retrieves the inforation from the initialization form
+        # Initializes user profile and sets the initial password
+        validation_process = True
+        if (height):
+            # Sets the user height
+            height = int(height)
+            profile = {'height': height}
+            self.update_profile(profile)
+
+        if (personname):
+            # Sets the user name
+            profile = {'username': personname}
+            self.update_profile(profile)
+
+        if (birthdate):
+            if (check_date(birthdate)):
+                # Sets the birthdate
+                year, month, day = birthdate
+                daterp = str(datetime.date(year, month, day))
+                profile = {'birthdate': daterp}
+                self.update_profile(profile)
+            else:
+                print("Wrong Date!")
+                validation_process = False
+                self.wrongDate.emit()
+
         key = key.encode()
-        if (self.init_personal_key(key.decode('utf-8'))):
+        if (validation_process and
+                self.init_personal_key(key.decode('utf-8'))):
             self.loginSuccess.emit()
-        else:
-            self.errorOccurred.emit()
 
     # Properties
     accountExist = Property(bool, account_exist, constant=True)
 
+    todayDate = Property("QVariantList", get_date, constant=True)
+
+    person = Property(str, get_username, constant=True)
+
     # Signals
     loginSuccess = Signal()
-    errorOccurred = Signal()
-
+    invalidCredentials = Signal()
+    wrongDate = Signal()
