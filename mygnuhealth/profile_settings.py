@@ -50,7 +50,6 @@ class ProfileSettings(QObject):
         print("Saved personal key", encrypted_key)
 
     def update_profile(self, profile):
-        # TODO: Include date of birth and sex
         profiletable = self.db.table('profile')
         if (len(profiletable) > 0):
             print(f"Updating height to {profile['height']}")
