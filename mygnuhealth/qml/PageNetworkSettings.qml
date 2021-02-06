@@ -22,24 +22,24 @@ title: qsTr("Network Settings")
 
         TextField {
             id: txtFederationProtocol
-            placeholderText: qsTr("https")
-            text: qsTr("https")
+            placeholderText: "https"
+            text: "https"
             horizontalAlignment: TextInput.AlignHCenter
             Kirigami.FormData.label: qsTr("Protocol")
          }
 
         TextField {
             id: txtFederationServer
-            placeholderText: qsTr("federation.gnuhealth.org")
-            text: qsTr("federation.gnuhealth.org")
+            placeholderText: "federation.gnuhealth.org"
+            text: "federation.gnuhealth.org"
             horizontalAlignment: TextInput.AlignHCenter
             Kirigami.FormData.label: qsTr("Host")
          }
 
         TextField {
             id: txtFederationPort
-            placeholderText: qsTr("8443")
-            text: qsTr("8443")
+            placeholderText: "8443"
+            text: "8443"
             horizontalAlignment: TextInput.AlignHCenter
             Kirigami.FormData.label: qsTr("Port")
          }
