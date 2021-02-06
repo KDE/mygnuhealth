@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.10 as Kirigami
 
 Kirigami.Page {
-    title: qsTr("Welcome to MyGNUHeath")
+    title: qsTr("Welcome to MyGNUHealth")
 
     ColumnLayout {
         anchors.fill: parent
