@@ -75,8 +75,8 @@ Kirigami.ScrollablePage {
                 horizontalAlignment: Text.AlignJustify
 
                 wrapMode: Text.WordWrap
-                text: qsTr("Welcome! To get the best results out of MyGNUHealth,"
-                    + "let's start with some information about yourself."
+                text: qsTr("Welcome! To get the best results out of MyGNUHealth, "
+                    + "let's start with some information about yourself. "
                     + "In this screen, you will register your sex, birthdate and height.\n"
                     + "You will also set your personal private key that will give "
                     + "you access to the application.")
