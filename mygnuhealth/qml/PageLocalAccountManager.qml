@@ -13,8 +13,8 @@ Kirigami.ScrollablePage {
     LocalAccountManager { // FedLogin object registered at mygh.py to be used here
         id: accountManager
         property var errors: {
-            "wrongdate": "Wrong date",
-            "wronglogin": "Invalid credentials"
+            "wrongdate": qsTr("Wrong date"),
+            "wronglogin": qsTr("Invalid credentials")
         }
         property var msg: ""
         
@@ -122,7 +122,7 @@ Kirigami.ScrollablePage {
 
                 Label {
                     id:labelbirth
-                    text: qsTr("Birthdate")
+                    text: qsTr("Birth date")
                 }
 
                 Item {
@@ -206,7 +206,7 @@ Kirigami.ScrollablePage {
                 id:labelgreetings
                 Layout.alignment: Qt.AlignHCenter
                 property var person: accountManager.person
-                text: qsTr("Welcome back, " + person + "!")
+                text: qsTr("Welcome back, %1").arg(person)
                 font.pixelSize: 20
             }
 

@@ -42,7 +42,7 @@ Kirigami.ScrollablePage
                     readonly property var bpdate: bpinfo[0]
                     readonly property var bpsystolic: bpinfo[1]
                     readonly property var bpdiastolic: bpinfo[2]
-                    readonly property var heartrate: bpinfo[3] + ' bpm'
+                    readonly property var heartrate: qsTr("%1 bpm").arg(bpinfo[3])
 
                     Label {
                         id: txtBpdate
@@ -181,7 +181,7 @@ Kirigami.ScrollablePage
                     }
 
                     Text {
-                        text: osathist.osat + ' %'
+                        text: qsTr("%1 %").arg(osathist.osat)
                         horizontalAlignment: Text.AlignHCenter
                         width: parent.width
                         font.weight: Font.Bold
