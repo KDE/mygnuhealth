@@ -7,8 +7,7 @@
 import org.kde.kirigami 2.10 as Kirigami
 
 Kirigami.GlobalDrawer {
-    required property bool isLoggedIn
-
+    property bool isLoggedIn: false
     signal logout()
 
     isMenu: true
@@ -33,6 +32,7 @@ Kirigami.GlobalDrawer {
                 // Clear the stack and go to the initial page
                 pageStack.clear()
                 pageStack.push(Qt.resolvedUrl("PageInitial.qml"))
+                root.isLoggedIn = false;
             }
             enabled: isLoggedIn && pageStack.layers.depth === 1
         }
