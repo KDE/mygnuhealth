@@ -10,6 +10,7 @@ include org.kde.mygnuhealth.desktop
 include bin/mygnuhealth
 
 include mygnuhealth/qml/*.qml
+include mygnuhealth/data/*.db
 
 include MANIFEST.in
 include LICENSE

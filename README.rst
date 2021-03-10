@@ -128,3 +128,14 @@ GNU Health is licensed under GPL v3+::
 
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ 
+
+License of the Human Natural variants Database
+------------------------------------------------
+
+ Many thanks to the UniProt Consortium for providing the excellent list of 
+ human variants. MyGNUHealth natural variants database is based on it.
+
+ Copyrighted by the UniProt Consortium, see https://www.uniprot.org/terms
+ Distributed under the Creative Commons Attribution (CC BY 4.0) License
+ 
