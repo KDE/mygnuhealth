@@ -15,39 +15,9 @@ Kirigami.ScrollablePage {
         height: Kirigami.Units.gridUnit * 3
         width: bolpage.width
         spacing: Kirigami.Units.smallSpcing
-        Item {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            Image {
-                anchors.fill: parent
-                source: "../images/medical-square-icon.svg"
-                fillMode: Image.PreserveAspectFit
-            }
-        }
 
         Item {
-            id:rectpsycho
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            Image {
-                anchors.fill: parent
-                source: "../images/psycho-square-icon.svg"
-                fillMode: Image.PreserveAspectFit
-            }
-        }
-
-        Item {
-            id:rectsocial
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            Image {
-                anchors.fill: parent
-                source: "../images/social-square-icon.svg"
-                fillMode: Image.PreserveAspectFit
-            }
-        }
-
-        Item {
+            id: addpageoflife
             Layout.fillHeight: true
             Layout.fillWidth: true
             Image {

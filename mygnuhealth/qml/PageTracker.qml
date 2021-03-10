@@ -5,14 +5,14 @@ import QtQuick.Layouts 1.3
 
 
 Kirigami.ScrollablePage {
-    id: phrpage
-    title: qsTr("Home")
+    id: trackerpage
+    title: qsTr("Tracker")
 
     ColumnLayout {
         spacing: Kirigami.Units.gridUnit
 
         ItemDelegate {
-            onClicked: pageStack.push(Qt.resolvedUrl("PageTracker.qml"))
+            onClicked: pageStack.push(Qt.resolvedUrl("PageBio.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
             Layout.preferredHeight: Kirigami.Units.gridUnit * 5
@@ -24,14 +24,14 @@ Kirigami.ScrollablePage {
                 Image {
                     id: bioIcon
                     anchors.fill: parent
-                    source: "../images/tracker-icon.svg"
+                    source: "../images/bio-icon.svg"
                     fillMode: Image.PreserveAspectFit
                 }
             }
         }
 
         ItemDelegate {
-            onClicked: pageStack.push(Qt.resolvedUrl("PageBol.qml"))
+            onClicked: pageStack.push(Qt.resolvedUrl("PageLifestyle.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
             Layout.preferredHeight: Kirigami.Units.gridUnit * 5
@@ -41,16 +41,16 @@ Kirigami.ScrollablePage {
                 radius: Kirigami.Units.largeSpacing
 
                 Image {
-                    id: psychoIcon
+                    id: lifestyleIcon
                     anchors.fill: parent
-                    source: "../images/book_of_life-icon.svg"
+                    source: "../images/lifestyle-icon.svg"
                     fillMode: Image.PreserveAspectFit
                 }
             }
         }
 
         ItemDelegate {
-            //onClicked: pageStack.push(Qt.resolvedUrl("PageDocuments.qml"))
+            onClicked: pageStack.push(Qt.resolvedUrl("PagePsycho.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
             Layout.preferredHeight: Kirigami.Units.gridUnit * 5
@@ -60,30 +60,15 @@ Kirigami.ScrollablePage {
                 radius: Kirigami.Units.largeSpacing
 
                 Image {
-                    id: documentsIcon
+                    id: pyschoIcon
                     anchors.fill: parent
-                    source: "../images/documents-icon.svg"
-                    fillMode:Image.PreserveAspectFit
+                    source: "../images/psycho-icon.svg"
+                    fillMode: Image.PreserveAspectFit
                 }
             }
         }
 
-        ItemDelegate {
-            Layout.alignment: Qt.AlignCenter
-            Layout.fillWidth: true
-            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
 
-            background: Rectangle {
-                color: "#108498"
-                radius: Kirigami.Units.largeSpacing
-                Image {
-                    id: emergencyIcon
-                    anchors.fill: parent
-                    source: "../images/emergency-icon.svg"
-                    fillMode:Image.PreserveAspectFit
-                }
-            }
-        }
 
     }
 }
