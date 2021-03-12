@@ -16,13 +16,14 @@ Kirigami.ScrollablePage {
         width: bolpage.width
         spacing: Kirigami.Units.smallSpcing
 
-        Item {
+        ItemDelegate {
             id: addpageoflife
             Layout.fillHeight: true
             Layout.fillWidth: true
+            onClicked: pageStack.push(Qt.resolvedUrl("PageofLife.qml"))
             Image {
                 anchors.fill: parent
-                source: "../images/activity-square-icon.svg"
+                source: "../images/new_page_of_life-icon.svg"
                 fillMode: Image.PreserveAspectFit
             }
         }

@@ -60,6 +60,7 @@ def main():
 
         from mygnuhealth.psycho import GHPsycho
         from mygnuhealth.moodenergy import MoodEnergy
+        from mygnuhealth.page_of_life import PoL
 
     app = QApplication(sys.argv)
 
@@ -106,6 +107,10 @@ def main():
     # Register MoodEnergy to use in QML
     qmlRegisterType(MoodEnergy, "MoodEnergy", 0, 1,
                     "MoodEnergy")
+
+    # Register PoL (Page of Life) to use in QML
+    qmlRegisterType(PoL, "PoL", 0, 1,
+                    "PoL")
 
     engine = QQmlApplicationEngine()
 

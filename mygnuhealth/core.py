@@ -84,7 +84,6 @@ def check_date(date):
         return False
 
 
-
 class PageOfLife():
     """
     Page of Life
@@ -116,9 +115,16 @@ class PageOfLife():
         'book', 'page_date', 'age', 'page_type', 'relevance',
         'medical_context', 'health_condition_code', 'health_condition_text',
         'procedure_code', 'procedure_text', 'gene', 'natural_variant',
-        'phenotype', 'social_context', 'summary', 'info', 'measurements',
+        'phenotype', 'variant_significance', 'social_context',
+        'summary', 'info', 'measurements',
         'node', 'author', 'author_acct'
         ])
+
+    pol_domain = [{'value': 'medical', 'text': 'Medical'},
+                  {'value': 'social', 'text': 'Social'},
+                  {'value': 'biographical', 'text': 'Biographical'},
+                  {'value': 'other', 'text': 'Other'}
+                  ]
 
     medical_context = {
         'health_condition': 'Health Condition',
@@ -195,6 +201,12 @@ class PageOfLife():
             page_of_life['medical_context'] = context
 
         page_of_life['measurements'] = pol_vals['measurements']
+        page_of_life['summary'] = pol_vals['summary']
+        page_of_life['info'] = pol_vals['info']
+        if pols_vals['variant']:
+            page_of_life['gene'] = pol_vals['gene']
+            page_of_life['protein'] = pol_vals['protein']
+            page_of_life['variant'] = pol_vals['variant']
 
         # create the new PoL entry
         print("New Page of Life:", page_of_life)
