@@ -33,7 +33,7 @@ class GHBol(QObject):
     def format_bol(self, bookoflife):
         """Takes the necessary fields and formats the book in a way that can
         be shown in the device, mixing fields and compacting entries in a more
-        human readable formtat"""
+        human readable format"""
         book = []
         for pageoflife in bookoflife:
             pol = {}
@@ -46,28 +46,29 @@ class GHBol(QObject):
                 \n{pageoflife['medical_context']}"
 
             summ = ''
-            for measure in pageoflife['measurements']:
-                if 'bg' in measure.keys():
-                    summ = summ + f"Blood glucose: {measure['bg']} mg/dl\n"
-                if 'hr' in measure.keys():
-                    summ = summ + f"Heart rate: {measure['hr']} bpm\n"
-                if 'bp' in measure.keys():
-                    summ = summ + \
-                        f"BP: {measure['bp']['systolic']} / " \
-                        f"{measure['bp']['diastolic']} mmHg\n"
-                if 'wt' in measure.keys():
-                    summ = summ + f"Weight: {measure['wt']} kg\n"
+            if ('measurements' in pageoflife.keys() and pageoflife['measurements']):
+                for measure in pageoflife['measurements']:
+                    if 'bg' in measure.keys():
+                        summ = summ + f"Blood glucose: {measure['bg']} mg/dl\n"
+                    if 'hr' in measure.keys():
+                        summ = summ + f"Heart rate: {measure['hr']} bpm\n"
+                    if 'bp' in measure.keys():
+                        summ = summ + \
+                            f"BP: {measure['bp']['systolic']} / " \
+                            f"{measure['bp']['diastolic']} mmHg\n"
+                    if 'wt' in measure.keys():
+                        summ = summ + f"Weight: {measure['wt']} kg\n"
 
-                if 'bmi' in measure.keys():
-                    summ = summ + f"BMI: {measure['bmi']} kg/m2\n"
+                    if 'bmi' in measure.keys():
+                        summ = summ + f"BMI: {measure['bmi']} kg/m2\n"
 
-                if 'osat' in measure.keys():
-                    summ = summ + f"osat: {measure['osat']} %\n"
+                    if 'osat' in measure.keys():
+                        summ = summ + f"osat: {measure['osat']} %\n"
 
-                if 'mood_energy' in measure.keys():
-                    summ = summ + \
-                        f"mood: {measure['mood_energy']['mood']} " \
-                        f"energy: {measure['mood_energy']['energy']}\n"
+                    if 'mood_energy' in measure.keys():
+                        summ = summ + \
+                            f"mood: {measure['mood_energy']['mood']} " \
+                            f"energy: {measure['mood_energy']['energy']}\n"
 
             pol['summary'] = summ
 

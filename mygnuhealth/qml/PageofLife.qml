@@ -23,11 +23,17 @@ Kirigami.Page {
         id: pol
         property var errors: {
             "wrongdate": qsTr("Wrong date"),
+            "successcreate": qsTr("OK!"),
         }
         property var msg: ""
         
         onWrongDate: {
             msg = errors["wrongdate"]
+            errorMessage.visible = true;
+        }
+
+        onCreateSuccess: {
+            msg = errors["successcreate"]
             errorMessage.visible = true;
         }
 
@@ -112,6 +118,7 @@ Kirigami.Page {
         }
 
         ComboBox {
+            id: domainid
             width: 200
             model: pol.poldomain
             textRole: "text"
@@ -120,8 +127,8 @@ Kirigami.Page {
         
         Button {
             id: buttonKey
-            property var pagedate: [calyear.value, calmonth.value, calday.value, calhour.value, calminute.value]
-            // onClicked: pol.createPage(pagedate)
+            property var page_date: [calyear.value, calmonth.value, calday.value, calhour.value, calminute.value]
+            onClicked: pol.createPage(page_date, domainid.currentValue)
             Layout.alignment: Qt.AlignHCenter
             text: qsTr("Create")
         }

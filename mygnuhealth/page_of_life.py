@@ -26,11 +26,7 @@ class PoL(QObject):
 
         Methods:
         --------
-            init_personal_key: Sets the personal key at the initial run.
-            login: Slot that receives the personal key to login, and checks
-                    if it is the correct one to log in.
-            createAccount: Slot that receives the initial personal key to
-                create an account.
+            get_domains: Returns main domains (medical, social, biographical..)
 
     """
     def get_domains(self):
@@ -58,39 +54,51 @@ class PoL(QObject):
     def new_page(self, data):
         page_id = str(uuid4())
 
+        """
         pol_vals = {
             'page': page_id,
-            'page_date': current_date,
-            'gene': gene,
-            'aa_change': aa_change,
-            'rsid': rsid,
-            'variant': variant,
-            'age': onset,
-            'summary': summary,
-            'info': info,
+            'page_date': data['page_date'],
+            'gene': data['gene'],
+            'aa_change': data['aa_change'],
+            'rsid': data['rsid'],
+            'variant': data['variant'],
+            'age': data['age'],
+            'summary': data['summary'],
+            'info': data['info'],
             }
-        domain = 'medical'
-        context = 'genetics'
+        """
+        pol_vals = {
+            'page': page_id,
+            'page_date': data['page_date'],
+            }
+
+        domain = data['domain']
+        context = data['context']
         PageOfLife.create_pol(PageOfLife, pol_vals, domain,
                               context)
 
-    @Slot(list)
-    def createPage(self, page_date):
+    @Slot(list, str)
+    def createPage(self, page_date, domain):
         # Retrieves the inforation from the initialization form
         # Creates the page from the information on the form
+        print(f"Page date, time and domain --> {page_date} {domain}")
         if (page_date):
-            if (check_date(page_date)):
+            if (check_date(page_date[:3])):
+                print("date looks good")
                 # Sets the page of life date and time
                 year, month, day, hour, minute = page_date
-                daterp = str(datetime.date(year, month, day, hour, minute))
-                page = {'page_date': daterp}
+                daterp = str(datetime.datetime(year, month, day, hour, minute))
+                page = {'page_date': daterp,
+                        'domain': domain,
+                        'context': '',
+                        }
                 self.new_page(page)
             else:
                 print("Wrong Date!")
                 validation_process = False
                 self.wrongDate.emit()
 
-        self.createSuccess.emit()
+        # self.createSuccess.emit()
 
     # Properties
     todayDate = Property("QVariantList", get_date, constant=True)

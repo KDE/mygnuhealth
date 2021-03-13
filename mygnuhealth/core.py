@@ -200,10 +200,14 @@ class PageOfLife():
             # that the key exists before assigning it.
             page_of_life['medical_context'] = context
 
-        page_of_life['measurements'] = pol_vals['measurements']
-        page_of_life['summary'] = pol_vals['summary']
-        page_of_life['info'] = pol_vals['info']
-        if pols_vals['variant']:
+        if ('measurements' in pol_vals.keys()):
+            page_of_life['measurements'] = pol_vals['measurements']
+        if ('summary' in pol_vals.keys()):
+            page_of_life['summary'] = pol_vals['summary'] or ''
+        if ('info' in pol_vals.keys()):
+            page_of_life['info'] = pol_vals['info'] or ''
+
+        if ('variant' in pol_vals.keys()):
             page_of_life['gene'] = pol_vals['gene']
             page_of_life['protein'] = pol_vals['protein']
             page_of_life['variant'] = pol_vals['variant']
