@@ -29,14 +29,51 @@ class PoL(QObject):
             get_domains: Returns main domains (medical, social, biographical..)
 
     """
-    def get_domains(self):
-        """ Return the domains to be used in the QML form
-            We use value and text keys to match QML Combobox"""
-        return PageOfLife.pol_domain
 
     def __init__(self):
         QObject.__init__(self)
         self.db = TinyDB(dbfile)
+        self.domain = 'medical'
+        self.pol_context = ''
+
+    def get_domains(self):
+        """ Return the domains to be used in the QML form
+            We use value and text keys to match QML Combobox"""
+        self.domain = PageOfLife.pol_domain
+        return self.domain
+
+    def get_contexts(self):
+        """ Return the domains to be used in the QML form
+            We use value and text keys to match QML Combobox"""
+        if self.domain == 'social':
+            self.pol_context = PageOfLife.social_context
+        if self.domain == 'medical':
+            self.pol_context = PageOfLife.medical_context
+        if self.domain == 'biographical':
+            self.pol_context = PageOfLife.biographical_context
+        if self.domain == 'other':
+            self.pol_context = PageOfLife.other_context
+        return self.pol_context
+
+    @Signal
+    def domainChanged(self):
+        pass    
+
+    @Slot(str)
+    def update_context(self, domain):
+        """ Set the value of the domain from the QML selection"""
+        if domain == 'social':
+            self.pol_context = PageOfLife.social_context
+        if domain == 'medical':
+            self.pol_context = PageOfLife.medical_context
+        if domain == 'biographical':
+            self.pol_context = PageOfLife.biographical_context
+        if domain == 'other':
+            self.pol_context = PageOfLife.other_context
+        # Emit the change of domain, so it updates the context
+        self.domainChanged.emit()
+
+        return self.pol_context
 
     def get_date(self):
         """
@@ -74,23 +111,23 @@ class PoL(QObject):
 
         domain = data['domain']
         context = data['context']
+        print("CONTEXTOOOOO", context)
         PageOfLife.create_pol(PageOfLife, pol_vals, domain,
                               context)
 
-    @Slot(list, str)
-    def createPage(self, page_date, domain):
+    @Slot(list, str, str)
+    def createPage(self, page_date, domain, context):
         # Retrieves the inforation from the initialization form
         # Creates the page from the information on the form
         print(f"Page date, time and domain --> {page_date} {domain}")
         if (page_date):
             if (check_date(page_date[:3])):
-                print("date looks good")
                 # Sets the page of life date and time
                 year, month, day, hour, minute = page_date
                 daterp = str(datetime.datetime(year, month, day, hour, minute))
                 page = {'page_date': daterp,
                         'domain': domain,
-                        'context': '',
+                        'context': context,
                         }
                 self.new_page(page)
             else:
@@ -103,6 +140,7 @@ class PoL(QObject):
     # Properties
     todayDate = Property("QVariantList", get_date, constant=True)
     poldomain = Property("QVariantList", get_domains, constant=True)
+    polcontext = Property("QVariantList", get_contexts, notify=domainChanged)
 
     # Signals
     createSuccess = Signal()

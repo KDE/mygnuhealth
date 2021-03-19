@@ -126,43 +126,49 @@ class PageOfLife():
                   {'value': 'other', 'text': 'Other'}
                   ]
 
-    medical_context = {
-        'health_condition': 'Health Condition',
-        'encounter': 'Encounter',
-        'procedure': 'Procedure',
-        'self_monitoring': 'Self monitoring',
-        'immunization': 'Immunization',
-        'prescription': 'Prescription',
-        'surgery': 'Surgery',
-        'hospitalization': 'Hospitalization',
-        'lab': 'lab',
-        'dx_imaging': 'Dx Imaging',
-        'genetics': 'Genetics',
-        'family': 'Family history',
-        'birth': 'Birth',
-        'death': 'Death',
-        }
+    medical_context = [
+        {'value': 'health_condition', 'text': 'Health Condition'},
+        {'value': 'encounter', 'text': 'Encounter'},
+        {'value': 'procedure', 'text': 'Procedure'},
+        {'value': 'self_monitoring', 'text': 'Self monitoring'},
+        {'value': 'immunization', 'text': 'Immunization'},
+        {'value': 'prescription', 'text': 'Prescription'},
+        {'value': 'surgery', 'text': 'Surgery'},
+        {'value': 'hospitalization', 'text': 'Hospitalization'},
+        {'value': 'lab', 'text': 'Lab test'},
+        {'value': 'dx_imaging', 'text': 'Dx Imaging'},
+        {'value': 'genetics', 'text': 'Genetics'},
+        {'value': 'family', 'text': 'Family history'},
+        ]
 
-    social_context = {
-        'social_gradient': 'Social Gradient / Equity',
-        'stress': 'Stress',
-        'early_life_development': 'Early life development',
-        'social_exclusion': 'Social exclusion',
-        'working_conditions': 'Working conditions',
-        'education': 'Education',
-        'physical_environment': 'Physical environment',
-        'unemployment': 'unemployment',
-        'social_support': 'Social Support',
-        'addiction': 'Addiction',
-        'food': 'Food',
-        'transport': 'transport',
-        'health_services': 'Health services',
-        'uninsured': 'uninsured',
-        'family_functionality': 'Family functionality',
-        'family_violence': 'Family violence',
-        'bullying': 'Bullying',
-        'war': 'War',
-        }
+    social_context = [
+        {'value': 'social_gradient', 'text': 'Social Gradient / Equity'},
+        {'value': 'stress', 'text': 'Stress'},
+        {'value': 'early_life_development', 'text': 'Early life development'},
+        {'value': 'social_exclusion', 'text': 'Social exclusion'},
+        {'value': 'working_conditions', 'text': 'Working conditions'},
+        {'value': 'education', 'text': 'Education'},
+        {'value': 'physical_environment', 'text': 'Physical environment'},
+        {'value': 'unemployment', 'text': 'Unemployment'},
+        {'value': 'social_support', 'text': 'Social Support'},
+        {'value': 'addiction', 'text': 'Addiction'},
+        {'value': 'food', 'text': 'Food'},
+        {'value': 'transportation', 'text': 'Transportation'},
+        {'value': 'health_services', 'text': 'Health services'},
+        {'value': 'family_functionality', 'text': 'Family functionality'},
+        {'value': 'family_violence', 'text': 'Family violence'},
+        {'value': 'bullying', 'text': 'Bullying'},
+        {'value': 'war', 'text': 'War'},
+        ]
+
+    biographical_context = [
+        {'value': 'birth', 'text': 'Birth'},
+        {'value': 'death', 'text': 'Death'}
+        ]
+
+    other_context = [
+        {'value': 'misc', 'text': 'Misc'},
+        ]
 
     def create_pol(self, pol_vals, domain, context):
         """Creates a Page of Life associated to the reading
@@ -180,7 +186,6 @@ class PageOfLife():
         fed_acct = get_federation_account()
         poltable = self.boldb.table('pol')
         page_of_life = self.pol_model
-        med_cxt = self.medical_context
 
         if (fed_acct):
             #  If the Federation account does not exist, it will be
@@ -195,10 +200,11 @@ class PageOfLife():
         page_of_life['page_date'] = pol_vals['page_date']
         page_of_life['page_type'] = domain
 
-        if (context in med_cxt.keys()):
-            # Verifies against the dictionary on core module
-            # that the key exists before assigning it.
+        if (domain == 'medical'):
             page_of_life['medical_context'] = context
+
+        if (domain == 'social'):
+            page_of_life['social_context'] = context
 
         if ('measurements' in pol_vals.keys()):
             page_of_life['measurements'] = pol_vals['measurements']

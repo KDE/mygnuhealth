@@ -119,8 +119,17 @@ Kirigami.Page {
 
         ComboBox {
             id: domainid
-            width: 200
+            width: 120
             model: pol.poldomain
+            textRole: "text"
+            valueRole: "value"
+            onActivated: pol.update_context(domainid.currentValue)
+        }
+
+        ComboBox {
+            id: contextid
+            width: 120
+            model: pol.polcontext
             textRole: "text"
             valueRole: "value"
         }
@@ -128,7 +137,7 @@ Kirigami.Page {
         Button {
             id: buttonKey
             property var page_date: [calyear.value, calmonth.value, calday.value, calhour.value, calminute.value]
-            onClicked: pol.createPage(page_date, domainid.currentValue)
+            onClicked: pol.createPage(page_date, domainid.currentValue, contextid.currentValue)
             Layout.alignment: Qt.AlignHCenter
             text: qsTr("Create")
         }

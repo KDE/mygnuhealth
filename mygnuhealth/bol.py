@@ -46,7 +46,8 @@ class GHBol(QObject):
                 \n{pageoflife['medical_context']}"
 
             summ = ''
-            if ('measurements' in pageoflife.keys() and pageoflife['measurements']):
+            if ('measurements' in pageoflife.keys() and
+                    pageoflife['measurements']):
                 for measure in pageoflife['measurements']:
                     if 'bg' in measure.keys():
                         summ = summ + f"Blood glucose: {measure['bg']} mg/dl\n"
