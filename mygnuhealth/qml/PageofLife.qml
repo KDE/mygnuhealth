@@ -133,6 +133,55 @@ Kirigami.Page {
             textRole: "text"
             valueRole: "value"
         }
+
+        // Item reserved for genetic infomation
+        // It will be shown only when the medical domain context is Genetics 
+        ColumnLayout {
+            visible: contextid.currentValue === 'genetics'
+            GridLayout {
+                columns: 3
+                TextField {
+                    id:rsid
+                    Layout.preferredWidth: parent.width*0.2
+                    placeholderText: qsTr("RefSNP")
+                    horizontalAlignment: TextInput.Center
+                    focus: true
+                }
+                TextField {
+                    id:geneid
+                    Layout.preferredWidth: parent.width*0.2
+                    placeholderText: qsTr("Gene")
+                    horizontalAlignment: TextInput.Center
+                    focus: true
+                }
+                TextField {
+                    id:aachange
+                    placeholderText: qsTr("AA change")
+                    horizontalAlignment: TextInput.Center
+                    focus: true
+                }
+                TextField {
+                    id:variantid
+                    Layout.preferredWidth: parent.width*0.2
+                    placeholderText: qsTr("Variant")
+                    horizontalAlignment: TextInput.Center
+                    focus: true
+                }
+                TextField {
+                    id:proteinid
+                    Layout.preferredWidth: parent.width*0.2
+                    placeholderText: qsTr("Protein ID")
+                    horizontalAlignment: TextInput.Center
+                    focus: true
+                }
+                TextField {
+                    id:significance
+                    placeholderText: qsTr("Significance")
+                    horizontalAlignment: TextInput.Center
+                    focus: true
+                }
+            }
+        }
         
         Button {
             id: buttonKey
