@@ -41,6 +41,7 @@ Kirigami.Page {
 
     ColumnLayout {
         
+        // Date and Time widget
         RowLayout {
 
             Label {
@@ -113,27 +114,45 @@ Kirigami.Page {
 
         }
 
+        // Title of the Page of Life (summary)
+        RowLayout {
+            id: titleform
+            Layout.fillWidth: true
+            Label {
+                id:pagetitle
+                text: qsTr("Title")
+            }
+            TextField {
+                id:summary
+                placeholderText: qsTr("Summary")
+                focus: true
+            }
+        }
+
+
+        // Health domain and context
+        RowLayout {
+            id: domainrow
+            // Layout.fillWidth: true
+        
+            ComboBox {
+                id: domainid
+                model: pol.poldomain
+                textRole: "text"
+                valueRole: "value"
+                onActivated: pol.update_context(domainid.currentValue)
+            }
+            ComboBox {
+                id: contextid
+                model: pol.polcontext
+                textRole: "text"
+                valueRole: "value"
+            }
+        }
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
         }
-
-        ComboBox {
-            id: domainid
-            width: 120
-            model: pol.poldomain
-            textRole: "text"
-            valueRole: "value"
-            onActivated: pol.update_context(domainid.currentValue)
-        }
-
-        ComboBox {
-            id: contextid
-            width: 120
-            model: pol.polcontext
-            textRole: "text"
-            valueRole: "value"
-        }
-
+        
         // Item reserved for genetic infomation
         // It will be shown only when the medical domain context is Genetics 
         ColumnLayout {
@@ -145,27 +164,23 @@ Kirigami.Page {
                     Layout.preferredWidth: parent.width*0.2
                     placeholderText: qsTr("RefSNP")
                     horizontalAlignment: TextInput.Center
-                    focus: true
                 }
                 TextField {
                     id:geneid
                     Layout.preferredWidth: parent.width*0.2
                     placeholderText: qsTr("Gene")
                     horizontalAlignment: TextInput.Center
-                    focus: true
                 }
                 TextField {
                     id:aachange
                     placeholderText: qsTr("AA change")
                     horizontalAlignment: TextInput.Center
-                    focus: true
                 }
                 TextField {
                     id:variantid
                     Layout.preferredWidth: parent.width*0.2
                     placeholderText: qsTr("Variant")
                     horizontalAlignment: TextInput.Center
-                    focus: true
                 }
                 TextField {
                     id:proteinid
@@ -181,6 +196,12 @@ Kirigami.Page {
                     focus: true
                 }
             }
+        }
+        TextArea {
+            id:information
+            Layout.fillWidth: true
+            placeholderText: qsTr("Enter details here")
+            wrapMode: TextEdit.WordWrap
         }
         
         Button {

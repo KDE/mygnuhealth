@@ -111,7 +111,6 @@ class PoL(QObject):
 
         domain = data['domain']
         context = data['context']
-        print("CONTEXTOOOOO", context)
         PageOfLife.create_pol(PageOfLife, pol_vals, domain,
                               context)
 
@@ -119,7 +118,6 @@ class PoL(QObject):
     def createPage(self, page_date, domain, context):
         # Retrieves the inforation from the initialization form
         # Creates the page from the information on the form
-        print(f"Page date, time and domain --> {page_date} {domain}")
         if (page_date):
             if (check_date(page_date[:3])):
                 # Sets the page of life date and time
