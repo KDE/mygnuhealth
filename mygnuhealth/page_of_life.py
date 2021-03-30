@@ -91,31 +91,23 @@ class PoL(QObject):
     def new_page(self, data):
         page_id = str(uuid4())
 
-        """
         pol_vals = {
             'page': page_id,
             'page_date': data['page_date'],
-            'gene': data['gene'],
-            'aa_change': data['aa_change'],
-            'rsid': data['rsid'],
-            'variant': data['variant'],
-            'age': data['age'],
+            'domain': data['domain'],
+            'context': data['context'],
+            'genetic_info': data['genetic_info'],
             'summary': data['summary'],
-            'info': data['info'],
-            }
-        """
-        pol_vals = {
-            'page': page_id,
-            'page_date': data['page_date'],
+            'info': data['info']
             }
 
         domain = data['domain']
         context = data['context']
-        PageOfLife.create_pol(PageOfLife, pol_vals, domain,
-                              context)
+        PageOfLife.create_pol(PageOfLife, pol_vals)
 
-    @Slot(list, str, str)
-    def createPage(self, page_date, domain, context):
+    @Slot(list, str, str, list, str, str)
+    def createPage(self, page_date, domain, context, genetic_info,
+                   summary, info):
         # Retrieves the inforation from the initialization form
         # Creates the page from the information on the form
         if (page_date):
@@ -126,6 +118,9 @@ class PoL(QObject):
                 page = {'page_date': daterp,
                         'domain': domain,
                         'context': context,
+                        'genetic_info': genetic_info,
+                        'summary': summary,
+                        'info': info
                         }
                 self.new_page(page)
             else:

@@ -207,7 +207,8 @@ Kirigami.Page {
         Button {
             id: buttonKey
             property var page_date: [calyear.value, calmonth.value, calday.value, calhour.value, calminute.value]
-            onClicked: pol.createPage(page_date, domainid.currentValue, contextid.currentValue)
+            property var genetic_info: [rsid.text, geneid.text, aachange.text,  variantid.text, proteinid.text, significance.text]
+            onClicked: pol.createPage(page_date, domainid.currentValue, contextid.currentValue, genetic_info, summary.text, information.text)
             Layout.alignment: Qt.AlignHCenter
             text: qsTr("Create")
         }

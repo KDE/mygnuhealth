@@ -113,10 +113,7 @@ class PageOfLife():
 
     pol_model = dict.fromkeys([
         'book', 'page_date', 'age', 'page_type', 'relevance',
-        'medical_context', 'health_condition_code', 'health_condition_text',
-        'procedure_code', 'procedure_text', 'gene', 'natural_variant',
-        'phenotype', 'variant_significance', 'social_context',
-        'summary', 'info', 'measurements',
+        'context', 'measurements', 'genetic_info', 'summary', 'info',
         'node', 'author', 'author_acct'
         ])
 
@@ -170,22 +167,27 @@ class PageOfLife():
         {'value': 'misc', 'text': 'Misc'},
         ]
 
-    def create_pol(self, pol_vals, domain, context):
+    def create_pol(self, pol_vals):
         """Creates a Page of Life associated to the reading
 
         Parameters
         ----------
-        monitor_vals: values taken from the user or device.
-            The method is called after updating the specific measurement table
-            (glucose, heart rate, osat.. )
-        domain: the domain (medical, psycho, social)
-        context: the context within a domain (possible contexts are listed
-            in the core module.
+        pol_vals: Takes all the values from the page of life, which is a 
+        dictionary. Some of them:
+            domain: the domain (medical, psycho, social)
+            context: the context within a domain (possible contexts are listed
+                in the core module.
+            genetic_info: variant, rsref, protein, gene, aa_change
+            measurements: blood pressure, Osat, temp, heart & resp frequency,..
+            summary: Short description / title of the page
+            info: Extended information related to this page of life.
         """
 
         fed_acct = get_federation_account()
         poltable = self.boldb.table('pol')
         page_of_life = self.pol_model
+        domain = pol_vals['domain']
+        context = pol_vals['context']
 
         if (fed_acct):
             #  If the Federation account does not exist, it will be
@@ -212,11 +214,6 @@ class PageOfLife():
             page_of_life['summary'] = pol_vals['summary'] or ''
         if ('info' in pol_vals.keys()):
             page_of_life['info'] = pol_vals['info'] or ''
-
-        if ('variant' in pol_vals.keys()):
-            page_of_life['gene'] = pol_vals['gene']
-            page_of_life['protein'] = pol_vals['protein']
-            page_of_life['variant'] = pol_vals['variant']
 
         # create the new PoL entry
         print("New Page of Life:", page_of_life)
