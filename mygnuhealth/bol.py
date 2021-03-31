@@ -46,30 +46,47 @@ class GHBol(QObject):
                 \n{pageoflife['medical_context']}"
 
             summ = ''
+            msr = ''
+
+            title = pageoflife['summary']
+            details = pageoflife['info']
+
+            if title:
+                summ = f'{title}\n'
+
             if ('measurements' in pageoflife.keys() and
                     pageoflife['measurements']):
                 for measure in pageoflife['measurements']:
                     if 'bg' in measure.keys():
-                        summ = summ + f"Blood glucose: {measure['bg']} mg/dl\n"
+                        msr = msr + f"Blood glucose: {measure['bg']} mg/dl\n"
                     if 'hr' in measure.keys():
-                        summ = summ + f"Heart rate: {measure['hr']} bpm\n"
+                        msr = msr + f"Heart rate: {measure['hr']} bpm\n"
                     if 'bp' in measure.keys():
-                        summ = summ + \
+                        msr = msr + \
                             f"BP: {measure['bp']['systolic']} / " \
                             f"{measure['bp']['diastolic']} mmHg\n"
                     if 'wt' in measure.keys():
-                        summ = summ + f"Weight: {measure['wt']} kg\n"
+                        msr = msr + f"Weight: {measure['wt']} kg\n"
 
                     if 'bmi' in measure.keys():
-                        summ = summ + f"BMI: {measure['bmi']} kg/m2\n"
+                        msr = msr + f"BMI: {measure['bmi']} kg/m2\n"
 
                     if 'osat' in measure.keys():
-                        summ = summ + f"osat: {measure['osat']} %\n"
+                        msr = msr + f"osat: {measure['osat']} %\n"
 
                     if 'mood_energy' in measure.keys():
-                        summ = summ + \
+                        msr = msr + \
                             f"mood: {measure['mood_energy']['mood']} " \
                             f"energy: {measure['mood_energy']['energy']}\n"
+                    summ = summ + msr
+
+            if ('genetic_info' in pageoflife.keys() and
+                    pageoflife['genetic_info']):
+                genetics = pageoflife['genetic_info']
+                summ = summ + f'{genetics}\n'
+
+            if details:
+                summ = summ + f'{details}\n'
 
             pol['summary'] = summ
 
