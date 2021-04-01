@@ -208,6 +208,9 @@ class PageOfLife():
         if (domain == 'social'):
             page_of_life['social_context'] = context
 
+        if ('genetic_info' in pol_vals.keys()):
+            page_of_life['genetic_info'] = pol_vals['genetic_info'] or ''
+
         if ('measurements' in pol_vals.keys()):
             page_of_life['measurements'] = pol_vals['measurements']
         if ('summary' in pol_vals.keys()):
