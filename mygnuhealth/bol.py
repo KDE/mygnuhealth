@@ -43,7 +43,7 @@ class GHBol(QObject):
 
             pol['date'] = date_repr
             pol['domain'] = f"{pageoflife['page_type']}\
-                \n{pageoflife['medical_context']}"
+                \n{pageoflife['context']}"
 
             summ = ''
             msr = ''

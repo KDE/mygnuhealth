@@ -128,7 +128,7 @@ class PoL(QObject):
                 validation_process = False
                 self.wrongDate.emit()
 
-        # self.createSuccess.emit()
+        self.createSuccess.emit()
 
     # Properties
     todayDate = Property("QVariantList", get_date, constant=True)

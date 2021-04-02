@@ -33,8 +33,7 @@ Kirigami.Page {
         }
 
         onCreateSuccess: {
-            msg = errors["successcreate"]
-            errorMessage.visible = true;
+           pageStack.pop() // Return to Book of Life
         }
 
     }

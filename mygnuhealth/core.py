@@ -202,11 +202,7 @@ class PageOfLife():
         page_of_life['page_date'] = pol_vals['page_date']
         page_of_life['page_type'] = domain
 
-        if (domain == 'medical'):
-            page_of_life['medical_context'] = context
-
-        if (domain == 'social'):
-            page_of_life['social_context'] = context
+        page_of_life['context'] = context
 
         if ('genetic_info' in pol_vals.keys()):
             page_of_life['genetic_info'] = pol_vals['genetic_info'] or ''
