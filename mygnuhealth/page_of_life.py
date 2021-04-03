@@ -96,10 +96,11 @@ class PoL(QObject):
             'page_date': data['page_date'],
             'domain': data['domain'],
             'context': data['context'],
-            'genetic_info': data['genetic_info'],
             'summary': data['summary'],
             'info': data['info']
             }
+        if (data['context'] == 'genetics'):
+            pol_vals.update({'genetic_info': data['genetic_info']})
 
         domain = data['domain']
         context = data['context']
@@ -118,10 +119,11 @@ class PoL(QObject):
                 page = {'page_date': daterp,
                         'domain': domain,
                         'context': context,
-                        'genetic_info': genetic_info,
                         'summary': summary,
                         'info': info
                         }
+                if (context == 'genetics'):
+                    page.update({'genetic_info': genetic_info})
                 self.new_page(page)
             else:
                 print("Wrong Date!")
