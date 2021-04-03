@@ -40,6 +40,8 @@ class Weight(QObject):
         weighttable = self.db.table('weight')
         profiletable = self.db.table('profile')
         current_date = datetime.datetime.now().isoformat()
+        domain = 'medical'
+        context = 'self_monitoring'
 
         if body_weight > 0:
             event_id = str(uuid4())
@@ -71,12 +73,13 @@ class Weight(QObject):
             pol_vals = {
                 'page': event_id,
                 'page_date': current_date,
+                'domain': domain,
+                'context': context,
                 'measurements': [measurements]
                 }
 
             # Create the Page of Life associated to this reading
-            PageOfLife.create_pol(PageOfLife, pol_vals, 'medical',
-                                  'self_monitoring')
+            PageOfLife.create_pol(PageOfLife, pol_vals)
 
     @Slot(float)
     def getvals(self, body_weight):

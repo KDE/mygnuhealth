@@ -31,6 +31,8 @@ class Osat(QObject):
     def insert_values(self, hb_osat):
         osat = self.db.table('osat')
         current_date = datetime.datetime.now().isoformat()
+        domain = 'medical'
+        context = 'self_monitoring'
 
         if hb_osat > 0:
             event_id = str(uuid4())
@@ -47,12 +49,13 @@ class Osat(QObject):
             pol_vals = {
                 'page': event_id,
                 'page_date': current_date,
+                'domain': domain,
+                'context': context,
                 'measurements': [{'osat': hb_osat}]
                 }
 
             # Create the Page of Life associated to this reading
-            PageOfLife.create_pol(PageOfLife, pol_vals, 'medical',
-                                  'self_monitoring')
+            PageOfLife.create_pol(PageOfLife, pol_vals)
 
     @Slot(int)
     def getvals(self, hb_osat):

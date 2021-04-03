@@ -21,6 +21,8 @@ class MoodEnergy(QObject):
         mood_table = self.db.table('mood')
         current_date = datetime.datetime.now().isoformat()
         moodmon = False  # Init to false the mood monitoring process
+        domain = 'medical'
+        context = 'self_monitoring'
 
         if (energy > -1):  # Will evaluate to True since energy lower lim = 0
             moodmon = True
@@ -45,12 +47,13 @@ class MoodEnergy(QObject):
             pol_vals = {
                 'page': event_id,
                 'page_date': current_date,
+                'domain': domain,
+                'context': context,
                 'measurements': monitor_readings
                 }
 
             # Create the Page of Life associated to this reading
-            PageOfLife.create_pol(PageOfLife, pol_vals, 'medical',
-                                  'self_monitoring')
+            PageOfLife.create_pol(PageOfLife, pol_vals)
 
     @Slot(int, int)
     def getvals(self, *args):

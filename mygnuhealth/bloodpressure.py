@@ -22,6 +22,8 @@ class BloodPressure(QObject):
         hr = self.db.table('heart_rate')
         current_date = datetime.datetime.now().isoformat()
         bpmon = hrmon = False  # Init to false the bp and hr monitoring process
+        domain = 'medical'
+        context = 'self_monitoring'
 
         if (systolic > 0) and (diastolic > 0):
             bpmon = True
@@ -71,12 +73,13 @@ class BloodPressure(QObject):
             pol_vals = {
                 'page': event_id,
                 'page_date': current_date,
+                'domain': domain,
+                'context': context,
                 'measurements': monitor_readings
                 }
 
             # Create the Page of Life associated to this reading
-            PageOfLife.create_pol(PageOfLife, pol_vals, 'medical',
-                                  'self_monitoring')
+            PageOfLife.create_pol(PageOfLife, pol_vals)
 
     @Slot(int, int, int)
     def getvals(self, *args):

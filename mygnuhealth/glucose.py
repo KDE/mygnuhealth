@@ -40,6 +40,8 @@ class Glucose(QObject):
 
         glucose = self.db.table('glucose')
         current_date = datetime.datetime.now().isoformat()
+        domain = 'medical'
+        context = 'self_monitoring'
 
         if blood_glucose > 0:
             event_id = str(uuid4())
@@ -59,12 +61,13 @@ class Glucose(QObject):
             pol_vals = {
                 'page': event_id,
                 'page_date': current_date,
+                'domain': domain,
+                'context': context,
                 'measurements': [{'bg': blood_glucose}]
                 }
 
             # Create the Page of Life associated to this blood glucose reading
-            PageOfLife.create_pol(PageOfLife, pol_vals, 'medical',
-                                  'self_monitoring')
+            PageOfLife.create_pol(PageOfLife, pol_vals)
 
     @Slot(int)
     def getvals(self, blood_glucose):
