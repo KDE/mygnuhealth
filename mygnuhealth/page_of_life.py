@@ -138,7 +138,8 @@ class PoL(QObject):
                         'aa_change': genetic_info[2],
                         'variant': genetic_info[3],
                         'protein': genetic_info[4],
-                        'significance': genetic_info[5]
+                        'significance': genetic_info[5],
+                        'disease': genetic_info[6]
                         }
                     page.update({'genetic_info': rsinfo})
                 self.new_page(page)

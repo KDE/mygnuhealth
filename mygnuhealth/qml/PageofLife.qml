@@ -187,13 +187,18 @@ Kirigami.Page {
                     Layout.preferredWidth: parent.width*0.2
                     placeholderText: qsTr("Protein ID")
                     horizontalAlignment: TextInput.Center
-                    focus: true
                 }
                 TextField {
                     id:significance
                     placeholderText: qsTr("Significance")
                     horizontalAlignment: TextInput.Center
-                    focus: true
+                }
+                TextField {
+                    id:disease
+                    Layout.columnSpan: 3
+                    Layout.fillWidth: true
+                    placeholderText: qsTr("Disease")
+                    horizontalAlignment: TextInput.Center
                 }
             }
         }
@@ -207,7 +212,7 @@ Kirigami.Page {
         Button {
             id: buttonKey
             property var page_date: [calyear.value, calmonth.value, calday.value, calhour.value, calminute.value]
-            property var genetic_info: [rsid.text, geneid.text, aachange.text,  variantid.text, proteinid.text, significance.text]
+            property var genetic_info: [rsid.text, geneid.text, aachange.text,  variantid.text, proteinid.text, significance.text, disease.text]
             onClicked: pol.createPage(page_date, domainid.currentValue, contextid.currentValue, genetic_info, summary.text, information.text)
             Layout.alignment: Qt.AlignHCenter
             text: qsTr("Create")
