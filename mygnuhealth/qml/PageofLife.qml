@@ -160,10 +160,19 @@ Kirigami.Page {
                 columns: 3
                 TextField {
                     id:rsid
+                    property var rs: pol.polrs
                     Layout.preferredWidth: parent.width*0.2
                     placeholderText: qsTr("RefSNP")
                     horizontalAlignment: TextInput.Center
-                    onEditingFinished:pol.checkSNP(rsid.text)
+                    onEditingFinished: { 
+                        pol.checkSNP(rsid.text)
+                        geneid.text = pol.polrs.gene
+                        aachange.text = pol.polrs.aa_change
+                        variantid.text = pol.polrs.variant
+                        proteinid.text = pol.polrs.protein
+                        significance.text = pol.polrs.significance
+                        disease.text = pol.polrs.disease
+                    }
                 }
                 TextField {
                     id:geneid
@@ -178,13 +187,13 @@ Kirigami.Page {
                 }
                 TextField {
                     id:variantid
-                    Layout.preferredWidth: parent.width*0.2
+                    Layout.preferredWidth: parent.width*0.3
                     placeholderText: qsTr("Variant")
                     horizontalAlignment: TextInput.Center
                 }
                 TextField {
                     id:proteinid
-                    Layout.preferredWidth: parent.width*0.2
+                    Layout.preferredWidth: parent.width*0.3
                     placeholderText: qsTr("Protein ID")
                     horizontalAlignment: TextInput.Center
                 }

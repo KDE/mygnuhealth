@@ -11,7 +11,6 @@ from uuid import uuid4
 from mygnuhealth.myghconf import dbfile
 from mygnuhealth.core import check_date, PageOfLife, vardb
 
-import json
 import logging
 import datetime
 
@@ -35,6 +34,10 @@ class PoL(QObject):
         self.db = TinyDB(dbfile)
         self.domain = 'medical'
         self.pol_context = ''
+        self.rsinfo = {}
+
+    def get_rsinfo(self):
+        return self.rsinfo
 
     def get_domains(self):
         """ Return the domains to be used in the QML form
@@ -57,7 +60,11 @@ class PoL(QObject):
 
     @Signal
     def domainChanged(self):
-        pass    
+        pass
+
+    @Signal
+    def rsChanged(self):
+        pass
 
     @Slot(str)
     def update_context(self, domain):
@@ -109,11 +116,27 @@ class PoL(QObject):
     @Slot(str)
     def checkSNP(self, rs):
         Rsnp = Query()
+        self.rsinfo = {}
         res = vardb.search(Rsnp.dbsnp == rs)
-        if res:
+        if len(res) > 0:
+            res = res[0]
             print(f"Found {rs}")
+
+            self.rsinfo = {
+                    'rsid': res['dbsnp'],
+                    'gene': res['gene'],
+                    'aa_change': res['aa_change'],
+                    'variant': res['variant'],
+                    'protein': res['protein'],
+                    'significance': res['category'],
+                    'disease': res['disease']
+                    }
+
         else:
             print(f"Reference {rs} not found")
+            self.rsinfo = {}
+
+        return (self.rsinfo)
 
     @Slot(list, str, str, list, str, str)
     def createPage(self, page_date, domain, context, genetic_info,
@@ -154,6 +177,7 @@ class PoL(QObject):
     todayDate = Property("QVariantList", get_date, constant=True)
     poldomain = Property("QVariantList", get_domains, constant=True)
     polcontext = Property("QVariantList", get_contexts, notify=domainChanged)
+    polrs = Property("QVariant", get_rsinfo, notify=rsChanged)
 
     # Signals
     createSuccess = Signal()
