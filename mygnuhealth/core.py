@@ -28,8 +28,17 @@
 
 import datetime
 import dateutil.parser
+import os
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import dbfile, bolfile
+
+''' Import the Natural variants database from the data
+directory, relative to the this mygnuhealth module
+The datafile is loaded into the TinyDB "vardb" variable
+'''
+moddir = os.path.dirname(os.path.abspath(__file__))
+varfile = os.path.join(moddir, 'data/variants.db')
+vardb = TinyDB(varfile)
 
 
 def datefromisotz(isotz):

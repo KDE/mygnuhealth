@@ -9,7 +9,7 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 from uuid import uuid4
 from mygnuhealth.myghconf import dbfile
-from mygnuhealth.core import check_date, PageOfLife
+from mygnuhealth.core import check_date, PageOfLife, vardb
 
 import json
 import logging
@@ -106,6 +106,15 @@ class PoL(QObject):
         context = data['context']
         PageOfLife.create_pol(PageOfLife, pol_vals)
 
+    @Slot(str)
+    def checkSNP(self, rs):
+        Rsnp = Query()
+        res = vardb.search(Rsnp.dbsnp == rs)
+        if res:
+            print(f"Found {rs}")
+        else:
+            print(f"Reference {rs} not found")
+
     @Slot(list, str, str, list, str, str)
     def createPage(self, page_date, domain, context, genetic_info,
                    summary, info):
@@ -123,7 +132,15 @@ class PoL(QObject):
                         'info': info
                         }
                 if (context == 'genetics'):
-                    page.update({'genetic_info': genetic_info})
+                    rsinfo = {
+                        'rsid': genetic_info[0],
+                        'gene': genetic_info[1],
+                        'aa_change': genetic_info[2],
+                        'variant': genetic_info[3],
+                        'protein': genetic_info[4],
+                        'significance': genetic_info[5]
+                        }
+                    page.update({'genetic_info': rsinfo})
                 self.new_page(page)
             else:
                 print("Wrong Date!")

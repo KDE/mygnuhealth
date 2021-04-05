@@ -163,6 +163,7 @@ Kirigami.Page {
                     Layout.preferredWidth: parent.width*0.2
                     placeholderText: qsTr("RefSNP")
                     horizontalAlignment: TextInput.Center
+                    onEditingFinished:pol.checkSNP(rsid.text)
                 }
                 TextField {
                     id:geneid

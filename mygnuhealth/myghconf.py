@@ -8,9 +8,7 @@ import os
 import sys
 import bcrypt
 import getpass
-import tinydb
 from pathlib import Path
-from tinydb import TinyDB, Query
 import configparser
 from mygnuhealth import about
 
@@ -22,7 +20,6 @@ dbfile = os.path.join(gh_dir, 'ghealth.db')
 # The boldb holds the Book of Life
 # containing all pages of life and their sync status on the federation
 bolfile = os.path.join(gh_dir, 'bol.db')
-
 
 def check_inst_dir():
     if os.path.isdir(gh_dir):
