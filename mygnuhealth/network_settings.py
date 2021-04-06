@@ -18,7 +18,7 @@ class NetworkSettings(QObject):
     db = TinyDB(dbfile)
 
     def update_federation_info(self, protocol, federation_server,
-                               federation_port, federation_id, enable_sync):
+                               federation_port, enable_sync):
 
         fedinfo = self.db.table('federation')
         # If the "Singleton" table is empty, insert, otherwise, update
@@ -27,13 +27,11 @@ class NetworkSettings(QObject):
             fedinfo.insert({'protocol': protocol,
                             'federation_server': federation_server,
                             'federation_port': federation_port,
-                            'federation_id': federation_id,
                             'enable_sync': enable_sync})
         else:
             fedinfo.update({'protocol': protocol,
                             'federation_server': federation_server,
                             'federation_port': federation_port,
-                            'federation_id': federation_id,
                             'enable_sync': enable_sync})
 
     @Slot(str, str, str, str, str)
@@ -41,7 +39,7 @@ class NetworkSettings(QObject):
         conn_res = fc(protocol, *args)
         print(conn_res)
 
-    @Slot(str, str, str, str, bool)
+    @Slot(str, str, str, bool)
     def getvals(self, *args):
         self.update_federation_info(*args)
 

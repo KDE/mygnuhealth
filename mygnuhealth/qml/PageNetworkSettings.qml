@@ -85,13 +85,12 @@ title: qsTr("Network Settings")
         Button {
             id: buttonSetSettings
             Layout.alignment: Qt.AlignHCenter
-            text: qsTr("Done")
+            text: qsTr("Update")
             flat: false
             onClicked: {
                 network_settings.getvals(txtFederationProtocol.text,
                     txtFederationServer.text,
                     txtFederationPort.text,
-                    txtFederationAccount.text,
                     enable_sync);
             }
 

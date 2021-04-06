@@ -27,6 +27,17 @@ Kirigami.ScrollablePage {
                 fillMode: Image.PreserveAspectFit
             }
         }
+        ItemDelegate {
+            id: syncbook
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            onClicked: ghbol.sync_book();
+            Image {
+                anchors.fill: parent
+                source: "../images/sync_book_of_life-icon.svg"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
     }
 
     TableView {

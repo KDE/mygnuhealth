@@ -239,12 +239,3 @@ class PageOfLife():
         #    rr': 16,
         #  'osat': 99, 'wt': 68.0, 'ht': 168.0, 'bmi': 24.09, 'bg': 116}
 
-    def sync_pols(self):
-        """This method will go through each page in the book of life
-        that has not been sent to the GNU Health Federation server yet
-        (fsynced = False).
-
-        Parameters
-        ----------
-        """
-

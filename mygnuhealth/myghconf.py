@@ -21,6 +21,7 @@ dbfile = os.path.join(gh_dir, 'ghealth.db')
 # containing all pages of life and their sync status on the federation
 bolfile = os.path.join(gh_dir, 'bol.db')
 
+
 def check_inst_dir():
     if os.path.isdir(gh_dir):
         print("Directory exists... skipping")

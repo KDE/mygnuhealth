@@ -10,7 +10,8 @@ from uuid import uuid4
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 import json
-from mygnuhealth.myghconf import bolfile
+from mygnuhealth.myghconf import bolfile, dbfile
+
 from mygnuhealth.core import PageOfLife, datefromisotz
 
 
@@ -29,6 +30,8 @@ class GHBol(QObject):
     """
 
     boldb = TinyDB(bolfile)
+    db = TinyDB(dbfile)
+
 
     def format_bol(self, bookoflife):
         """Takes the necessary fields and formats the book in a way that can
@@ -100,5 +103,22 @@ class GHBol(QObject):
         book = booktable.all()
         formatted_bol = self.format_bol(book)
         return formatted_bol
+
+    @Slot()
+    def sync_book(self):
+        """This method will go through each page in the book of life
+        that has not been sent to the GNU Health Federation server yet
+        (fsynced = False).
+        It also checks for records that have a book associated to it
+        and that the specific page is has not the "private" flag set.
+
+        Parameters
+        ----------
+        """
+        fedinfo = self.db.table('federation')
+        if len(fedinfo):
+            res = fedinfo.all()[0]
+            print (res)
+
     # Property block
     book = Property("QVariantList", read_book, constant=True)
