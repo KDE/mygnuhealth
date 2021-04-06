@@ -121,9 +121,9 @@ class PageOfLife():
     boldb = TinyDB(bolfile)
 
     pol_model = dict.fromkeys([
-        'book', 'page_date', 'age', 'domain', 'relevance',
+        'book', 'page_date', 'age', 'domain', 'relevance', 'privacy',
         'context', 'measurements', 'genetic_info', 'summary', 'info',
-        'node', 'author', 'author_acct'
+        'node', 'author', 'author_acct', 'fsynced'
         ])
 
     pol_domain = [{'value': 'medical', 'text': 'Medical'},
@@ -212,6 +212,8 @@ class PageOfLife():
         page_of_life['domain'] = domain
 
         page_of_life['context'] = context
+        page_of_life['relevance'] = pol_vals['relevance']
+        page_of_life['privacy'] = pol_vals['privacy']
 
         if ('genetic_info' in pol_vals.keys()):
             page_of_life['genetic_info'] = pol_vals['genetic_info'] or ''
@@ -223,11 +225,26 @@ class PageOfLife():
         if ('info' in pol_vals.keys()):
             page_of_life['info'] = pol_vals['info'] or ''
 
+        # The fsync key reflects whether the page has been sent to the
+        # GNU Health Federation HIS (Health Information System)
+        page_of_life['fsynced'] = False
         # create the new PoL entry
+        
         print("New Page of Life:", page_of_life)
         data = page_of_life
         poltable.insert(data)
 
-# Sample measurements keys accepted by Thalamus / GH Federation HIS
-#  {'bp': {'systolic': 116, 'diastolic': 79}, 't': 36.0, 'hr': 756, 'rr': 16,
-#  'osat': 99, 'wt': 68.0, 'ht': 168.0, 'bmi': 24.09, 'bg': 116}
+        # Sample measurements keys accepted by Thalamus / GH Federation HIS
+        #  {'bp': {'systolic': 116, 'diastolic': 79}, 't': 36.0, 'hr': 756, '
+        #    rr': 16,
+        #  'osat': 99, 'wt': 68.0, 'ht': 168.0, 'bmi': 24.09, 'bg': 116}
+
+    def sync_pols(self):
+        """This method will go through each page in the book of life
+        that has not been sent to the GNU Health Federation server yet
+        (fsynced = False).
+
+        Parameters
+        ----------
+        """
+

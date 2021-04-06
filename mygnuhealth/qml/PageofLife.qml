@@ -130,8 +130,9 @@ Kirigami.Page {
 
 
         // Health domain and context
-        RowLayout {
+        GridLayout {
             id: domainrow
+            columns: 2
             // Layout.fillWidth: true
         
             ComboBox {
@@ -147,6 +148,22 @@ Kirigami.Page {
                 textRole: "text"
                 valueRole: "value"
             }
+
+            ComboBox {
+                id: relevance
+                textRole: "text"
+                valueRole: "value"
+                model: [
+                    { value: "normal", text: qsTr("Normal") },
+                    { value: "important", text: qsTr("Important") },
+                    { value: "critical", text: qsTr("Critical") }
+                ]
+            }
+            CheckBox {
+                id: privacy
+                checked: false
+                text: qsTr("Private")            }
+
         }
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
@@ -222,7 +239,8 @@ Kirigami.Page {
             id: buttonKey
             property var page_date: [calyear.value, calmonth.value, calday.value, calhour.value, calminute.value]
             property var genetic_info: [rsid.text, geneid.text, aachange.text,  variantid.text, proteinid.text, significance.text, disease.text]
-            onClicked: pol.createPage(page_date, domainid.currentValue, contextid.currentValue, genetic_info, summary.text, information.text)
+            onClicked: pol.createPage(page_date, domainid.currentValue, contextid.currentValue,relevance.currentValue, privacy,
+                                      genetic_info, summary.text, information.text)
             Layout.alignment: Qt.AlignHCenter
             text: qsTr("Create")
         }

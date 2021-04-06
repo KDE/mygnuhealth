@@ -103,14 +103,14 @@ class PoL(QObject):
             'page_date': data['page_date'],
             'domain': data['domain'],
             'context': data['context'],
+            'relevance': data['relevance'],
+            'privacy': data['privacy'],
             'summary': data['summary'],
             'info': data['info']
             }
         if (data['context'] == 'genetics'):
             pol_vals.update({'genetic_info': data['genetic_info']})
 
-        domain = data['domain']
-        context = data['context']
         PageOfLife.create_pol(PageOfLife, pol_vals)
 
     @Slot(str)
@@ -138,9 +138,9 @@ class PoL(QObject):
 
         return (self.rsinfo)
 
-    @Slot(list, str, str, list, str, str)
-    def createPage(self, page_date, domain, context, genetic_info,
-                   summary, info):
+    @Slot(list, str, str, str, bool, list, str, str)
+    def createPage(self, page_date, domain, context, relevance, privacy,
+                   genetic_info, summary, info):
         # Retrieves the inforation from the initialization form
         # Creates the page from the information on the form
         if (page_date):
@@ -151,6 +151,8 @@ class PoL(QObject):
                 page = {'page_date': daterp,
                         'domain': domain,
                         'context': context,
+                        'relevance': relevance,
+                        'privacy': privacy,
                         'summary': summary,
                         'info': info
                         }
