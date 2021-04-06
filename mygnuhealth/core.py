@@ -121,7 +121,7 @@ class PageOfLife():
     boldb = TinyDB(bolfile)
 
     pol_model = dict.fromkeys([
-        'book', 'page_date', 'age', 'page_type', 'relevance',
+        'book', 'page_date', 'age', 'domain', 'relevance',
         'context', 'measurements', 'genetic_info', 'summary', 'info',
         'node', 'author', 'author_acct'
         ])
@@ -209,7 +209,7 @@ class PageOfLife():
 
         page_of_life['page'] = pol_vals['page']
         page_of_life['page_date'] = pol_vals['page_date']
-        page_of_life['page_type'] = domain
+        page_of_life['domain'] = domain
 
         page_of_life['context'] = context
 

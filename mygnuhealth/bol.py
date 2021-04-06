@@ -42,7 +42,7 @@ class GHBol(QObject):
             date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
             pol['date'] = date_repr
-            pol['domain'] = f"{pageoflife['page_type']}\
+            pol['domain'] = f"{pageoflife['domain']}\
                 \n{pageoflife['context']}"
 
             summ = ''
