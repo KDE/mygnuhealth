@@ -192,6 +192,7 @@ class PageOfLife():
             info: Extended information related to this page of life.
         """
 
+        node = "mygnuhealth"  # The node name is generic. "mygnuhealth"
         fed_acct = get_federation_account()
         poltable = self.boldb.table('pol')
         page_of_life = self.pol_model
@@ -207,6 +208,7 @@ class PageOfLife():
             page_of_life['book'] = fed_acct
             page_of_life['author'] = fed_acct
 
+        page_of_life['node'] = node
         page_of_life['page'] = pol_vals['page']
         page_of_life['page_date'] = pol_vals['page_date']
         page_of_life['domain'] = domain

@@ -6,12 +6,13 @@
 ####################################################################
 
 import datetime
+import json
+import requests
+
 from uuid import uuid4
 from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
-import json
 from mygnuhealth.myghconf import bolfile, dbfile
-
 from mygnuhealth.core import PageOfLife, datefromisotz
 
 
@@ -117,15 +118,43 @@ class GHBol(QObject):
         fedinfo = self.db.table('federation')
         if len(fedinfo):
             res = fedinfo.all()[0]
-            print (res, fedkey)
+            print (res)
 
         # Refresh all pages of life
         booktable = self.boldb.table('pol')
         book = booktable.all()
+        user = res['federation_account']
+        protocol = res['protocol']
+        server = res['federation_server']
+        port = res['federation_port']
+
+        # TODO:
+        # * Send only those pages that have not been synced (fsynced : False)
+        # * Update page fsynced status to true after a successful synced
+        # * Disable sync field (password) when enable_sync is false
+        # * Don't sync pages with the privacy mode on
 
         for pol in book:
-            print(pol)
+            timestamp = pol['page_date']
+            node = pol['node']
+            id = pol['page']
 
+            creation_info = {'user': user, 'timestamp': timestamp,
+                             'node': node}
+
+            pol['creation_info'] = creation_info
+            pol['id'] = id
+
+            url = f"{protocol}://{server}:{port}/pols/{user}/{id}"
+
+            print("Sending page to the federation...", id)
+
+            send_data = requests.request('POST', url,
+                                         data=json.dumps(pol),
+                                         auth=(user, fedkey),
+                                         verify=False)
+            
+            print("SEND DATA RESULT", send_data)
 
     # Property block
     book = Property("QVariantList", read_book, constant=True)
