@@ -212,8 +212,12 @@ class PageOfLife():
         page_of_life['domain'] = domain
 
         page_of_life['context'] = context
-        page_of_life['relevance'] = pol_vals['relevance']
-        page_of_life['privacy'] = pol_vals['privacy']
+    
+        if ('relevance' in pol_vals.keys()):
+            page_of_life['relevance'] = pol_vals['relevance']
+
+        if ('privacy' in pol_vals.keys()):
+            page_of_life['privacy'] = pol_vals['privacy']
 
         if ('genetic_info' in pol_vals.keys()):
             page_of_life['genetic_info'] = pol_vals['genetic_info'] or ''

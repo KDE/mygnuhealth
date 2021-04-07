@@ -32,7 +32,6 @@ class GHBol(QObject):
     boldb = TinyDB(bolfile)
     db = TinyDB(dbfile)
 
-
     def format_bol(self, bookoflife):
         """Takes the necessary fields and formats the book in a way that can
         be shown in the device, mixing fields and compacting entries in a more
@@ -104,8 +103,8 @@ class GHBol(QObject):
         formatted_bol = self.format_bol(book)
         return formatted_bol
 
-    @Slot()
-    def sync_book(self):
+    @Slot(str)
+    def sync_book(self, fedkey):
         """This method will go through each page in the book of life
         that has not been sent to the GNU Health Federation server yet
         (fsynced = False).
@@ -118,7 +117,15 @@ class GHBol(QObject):
         fedinfo = self.db.table('federation')
         if len(fedinfo):
             res = fedinfo.all()[0]
-            print (res)
+            print (res, fedkey)
+
+        # Refresh all pages of life
+        booktable = self.boldb.table('pol')
+        book = booktable.all()
+
+        for pol in book:
+            print(pol)
+
 
     # Property block
     book = Property("QVariantList", read_book, constant=True)

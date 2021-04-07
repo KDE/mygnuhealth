@@ -52,7 +52,7 @@ title: qsTr("Network Settings")
         }
 
         TextField {
-           id: txtFederationAccountPassword
+            id: txtFederationAccountPassword
             placeholderText: qsTr("Password")
             horizontalAlignment: TextInput.AlignHCenter
             echoMode: TextInput.Password
