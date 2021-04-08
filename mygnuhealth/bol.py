@@ -118,7 +118,7 @@ class GHBol(QObject):
         fedinfo = self.db.table('federation')
         if len(fedinfo):
             res = fedinfo.all()[0]
-            print (res)
+            print(res)
 
         # Refresh all pages of life
         booktable = self.boldb.table('pol')
@@ -147,14 +147,10 @@ class GHBol(QObject):
 
             url = f"{protocol}://{server}:{port}/pols/{user}/{id}"
 
-            print("Sending page to the federation...", id)
-
             send_data = requests.request('POST', url,
                                          data=json.dumps(pol),
                                          auth=(user, fedkey),
                                          verify=False)
-            
-            print("SEND DATA RESULT", send_data)
 
     # Property block
     book = Property("QVariantList", read_book, constant=True)

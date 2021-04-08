@@ -139,10 +139,11 @@ class PoL(QObject):
         return (self.rsinfo)
 
     @Slot(list, str, str, str, bool, list, str, str)
-    def createPage(self, page_date, domain, context, relevance, privacy,
+    def createPage(self, page_date, domain, context, relevance, private_page,
                    genetic_info, summary, info):
         # Retrieves the inforation from the initialization form
         # Creates the page from the information on the form
+        print("PRIVACY", private_page)
         if (page_date):
             if (check_date(page_date[:3])):
                 # Sets the page of life date and time
@@ -152,7 +153,7 @@ class PoL(QObject):
                         'domain': domain,
                         'context': context,
                         'relevance': relevance,
-                        'privacy': privacy,
+                        'privacy': private_page,
                         'summary': summary,
                         'info': info
                         }

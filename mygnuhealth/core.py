@@ -207,6 +207,7 @@ class PageOfLife():
             print("Retrieved Federation Account: ", fed_acct)
             page_of_life['book'] = fed_acct
             page_of_life['author'] = fed_acct
+            page_of_life['author_acct'] = fed_acct
 
         page_of_life['node'] = node
         page_of_life['page'] = pol_vals['page']

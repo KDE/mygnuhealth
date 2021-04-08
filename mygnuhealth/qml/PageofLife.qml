@@ -160,7 +160,7 @@ Kirigami.Page {
                 ]
             }
             CheckBox {
-                id: privacy
+                id: privatePage
                 checked: false
                 text: qsTr("Private")            }
 
@@ -239,7 +239,7 @@ Kirigami.Page {
             id: buttonKey
             property var page_date: [calyear.value, calmonth.value, calday.value, calhour.value, calminute.value]
             property var genetic_info: [rsid.text, geneid.text, aachange.text,  variantid.text, proteinid.text, significance.text, disease.text]
-            onClicked: pol.createPage(page_date, domainid.currentValue, contextid.currentValue,relevance.currentValue, privacy,
+            onClicked: pol.createPage(page_date, domainid.currentValue, contextid.currentValue,relevance.currentValue, privatePage.checked,
                                       genetic_info, summary.text, information.text)
             Layout.alignment: Qt.AlignHCenter
             text: qsTr("Create")

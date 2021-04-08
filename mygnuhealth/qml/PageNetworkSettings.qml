@@ -91,7 +91,7 @@ title: qsTr("Network Settings")
                 network_settings.getvals(txtFederationProtocol.text,
                     txtFederationServer.text,
                     txtFederationPort.text,
-                    enable_sync);
+                    enable_sync.checked);
             }
 
         }
