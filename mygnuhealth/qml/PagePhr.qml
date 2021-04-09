@@ -28,7 +28,7 @@ Kirigami.ScrollablePage {
                 fillMode: Image.PreserveAspectFit
             }
             Label {
-                text: "Health Tracker"
+                text: qsTr("Health Tracker")
                 font.pixelSize: 22
                 color: "#60b6c2"
                 anchors.horizontalCenter: trackerIcon.horizontalCenter
@@ -53,7 +53,7 @@ Kirigami.ScrollablePage {
             }
 
            Label {
-                text: "Book of Life"
+                text: qsTr("Book of Life")
                 font.pixelSize: 22
                 color: "#60b6c2"
                 anchors.horizontalCenter: bolIcon.horizontalCenter
