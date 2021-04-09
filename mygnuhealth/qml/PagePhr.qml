@@ -9,24 +9,30 @@ Kirigami.ScrollablePage {
     title: qsTr("Home")
 
     ColumnLayout {
-        spacing: Kirigami.Units.gridUnit
+        spacing: Kirigami.Units.gridUnit * 5
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.alignment: Qt.AlignVCenter
+
 
         ItemDelegate {
             onClicked: pageStack.push(Qt.resolvedUrl("PageTracker.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
-            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
-
-            background: Rectangle {
-                color: "#108498"
-                radius: Kirigami.Units.largeSpacing
-
-                Image {
-                    id: bioIcon
-                    anchors.fill: parent
-                    source: "../images/tracker-icon.svg"
-                    fillMode: Image.PreserveAspectFit
-                }
+            Layout.fillHeight: true
+            Layout.preferredHeight: Kirigami.Units.gridUnit * 9
+            Image {
+                id: trackerIcon
+                anchors.fill: parent
+                source: "../images/health_tracker-button.svg"
+                fillMode: Image.PreserveAspectFit
+            }
+            Label {
+                text: "Health Tracker"
+                font.pixelSize: 22
+                color: "#60b6c2"
+                anchors.horizontalCenter: trackerIcon.horizontalCenter
+                anchors.top: trackerIcon.bottom
             }
         }
 
@@ -34,56 +40,25 @@ Kirigami.ScrollablePage {
             onClicked: pageStack.push(Qt.resolvedUrl("PageBol.qml"))
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true
-            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
+            Layout.fillHeight: true
+            Layout.preferredHeight: Kirigami.Units.gridUnit * 9
 
-            background: Rectangle {
-                color: "#108498"
-                radius: Kirigami.Units.largeSpacing
 
-                Image {
-                    id: psychoIcon
-                    anchors.fill: parent
-                    source: "../images/book_of_life-icon.svg"
-                    fillMode: Image.PreserveAspectFit
-                }
+            Image {
+                id: bolIcon
+                anchors.fill: parent
+                source: "../images/book_of_life-button.svg"
+                fillMode: Image.PreserveAspectFit
             }
-        }
 
-        ItemDelegate {
-            //onClicked: pageStack.push(Qt.resolvedUrl("PageDocuments.qml"))
-            Layout.alignment: Qt.AlignCenter
-            Layout.fillWidth: true
-            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
-
-            background: Rectangle {
-                color: "#108498"
-                radius: Kirigami.Units.largeSpacing
-
-                Image {
-                    id: documentsIcon
-                    anchors.fill: parent
-                    source: "../images/documents-icon.svg"
-                    fillMode:Image.PreserveAspectFit
-                }
+           Label {
+                text: "Book of Life"
+                font.pixelSize: 22
+                color: "#60b6c2"
+                anchors.horizontalCenter: bolIcon.horizontalCenter
+                anchors.top: bolIcon.bottom
             }
+ 
         }
-
-        ItemDelegate {
-            Layout.alignment: Qt.AlignCenter
-            Layout.fillWidth: true
-            Layout.preferredHeight: Kirigami.Units.gridUnit * 5
-
-            background: Rectangle {
-                color: "#108498"
-                radius: Kirigami.Units.largeSpacing
-                Image {
-                    id: emergencyIcon
-                    anchors.fill: parent
-                    source: "../images/emergency-icon.svg"
-                    fillMode:Image.PreserveAspectFit
-                }
-            }
-        }
-
     }
 }
