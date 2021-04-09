@@ -9,7 +9,7 @@ Kirigami.ScrollablePage {
     title: qsTr("Home")
 
     ColumnLayout {
-        spacing: Kirigami.Units.gridUnit * 5
+        spacing: Kirigami.Units.gridUnit * 3
         Layout.fillWidth: true
         Layout.fillHeight: true
         Layout.alignment: Qt.AlignVCenter
@@ -42,6 +42,7 @@ Kirigami.ScrollablePage {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.preferredHeight: Kirigami.Units.gridUnit * 9
+            Layout.preferredWidth: Kirigami.Units.gridUnit * 9
 
 
             Image {
@@ -61,4 +62,16 @@ Kirigami.ScrollablePage {
  
         }
     }
+   footer: Rectangle{
+            id: rectfooter
+            width: 160
+            height: 40
+            Image {
+                id: myghIcon
+                anchors.centerIn: rectfooter
+                source: "../images/myGH-horizontal-icon.svg"
+                width: 160
+                fillMode: Image.PreserveAspectFit
+            }
+        }
 }
