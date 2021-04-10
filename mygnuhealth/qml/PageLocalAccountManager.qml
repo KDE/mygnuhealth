@@ -63,9 +63,9 @@ Kirigami.Page {
             id:componentinit
             ColumnLayout {
                 Image {
-                    source: "../images/mygnuhealthicon.svg"
+                    source: "../images/gnu_health-logo.svg"
                     fillMode: Image.PreserveAspectFit
-                    Layout.preferredHeight: profileinit.height/5
+                    Layout.preferredHeight: 110
                     Layout.alignment: Qt.AlignHCenter || Qt.AlignTop
                     }
 
@@ -74,19 +74,24 @@ Kirigami.Page {
                 }
 
                 Text {
+                    id: introtext
                     Layout.preferredWidth: profileinit.width * 0.9
                     horizontalAlignment: Text.AlignJustify
                     wrapMode: Text.WordWrap
                     text: qsTr("Welcome! To get the best results out of MyGNUHealth, "
-                        + "let's start with some information about yourself."
-                        + "In this screen, you will register your sex, birthdate and height.\n"
+                        + "let's start with some information about yourself. "
+                        + "In this page, you will register your sex, birthdate and height.\n"
                         + "You will also set your personal private key that will give "
                         + "you access to the application.")
+
                     }
 
+                Kirigami.Separator {
+                    Kirigami.FormData.isSection: true
+                }
                 TextField {
                     id:username
-                    Layout.preferredWidth: parent.width*0.9
+                    Layout.preferredWidth: introtext.width
                     placeholderText: qsTr("Enter your name")
                     horizontalAlignment: TextInput.Center
                     focus: true
@@ -119,10 +124,11 @@ Kirigami.Page {
                 }
 
                 RowLayout {
+                    Layout.alignment: Qt.AlignHCenter
 
                     Label {
                         id:labelbirth
-                        text: qsTr("Birth date")
+                        text: qsTr("Birthdate")
                     }
 
                     Item {
@@ -162,7 +168,12 @@ Kirigami.Page {
 
                 }
 
+                Kirigami.Separator {
+                    Kirigami.FormData.isSection: true
+                }
+
                 ColumnLayout {
+                    Layout.alignment: Qt.AlignHCenter
                     Kirigami.PasswordField {
                         id: initKey1
                         placeholderText: qsTr("Personal Key")
@@ -196,11 +207,17 @@ Kirigami.Page {
 
     // Login page .
     Item {
+        width:loginPage.width
         Component {
             id: componentlogin
             ColumnLayout {
                 id: login
-                anchors.fill: parent
+                Layout.alignment: Qt.AlignHCenter
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                // anchors.fill: parent
+                // anchors.centerIn: parent
                 Text {
                     id:labelgreetings
                     Layout.alignment: Qt.AlignHCenter
@@ -209,9 +226,6 @@ Kirigami.Page {
                     font.pixelSize: 20
                 }
 
-                Kirigami.Separator {
-                    Kirigami.FormData.isSection: true
-                }
 
                 Image {
                     id: padlockicon
@@ -239,4 +253,17 @@ Kirigami.Page {
 
         }
     }
+
+   footer: Rectangle{
+            id: rectfooter
+            width: 160
+            height: 40
+            Image {
+                id: myghIcon
+                anchors.centerIn: rectfooter
+                source: "../images/myGH-horizontal-icon.svg"
+                width: 160
+                fillMode: Image.PreserveAspectFit
+            }
+        }
 }
