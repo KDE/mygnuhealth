@@ -5,10 +5,9 @@ import QtQuick.Layouts 1.3
 import LocalAccountManager 0.1
 
 
-Kirigami.Page {
+Kirigami.ScrollablePage {
     id: loginPage
     title: qsTr("Welcome!")
-
     header: Control {
         padding: Kirigami.Units.smallSpacing
         contentItem: Kirigami.InlineMessage {
@@ -53,6 +52,7 @@ Kirigami.Page {
     Loader { sourceComponent:
         accountManager.accountExist ? componentlogin : componentinit
     }
+
 
     Item {
         width:loginPage.width
@@ -204,20 +204,29 @@ Kirigami.Page {
 
         }
     }
-
     // Login page .
     Item {
-        width:loginPage.width
+        id: loginitem
+
         Component {
             id: componentlogin
             ColumnLayout {
                 id: login
-                Layout.alignment: Qt.AlignHCenter
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                // anchors.fill: parent
-                // anchors.centerIn: parent
+                width: loginPage.width
+                spacing: 15
+                Item {
+                    width: 150
+                    height: 150
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.topMargin: loginPage.height / 6
+                    Image {
+                        id: gnuhealthIcon
+                        width: 150
+                        height: 150
+                        source: "../images/gnu_health-logo.svg"
+                        fillMode: Image.PreserveAspectFit
+                    }
+                }
                 Text {
                     id:labelgreetings
                     Layout.alignment: Qt.AlignHCenter
@@ -225,22 +234,12 @@ Kirigami.Page {
                     text: qsTr("Welcome back, %1").arg(person)
                     font.pixelSize: 20
                 }
-
-
-                Image {
-                    id: padlockicon
-                    source: "../images/padlock-icon.svg"
-                    Layout.alignment: Qt.AlignVCenter
-
-                }
-
                 Kirigami.PasswordField {
                     id: txtKey
                     Layout.alignment: Qt.AlignHCenter
                     focus: true
                     onAccepted: accountManager.login(txtKey.text.trim())
                 }
-
                 Button {
                     id: buttonKey
                     Layout.alignment: Qt.AlignHCenter
@@ -248,11 +247,11 @@ Kirigami.Page {
                     enabled: txtKey.text.trim().length
                     onClicked: accountManager.login(txtKey.text.trim())
                 }
-
             }
-
         }
     }
+
+    
 
    footer: Rectangle{
             id: rectfooter
