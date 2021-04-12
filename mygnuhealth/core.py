@@ -38,7 +38,7 @@ The datafile is loaded into the TinyDB "vardb" variable
 '''
 moddir = os.path.dirname(os.path.abspath(__file__))
 varfile = os.path.join(moddir, 'data/variants.db')
-vardb = TinyDB(varfile)
+vardb = TinyDB(varfile, access_mode='r')
 
 
 def datefromisotz(isotz):
