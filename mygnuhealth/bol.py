@@ -118,7 +118,7 @@ class GHBol(QObject):
         fedinfo = self.db.table('federation')
         if len(fedinfo):
             res = fedinfo.all()[0]
-            print(res)
+            print("FED INFO....", res)
 
         # Refresh all pages of life
         booktable = self.boldb.table('pol')

@@ -11,33 +11,45 @@ from tinydb import TinyDB, Query
 import bcrypt
 from mygnuhealth.myghconf import dbfile
 from mygnuhealth.fedlogin import test_federation_connection as fc
+import json
 
 
 class NetworkSettings(QObject):
+    def __init__(self):
+        QObject.__init__(self)
+        self.db = TinyDB(dbfile)
+        self.fed_table = self.db.table('federation')
+        self.fedinfo = {}
+        # Cast to dict the resulting tinydb.table.Document 
+        if (len(self.fed_table) > 0):
+            self.fedinfo = dict(self.fed_table.all()[0])
 
-    db = TinyDB(dbfile)
+    def conn_params(self):
+        return self.fedinfo
 
     def update_federation_info(self, protocol, federation_server,
                                federation_port, enable_sync):
 
-        fedinfo = self.db.table('federation')
         # If the "Singleton" table is empty, insert, otherwise, update
         # TODO: Use upsert with doc_id == 1 as condition
-        if not len(fedinfo):
-            fedinfo.insert({'protocol': protocol,
-                            'federation_server': federation_server,
-                            'federation_port': federation_port,
-                            'enable_sync': enable_sync})
+        if not len(self.fed_table):
+            self.fed_table.insert({'protocol': protocol,
+                                   'federation_server': federation_server,
+                                   'federation_port': federation_port,
+                                   'enable_sync': enable_sync})
         else:
-            fedinfo.update({'protocol': protocol,
-                            'federation_server': federation_server,
-                            'federation_port': federation_port,
-                            'enable_sync': enable_sync})
+            self.fed_table.update({'protocol': protocol,
+                                   'federation_server': federation_server,
+                                   'federation_port': federation_port,
+                                   'enable_sync': enable_sync})
+
+    @Signal
+    def connChanged(self):
+        pass
 
     @Slot(str, str, str, str, str)
     def test_connection(self, protocol, *args):
         conn_res = fc(protocol, *args)
-        print(conn_res)
 
     @Slot(str, str, str, bool)
     def getvals(self, *args):
@@ -45,3 +57,8 @@ class NetworkSettings(QObject):
 
     # Signal to emit to QML if the values were stored correctly
     setOK = Signal()
+
+    # Properties block
+
+    # Expose to QML the the federation conn settings
+    conn = Property("QVariant", conn_params, notify=connChanged)

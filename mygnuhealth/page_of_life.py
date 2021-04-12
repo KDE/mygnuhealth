@@ -143,7 +143,6 @@ class PoL(QObject):
                    genetic_info, summary, info):
         # Retrieves the inforation from the initialization form
         # Creates the page from the information on the form
-        print("PRIVACY", private_page)
         if (page_date):
             if (check_date(page_date[:3])):
                 # Sets the page of life date and time

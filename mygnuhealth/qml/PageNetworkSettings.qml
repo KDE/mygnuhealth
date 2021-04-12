@@ -23,7 +23,7 @@ title: qsTr("Network Settings")
         TextField {
             id: txtFederationProtocol
             placeholderText: "https"
-            text: "https"
+            text: network_settings.conn.protocol
             horizontalAlignment: TextInput.AlignHCenter
             Kirigami.FormData.label: qsTr("Protocol")
          }
@@ -31,7 +31,7 @@ title: qsTr("Network Settings")
         TextField {
             id: txtFederationServer
             placeholderText: "federation.gnuhealth.org"
-            text: "federation.gnuhealth.org"
+            text: network_settings.conn.federation_server
             horizontalAlignment: TextInput.AlignHCenter
             Kirigami.FormData.label: qsTr("Host")
          }
@@ -39,7 +39,7 @@ title: qsTr("Network Settings")
         TextField {
             id: txtFederationPort
             placeholderText: "8443"
-            text: "8443"
+            text: network_settings.conn.federation_port
             horizontalAlignment: TextInput.AlignHCenter
             Kirigami.FormData.label: qsTr("Port")
          }
@@ -61,7 +61,7 @@ title: qsTr("Network Settings")
 
         CheckBox {
             id: enable_sync
-            checked: false
+            checked: network_settings.conn.enable_sync
             Kirigami.FormData.label: qsTr("Sync")
         }
 
