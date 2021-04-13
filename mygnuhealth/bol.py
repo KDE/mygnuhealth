@@ -136,25 +136,33 @@ class GHBol(QObject):
         # TODO:
         # * Send only those pages that have not been synced (fsynced : False)
         # * Update page fsynced status to true after a successful synced
-        # * Don't sync pages with the privacy mode on
 
         for pol in book:
             timestamp = pol['page_date']
             node = pol['node']
             id = pol['page']
+            
+            # Only sync those pages that are not private
+            if 'privacy' in pol.keys():
+                privacy = pol['privacy']
+                if not privacy:
+                    creation_info = {'user': user, 'timestamp': timestamp,
+                                     'node': node}
 
-            creation_info = {'user': user, 'timestamp': timestamp,
-                             'node': node}
+                    pol['creation_info'] = creation_info
+                    pol['id'] = id
 
-            pol['creation_info'] = creation_info
-            pol['id'] = id
+                    url = f"{protocol}://{server}:{port}/pols/{user}/{id}"
 
-            url = f"{protocol}://{server}:{port}/pols/{user}/{id}"
-
-            send_data = requests.request('POST', url,
-                                         data=json.dumps(pol),
-                                         auth=(user, fedkey),
-                                         verify=False)
+                    pol['fsynced'] = True
+                    send_data = requests.request('POST', url,
+                                                 data=json.dumps(pol),
+                                                 auth=(user, fedkey),
+                                                 verify=False)
+                    print("Send status", send_data)
+                    
+                else:
+                    print("This page is private, not syncing", pol)
 
     # Property block
     book = Property("QVariantList", read_book, constant=True)
