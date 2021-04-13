@@ -133,19 +133,16 @@ class GHBol(QObject):
         server = res['federation_server']
         port = res['federation_port']
 
-        # TODO:
-        # * Send only those pages that have not been synced (fsynced : False)
-        # * Update page fsynced status to true after a successful synced
-
         for pol in book:
             timestamp = pol['page_date']
             node = pol['node']
             id = pol['page']
+            synced = pol['fsynced']
             
             # Only sync those pages that are not private
             if 'privacy' in pol.keys():
                 privacy = pol['privacy']
-                if not privacy:
+                if not privacy and not synced:
                     creation_info = {'user': user, 'timestamp': timestamp,
                                      'node': node}
 
@@ -159,10 +156,23 @@ class GHBol(QObject):
                                                  data=json.dumps(pol),
                                                  auth=(user, fedkey),
                                                  verify=False)
-                    print("Send status", send_data)
+                    if send_data:
+                        print("Page successfully sent to the GH Federation",
+                              send_data.status_code)
+                        # Update page of life sync status locally to true
+                        print("Setting fsynced to True on page... ", id)
+                        Page = Query()
+                        booktable.update({'fsynced': True}, Page.page == id)
                     
+                    else:
+                        print("Error sending the page.",
+                              send_data.status_code)
+                        
                 else:
-                    print("This page is private, not syncing", pol)
+                    if privacy:
+                        print("This page is private, not syncing", pol)
+                    if synced:
+                        print("Page already synced", pol)
 
     # Property block
     book = Property("QVariantList", read_book, constant=True)
