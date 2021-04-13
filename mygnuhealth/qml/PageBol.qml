@@ -29,6 +29,7 @@ Kirigami.ScrollablePage {
         }
         TextField {
             id: fedkey
+            enabled: ghbol.sync_status
             placeholderText: qsTr("Enter Federation key to sync")
             horizontalAlignment: TextInput.AlignHCenter
             echoMode: TextInput.Password

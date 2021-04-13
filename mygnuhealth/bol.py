@@ -104,6 +104,12 @@ class GHBol(QObject):
         formatted_bol = self.format_bol(book)
         return formatted_bol
 
+    def check_sync_status(self):
+        fedinfo = self.db.table('federation')
+        if len(fedinfo):
+            sync = fedinfo.all()[0]['enable_sync']
+            return sync
+
     @Slot(str)
     def sync_book(self, fedkey):
         """This method will go through each page in the book of life
@@ -118,7 +124,6 @@ class GHBol(QObject):
         fedinfo = self.db.table('federation')
         if len(fedinfo):
             res = fedinfo.all()[0]
-            print("FED INFO....", res)
 
         # Refresh all pages of life
         booktable = self.boldb.table('pol')
@@ -131,7 +136,6 @@ class GHBol(QObject):
         # TODO:
         # * Send only those pages that have not been synced (fsynced : False)
         # * Update page fsynced status to true after a successful synced
-        # * Disable sync field (password) when enable_sync is false
         # * Don't sync pages with the privacy mode on
 
         for pol in book:
@@ -154,3 +158,8 @@ class GHBol(QObject):
 
     # Property block
     book = Property("QVariantList", read_book, constant=True)
+
+    # Expose to QML the value of sync status
+    # It will disable the password field if sync is not enabled.
+    sync_status = Property(bool, check_sync_status, constant=True)
+
