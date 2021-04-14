@@ -138,7 +138,7 @@ class GHBol(QObject):
             node = pol['node']
             id = pol['page']
             synced = pol['fsynced']
-            
+
             # Only sync those pages that are not private
             if 'privacy' in pol.keys():
                 privacy = pol['privacy']

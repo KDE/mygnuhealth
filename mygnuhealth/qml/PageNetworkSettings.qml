@@ -15,76 +15,106 @@ title: qsTr("Network Settings")
             pageStack.layers.pop() // Return to main PHR page
         }
     }
+    
+    GridLayout {
+        columns: 2
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
 
-    Kirigami.FormLayout {
-        id: content
-        anchors.fill: parent
-
+        Item {
+            Layout.columnSpan: 2
+            Layout.rowSpan: 1
+            Layout.alignment: Qt.AlignHCenter || Qt.AlignTop
+            Layout.preferredWidth: 300
+            Layout.preferredHeight: 100
+            Image {
+                id: trackerIcon
+                anchors.fill: parent
+                source: "../images/network_settings-icon.svg"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+        Label {
+            text:  qsTr("Protocol")
+        }
         TextField {
             id: txtFederationProtocol
             placeholderText: "https"
             text: network_settings.conn.protocol
             horizontalAlignment: TextInput.AlignHCenter
-            Kirigami.FormData.label: qsTr("Protocol")
-         }
+        }
 
+       Label {
+            text:  qsTr("Thalamus server")
+        }
+        
         TextField {
             id: txtFederationServer
             placeholderText: "federation.gnuhealth.org"
             text: network_settings.conn.federation_server
             horizontalAlignment: TextInput.AlignHCenter
-            Kirigami.FormData.label: qsTr("Host")
-         }
+        }
 
+       Label {
+            text:  qsTr("Thalamus server port")
+        }
         TextField {
             id: txtFederationPort
             placeholderText: "8443"
             text: network_settings.conn.federation_port
             horizontalAlignment: TextInput.AlignHCenter
-            Kirigami.FormData.label: qsTr("Port")
-         }
-
-        TextField {
-           id: txtFederationAccount
-            placeholderText: qsTr("Federation ID")
-            horizontalAlignment: TextInput.AlignHCenter
-            Kirigami.FormData.label: qsTr("Fed. Acct")
         }
 
+       Label {
+            text:  qsTr("Federation Account")
+        }
+        TextField {
+            id: txtFederationAccount
+            placeholderText: qsTr("Federation ID")
+            horizontalAlignment: TextInput.AlignHCenter
+        }
+
+       Label {
+            text:  qsTr("Password")
+        }
         TextField {
             id: txtFederationAccountPassword
             placeholderText: qsTr("Password")
             horizontalAlignment: TextInput.AlignHCenter
             echoMode: TextInput.Password
-            Kirigami.FormData.label: qsTr("Password")
         }
 
-        CheckBox {
-            id: enable_sync
-            checked: network_settings.conn.enable_sync
-            Kirigami.FormData.label: qsTr("Sync")
-        }
 
         Button {
             id: buttonCheckSettings
+            Layout.columnSpan: 2
             Layout.alignment: Qt.AlignHCenter
+            Layout.fillWidth: true
             text: qsTr("Test Connection")
             flat: false
             onClicked: {
                 network_settings.test_connection(txtFederationProtocol.text,
-                                                 txtFederationServer.text,
-                                                 txtFederationPort.text,
-                                                 txtFederationAccount.text,
-                                                 txtFederationAccountPassword.text
-                                                 );
+                                                txtFederationServer.text,
+                                                txtFederationPort.text,
+                                                txtFederationAccount.text,
+                                                txtFederationAccountPassword.text
+                                                );
             }
 
         }
 
+        CheckBox {
+            id: enable_sync
+            Layout.columnSpan: 2
+            checked: network_settings.conn.enable_sync
+            text: qsTr("Enable Federation synchronization")
+        }
 
         Button {
-            id: buttonSetSettings
+            id: updateSettings
+            Layout.columnSpan: 2
             Layout.alignment: Qt.AlignHCenter
+            Layout.fillWidth: true
             text: qsTr("Update")
             flat: false
             onClicked: {
@@ -96,5 +126,4 @@ title: qsTr("Network Settings")
 
         }
     }
-
 }

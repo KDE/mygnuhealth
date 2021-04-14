@@ -43,6 +43,8 @@ class NetworkSettings(QObject):
                                    'federation_port': federation_port,
                                    'enable_sync': enable_sync})
 
+        self.setOK.emit()
+
     @Signal
     def connChanged(self):
         pass
