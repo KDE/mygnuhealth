@@ -72,7 +72,7 @@ class NetworkSettings(QObject):
     # Signal to emit when wrong credentials
     invalidCredentials = Signal()
 
-    # Signal to emit when wrong credentials
+    # Signal to emit when there is an error in the connection
     connectionError = Signal()
 
     # Properties block
