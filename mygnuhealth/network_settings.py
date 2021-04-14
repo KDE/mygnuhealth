@@ -52,13 +52,28 @@ class NetworkSettings(QObject):
     @Slot(str, str, str, str, str)
     def test_connection(self, protocol, *args):
         conn_res = fc(protocol, *args)
+        if (conn_res == 0):
+            self.connectionOK.emit()
+        if (conn_res == -1):
+            self.invalidCredentials.emit()
+        if (conn_res == -2):
+            self.connectionError.emit()
 
     @Slot(str, str, str, bool)
     def getvals(self, *args):
         self.update_federation_info(*args)
 
-    # Signal to emit to QML if the values were stored correctly
+    # Signal to emit to QML if the values were updated correctly
     setOK = Signal()
+
+    # Signal to emit if the test connection to Thalamus was successful
+    connectionOK = Signal()
+
+    # Signal to emit when wrong credentials
+    invalidCredentials = Signal()
+
+    # Signal to emit when wrong credentials
+    connectionError = Signal()
 
     # Properties block
 

@@ -9,10 +9,46 @@ Kirigami.Page
 {
 id: phrpage
 title: qsTr("Network Settings")
+    header: Control {
+        padding: Kirigami.Units.smallSpacing
+        contentItem: Kirigami.InlineMessage {
+            id: statusMessage
+            visible: false
+            text: network_settings.msg
+            // type: Kirigami.MessageType.Error
+            showCloseButton: true
+        }
+    }
+
     NetworkSettings { // Settings object registered at main.py
         id: network_settings
+        property var errors: {
+            "conntestok": qsTr("Connection test successful!"),
+            "wronglogin": qsTr("Invalid Credentials"),
+            "connerror": qsTr("Connection Error")
+        }
+        property var msg: ""
+
         onSetOK: {
             pageStack.layers.pop() // Return to main PHR page
+        }
+        
+        onInvalidCredentials: {
+            msg = errors["wronglogin"]
+            statusMessage.visible = true;
+            statusMessage.type = Kirigami.MessageType.Warning
+        }
+
+        onConnectionOK: {
+            msg = errors["conntestok"]
+            statusMessage.visible = true;
+            statusMessage.type = Kirigami.MessageType.Positive
+        }
+
+        onConnectionError: {
+            msg = errors["connerror"]
+            statusMessage.visible = true;
+            statusMessage.type = Kirigami.MessageType.Error
         }
     }
     
