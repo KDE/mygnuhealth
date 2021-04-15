@@ -62,6 +62,9 @@ def main():
         from mygnuhealth.moodenergy import MoodEnergy
         from mygnuhealth.page_of_life import PoL
 
+        from mygnuhealth.lifestyle import GHLifestyle
+        from mygnuhealth.physical_activity import GHPhysicalActivity
+ 
     app = QApplication(sys.argv)
 
     # Register ProfileSettings to use in QML
@@ -107,6 +110,14 @@ def main():
     # Register MoodEnergy to use in QML
     qmlRegisterType(MoodEnergy, "MoodEnergy", 0, 1,
                     "MoodEnergy")
+
+    # Register GHLifestyle to use in QML
+    qmlRegisterType(GHLifestyle, "GHLifestyle", 0, 1,
+                    "GHLifestyle")
+
+    # Register GHLifestyle to use in QML
+    qmlRegisterType(GHPhysicalActivity, "GHPhysicalActivity", 0, 1,
+                    "GHPhysicalActivity")
 
     # Register PoL (Page of Life) to use in QML
     qmlRegisterType(PoL, "PoL", 0, 1,
