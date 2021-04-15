@@ -12,7 +12,7 @@ import Weight 0.1
 
 Kirigami.Page {
     id: weightpage
-    title: qsTr("Add Body Weight Entry")
+    title: qsTr("Body Weight")
 
     Weight { // Weight object registered at main.py
         id: body_weight
@@ -23,56 +23,48 @@ Kirigami.Page {
     ColumnLayout{
         anchors.centerIn: parent
 
-        Rectangle {
-            id: weightcont
-            Layout.preferredWidth: 200
-            Layout.preferredHeight: 200
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-            Layout.fillHeight: true
-            Layout.fillWidth: true
+        Label {
+            Layout.alignment: Qt.AlignHCenter
+            text: qsTr("Body Weight")
+            font.bold: true
+        }
+        SpinBox {
+            id: spinweight
+            editable: true
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            Layout.preferredHeight: 50
+            Layout.preferredWidth: 100
 
-            Text {
-                text: qsTr("Body Weight")
-                font.bold: true
-                anchors.top: parent.top
+            font.pixelSize: 25
+
+            property real factor: 10
+            from: 0 * factor
+            to: 500 * factor
+            stepSize: factor / 10
+
+            value: body_weight.last_weight * factor
+
+            property int decimals: 1
+            property real realValue: value / factor
+
+            validator: DoubleValidator {
+                bottom: Math.min(spinweight.from, spinweight.to)
+                top:  Math.max(spinweight.from, spinweight.to)
             }
-            SpinBox {
-                id: spinweight
-                editable: true
-                anchors.centerIn: parent
 
-                Layout.preferredHeight: parent.height*0.7
-                Layout.preferredWidth: parent.width*0.9
-                font.pixelSize: 45
+            textFromValue: function(value, locale) {
+                return Number(value / factor).toLocaleString(locale, 'f', spinweight.decimals)
+            }
 
-                property real factor: 10
-                from: 0 * factor
-                to: 500 * factor
-                stepSize: factor / 10
-
-                value: body_weight.last_weight * factor
-
-                property int decimals: 1
-                property real realValue: value / factor
-
-                validator: DoubleValidator {
-                    bottom: Math.min(spinweight.from, spinweight.to)
-                    top:  Math.max(spinweight.from, spinweight.to)
-                }
-
-                textFromValue: function(value, locale) {
-                    return Number(value / factor).toLocaleString(locale, 'f', spinweight.decimals)
-                }
-
-                valueFromText: function(text, locale) {
-                    return Number.fromLocaleString(locale, text) * factor
-                }
+            valueFromText: function(text, locale) {
+                return Number.fromLocaleString(locale, text) * factor
             }
         }
 
         Button {
             text: qsTr("Set")
             Layout.alignment: Qt.AlignHCenter
+            icon.name: "list-add"
             onClicked: body_weight.getvals(spinweight.realValue)
         }
 

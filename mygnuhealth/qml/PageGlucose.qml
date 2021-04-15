@@ -8,9 +8,9 @@ import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.3
 import Glucose 0.1
 
-Kirigami.ScrollablePage {
+Kirigami.Page {
     id: glucosePage
-    title: qsTr("Add Blood Glucose Level")
+    title: qsTr("Blood Glucose Level")
 
     Glucose { // Glucose object registered at main.py
         id: blood_glucose
@@ -19,6 +19,7 @@ Kirigami.ScrollablePage {
 
     GridLayout {
         id: content
+        anchors.centerIn: parent
         columns: 1
         Label {
             Layout.alignment: Qt.AlignHCenter
