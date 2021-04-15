@@ -20,68 +20,59 @@ Kirigami.ScrollablePage {
 
     GridLayout {
         id: pagrid
-        Layout.fillWidth: true
         columns: 2
-        Rectangle {
-            Layout.preferredWidth: (parent.width)/parent.columns*0.9
-            Layout.preferredHeight: 100
-            Text {
-                text: qsTr("Aerobic")
-                font.bold: true
-                anchors.top: parent.top
-            }
-            SpinBox {
-                id: paAerobic
-                editable: true
-                anchors.centerIn: parent
-                height: parent.height*0.7
-                width: parent.width*0.7
-                font.pixelSize:height*0.5
-                from: 0
-                to: 600
-            }
+        Label {
+            Layout.alignment: Qt.AlignHCenter
+            text: qsTr("Aerobic")
+            font.bold: true
         }
-        Rectangle {
-            Layout.preferredWidth: (parent.width)/parent.columns*0.9
-            Layout.preferredHeight: 100
-            Text {
-                text: qsTr("Anaerobic")
-                font.bold: true
-                anchors.top: parent.top
-            }
-            SpinBox {
-                id: paAnaerobic
-                editable: true
-                anchors.centerIn: parent
-                height: parent.height*0.7
-                width: parent.width*0.7
-                font.pixelSize:height*0.5
-                from: 0
-                to: 600
-            }
+
+        Label {
+            Layout.alignment: Qt.AlignHCenter
+            text: qsTr("Anaerobic")
+            font.bold: true
         }
-        Rectangle {
-            Layout.preferredWidth: (parent.width)/parent.columns*0.9
-            Layout.preferredHeight: 100
-            anchors.horizontalCenter: pagrid.horizontalCenter
-            TextField {
-                id: paSteps
-                placeholderText: qsTr("Steps")
-                font.bold: true
-            }
+        SpinBox {
+            id: paAerobic
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredHeight: 50
+            Layout.preferredWidth: 100
+            font.pixelSize:25
+
+            editable: true
+            from: 0
+            to: 600
+        }
+        SpinBox {
+            id: paAnaerobic
+            editable: true
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredHeight: 50
+            Layout.preferredWidth: 100
+            font.pixelSize:25
+            from: 0
+            to: 600
+        }
+        TextField {
+            Layout.columnSpan: 2
+            Layout.alignment: Qt.AlignHCenter
+            id: paSteps
+            placeholderText: qsTr("Steps")
+            horizontalAlignment: Text.AlignHCenter
+            font.bold: true
         }
 
         Button {
             id: buttonSetPA
-            anchors.horizontalCenter: pagrid.horizontalCenter
-            anchors.top: pagrid.bottom
+            Layout.columnSpan: 2
+            Layout.alignment: Qt.AlignHCenter
             text: qsTr("Set")
             flat: false
             onClicked: {
                 physicalactivity.getvals(paAerobic.value, paAnaerobic.value,
                                         paSteps.text);
             }
-    }
+        }      
 
     }
 
