@@ -22,77 +22,65 @@ Kirigami.ScrollablePage {
         id: bpgrid
         Layout.fillWidth: true
         columns: 2
-        Rectangle {
-            Layout.preferredWidth: (parent.width)/parent.columns*0.9
-            Layout.preferredHeight: 100
-            Text {
-                text: qsTr("Systolic")
-                font.bold: true
-                anchors.top: parent.top
-            }
-            SpinBox {
-                id: txtSystolic
-                editable: true
-                anchors.centerIn: parent
-                height: parent.height*0.7
-                width: parent.width*0.7
-                font.pixelSize:height*0.5
-                from: 0
-                to: 300
-            }
+        Label {
+            text: qsTr("Systolic")
+            Layout.alignment: Qt.AlignHCenter
+            font.bold: true
         }
-        Rectangle {
-            Layout.preferredWidth: (parent.width)/parent.columns*0.9
-            Layout.preferredHeight: 100
-            Text {
-                text: qsTr("Diastolic")
-                font.bold: true
-                anchors.top: parent.top
-            }
-            SpinBox {
-                id: txtDiastolic
-                editable: true
-                anchors.centerIn: parent
-                height: parent.height*0.7
-                width: parent.width*0.7
-                font.pixelSize:height*0.5
-                from: 0
-                to: 250
-            }
+        Label {
+            text: qsTr("Diastolic")
+            Layout.alignment: Qt.AlignHCenter
+            font.bold: true
         }
-        Rectangle {
-            Layout.preferredWidth: (parent.width)/parent.columns*0.9
-            Layout.preferredHeight: 100
-            anchors.horizontalCenter: bpgrid.horizontalCenter
-            Text {
-                text: qsTr("Rate")
-                font.bold: true
-                anchors.top: parent.top
-            }
-            SpinBox {
-                id: txtRate
-                editable: true
-                anchors.centerIn: parent
-                height: parent.height*0.7
-                width: parent.width*0.7
-                font.pixelSize:height*0.5     
-                from: 0
-                to: 350
-            }
+        SpinBox {
+            id: txtSystolic
+            editable: true
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredHeight: 50
+            Layout.preferredWidth: 100
+            font.pixelSize:25
+            from: 0
+            to: 300
+        }
+        SpinBox {
+            id: txtDiastolic
+            editable: true
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredHeight: 50
+            Layout.preferredWidth: 100
+            font.pixelSize:25
+            from: 0
+            to: 250
+        }
+        Text {
+            text: qsTr("Rate")
+            Layout.alignment: Qt.AlignHCenter
+            Layout.columnSpan: 2
+            font.bold: true
+        }
+        SpinBox {
+            id: txtRate
+            Layout.columnSpan: 2
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredHeight: 50
+            Layout.preferredWidth: 100
+            font.pixelSize:25
+            editable: true
+            from: 0
+            to: 350
         }
 
         Button {
             id: buttonSetBP
-            anchors.horizontalCenter: bpgrid.horizontalCenter
-            anchors.top: bpgrid.bottom
+            Layout.alignment: Qt.AlignHCenter
+            Layout.columnSpan: 2
             text: qsTr("Set")
             flat: false
             onClicked: {
                 bloodpressure.getvals(txtSystolic.value, txtDiastolic.value,
                                         txtRate.value);
             }
-    }
-
+        }
     }
 
 }
