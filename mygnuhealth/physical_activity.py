@@ -21,7 +21,7 @@ class GHPhysicalActivity(QObject):
         physical_activity = self.db.table('physicalactivity')
         hr = self.db.table('heart_rate')
         current_date = datetime.datetime.now().isoformat()
-        pamon = stepsmon = False  # Init to false the bp and hr monitoring process
+        pamon = stepsmon = False  # Init to false 
         domain = 'lifestyle'
         context = 'physical_activity'
 
@@ -34,8 +34,8 @@ class GHPhysicalActivity(QObject):
                                   'anaerobic': anaerobic,
                                   'steps': steps})
 
-        print("Saved Physical Activity", pa_event_id, synced, aerobic, anaerobic,
-              steps, current_date)
+        print("Saved Physical Activity", pa_event_id, synced, aerobic,
+              anaerobic, steps, current_date)
 
         # Page of Life block related to Physical Activity
         event_id = str(uuid4())
@@ -60,5 +60,5 @@ class GHPhysicalActivity(QObject):
         self.insert_values(aerobic, anaerobic, steps)
         self.setOK.emit()
 
-    # Signal to emit to QML if the blood pressure values were stored correctly
+    # Signal to emit to QML if the values were stored correctly
     setOK = Signal()
