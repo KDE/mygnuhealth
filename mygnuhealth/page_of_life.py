@@ -52,10 +52,13 @@ class PoL(QObject):
             self.pol_context = PageOfLife.social_context
         if self.domain == 'medical':
             self.pol_context = PageOfLife.medical_context
+        if self.domain == 'lifestyle':
+            self.pol_context = PageOfLife.lifestyle_context
         if self.domain == 'biographical':
             self.pol_context = PageOfLife.biographical_context
         if self.domain == 'other':
             self.pol_context = PageOfLife.other_context
+
         return self.pol_context
 
     @Signal
@@ -73,6 +76,8 @@ class PoL(QObject):
             self.pol_context = PageOfLife.social_context
         if domain == 'medical':
             self.pol_context = PageOfLife.medical_context
+        if domain == 'lifestyle':
+            self.pol_context = PageOfLife.lifestyle_context
         if domain == 'biographical':
             self.pol_context = PageOfLife.biographical_context
         if domain == 'other':
@@ -120,8 +125,6 @@ class PoL(QObject):
         res = vardb.search(Rsnp.dbsnp == rs)
         if len(res) > 0:
             res = res[0]
-            print(f"Found {rs}")
-
             self.rsinfo = {
                     'rsid': res['dbsnp'],
                     'gene': res['gene'],
@@ -133,7 +136,6 @@ class PoL(QObject):
                     }
 
         else:
-            print(f"Reference {rs} not found")
             self.rsinfo = {}
 
         return (self.rsinfo)
@@ -169,7 +171,6 @@ class PoL(QObject):
                     page.update({'genetic_info': rsinfo})
                 self.new_page(page)
             else:
-                print("Wrong Date!")
                 validation_process = False
                 self.wrongDate.emit()
 

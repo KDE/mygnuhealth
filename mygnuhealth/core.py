@@ -129,6 +129,7 @@ class PageOfLife():
     pol_domain = [{'value': 'medical', 'text': 'Medical'},
                   {'value': 'social', 'text': 'Social'},
                   {'value': 'biographical', 'text': 'Biographical'},
+                  {'value': 'lifestyle', 'text': 'Lifestyle'},
                   {'value': 'other', 'text': 'Other'}
                   ]
 
@@ -165,11 +166,19 @@ class PageOfLife():
         {'value': 'family_violence', 'text': 'Family violence'},
         {'value': 'bullying', 'text': 'Bullying'},
         {'value': 'war', 'text': 'War'},
+        {'value': 'misc', 'text': 'Misc'},
+        ]
+
+    lifestyle_context = [
+        {'value': 'physical_activity', 'text': 'Physical Activity'},
+        {'value': 'nutrition', 'text': 'Nutrition'},
+        {'value': 'sleep', 'text': 'Sleep'},
         ]
 
     biographical_context = [
         {'value': 'birth', 'text': 'Birth'},
-        {'value': 'death', 'text': 'Death'}
+        {'value': 'death', 'text': 'Death'},
+        {'value': 'misc', 'text': 'Misc'}
         ]
 
     other_context = [

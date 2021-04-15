@@ -92,11 +92,12 @@ class GHBio(QObject):
             date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
-            if (lastreading != date_repr):
-                bp_date.append(dateobj)
-                bpsys.append(element['systolic'])
-                bpdia.append(element['diastolic'])
-
+            # if (lastreading != date_repr):
+            bp_date.append(dateobj)
+            bpsys.append(element['systolic'])
+            bpdia.append(element['diastolic'])
+            # end block
+            
             lastreading = date_repr
 
         fig, axs = plt.subplots(2)
@@ -128,10 +129,11 @@ class GHBio(QObject):
             dateobj = datefromisotz(element['timestamp'])
             date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
-            if (lastreading != date_repr):
-                hr_date.append(dateobj)
-                hr.append(element['heart_rate'])
-
+            # if (lastreading != date_repr):
+            hr_date.append(dateobj)
+            hr.append(element['heart_rate'])
+            # End block
+            
             lastreading = date_repr
 
         fig = plt.figure()

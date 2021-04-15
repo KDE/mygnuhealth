@@ -73,11 +73,12 @@ class GHPsycho(QObject):
             date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
-            if (lastreading != date_repr):
-                mood_date.append(dateobj)
-                mood.append(element['mood'])
-                energy.append(element['energy'])
-
+            #if (lastreading != date_repr):
+            mood_date.append(dateobj)
+            mood.append(element['mood'])
+            energy.append(element['energy'])
+            # end block
+    
             lastreading = date_repr
 
         print(f"Info to plot...{mood} {energy} {moodhist}")

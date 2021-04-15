@@ -69,6 +69,7 @@ class GHLifestyle(QObject):
         pahist = self.read_physical_activity()
         pa_aerobic = []
         pa_anaerobic = []
+        pa_steps = []
         pa_date = []
         lastreading = ''
         for element in pahist:
@@ -77,21 +78,24 @@ class GHLifestyle(QObject):
             date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
-            if (lastreading != date_repr):
-                pa_date.append(dateobj)
-                pa_aerobic.append(element['aerobic'])
-                pa_anaerobic.append(element['anaerobic'])
+            # if (lastreading != date_repr):
+            pa_date.append(dateobj)
+            pa_aerobic.append(element['aerobic'])
+            pa_anaerobic.append(element['anaerobic'])
+            pa_steps.append(element['steps'])
 
             lastreading = date_repr
 
-        fig, axs = plt.subplots(2)
+        fig, axs = plt.subplots(3)
 
-        # Plot both systolic and diastolic history
+        # Plot aerobic, anaerobic and steps
         axs[0].plot(pa_date, pa_aerobic)
         axs[1].plot(pa_date, pa_anaerobic, color='teal')
+        axs[2].plot(pa_date, pa_steps)
 
         axs[0].set_ylabel('Aerobic', size=13)
         axs[1].set_ylabel('Anaerobic', size=13)
+        axs[2].set_ylabel('Steps', size=13)
 
         fig.autofmt_xdate()
         fig.suptitle("Time (minutes)", size=20)

@@ -162,7 +162,8 @@ Kirigami.Page {
             CheckBox {
                 id: privatePage
                 checked: false
-                text: qsTr("Private")            }
+                text: qsTr("Private")
+            }
 
         }
         Kirigami.Separator {

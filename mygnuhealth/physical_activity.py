@@ -22,8 +22,8 @@ class GHPhysicalActivity(QObject):
         hr = self.db.table('heart_rate')
         current_date = datetime.datetime.now().isoformat()
         pamon = stepsmon = False  # Init to false the bp and hr monitoring process
-        domain = 'medical'
-        context = 'self_monitoring'
+        domain = 'lifestyle'
+        context = 'physical_activity'
 
         pa_event_id = str(uuid4())
         synced = False
