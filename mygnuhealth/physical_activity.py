@@ -19,7 +19,6 @@ class GHPhysicalActivity(QObject):
 
     def insert_values(self, aerobic, anaerobic, steps):
         physical_activity = self.db.table('physicalactivity')
-        hr = self.db.table('heart_rate')
         current_date = datetime.datetime.now().isoformat()
         pamon = stepsmon = False  # Init to false 
         domain = 'lifestyle'
