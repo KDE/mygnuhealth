@@ -58,27 +58,6 @@ class GHBio(QObject):
 
         return bpobj
 
-    def getBPHist(self):
-        # Retrieves all the history and packages into an array.
-        bphist = self.read_bp()
-        hrhist = self.read_hr()
-        bphrhist = []
-
-        bpsys = []
-        bpdia = []
-        hr = []
-        for element in bphist:
-            bpsys.append(element['systolic'])
-            bpdia.append(element['diastolic'])
-        bphrhist.append(bpsys)
-        bphrhist.append(bpdia)
-
-        for element in hrhist:
-            hr.append(element['heart_rate'])
-        bphrhist.append(hr)
-
-        return bphrhist
-
     def BPplot(self):
         # Retrieves all the history and packages into an array.
         bphist = self.read_bp()
@@ -97,7 +76,7 @@ class GHBio(QObject):
             bpsys.append(element['systolic'])
             bpdia.append(element['diastolic'])
             # end block
-            
+
             lastreading = date_repr
 
         fig, axs = plt.subplots(2)
@@ -182,14 +161,6 @@ class GHBio(QObject):
             glucoseobj = [str(date_repr), str(glucose['glucose'])]
         return glucoseobj
 
-    def getGlucoseHist(self):
-        # Retrieves all the history and packages into an array.
-        glucosehist = self.read_glucose()
-        glucose = []
-        for element in glucosehist:
-            glucose.append(element['glucose'])
-        return glucose
-
     def Glucoseplot(self):
         # Retrieves all the history and packages into an array.
         glucosehist = self.read_glucose()
@@ -246,15 +217,6 @@ class GHBio(QObject):
 
             weightobj = [str(date_repr), str(weight['weight'])]
         return weightobj
-
-    def getWeightHist(self):
-        # Retrieves all the history and packages into an array.
-        weighthist = self.read_weight()
-
-        weight = []
-        for element in weighthist:
-            weight.append(element['weight'])
-        return weight
 
     def Weightplot(self):
         # Retrieves all the history and packages into an array.
@@ -321,15 +283,6 @@ class GHBio(QObject):
             date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
             osatobj = [str(date_repr), str(osat['osat'])]
         return osatobj
-
-    def getOsatHist(self):
-        # Retrieves all the history and packages into an array.
-        osathist = self.read_osat()
-
-        osat = []
-        for element in osathist:
-            osat.append(element['osat'])
-        return osat
 
     def Osatplot(self):
         # Retrieves all the history and packages into an array.

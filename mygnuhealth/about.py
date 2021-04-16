@@ -10,7 +10,7 @@ __version__ = "0.7a12"
 
 __appname__ = "MyGNUHealth"
 
-__description__ = "A Personal Health Information Management System"
+__description__ = "The GNU Health Personal Health Record"
 
 __homepage__ = "https://www.gnuhealth.org"
 

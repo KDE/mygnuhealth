@@ -6,7 +6,7 @@ import GHLifestyle 0.1
 
 Kirigami.ScrollablePage
 {
-    id: biopage
+    id: lifestylepage
     title: qsTr("GNU Health - Lifestyle")
 
     GHLifestyle { // GHLifestyle object registered at mygh.py
@@ -61,6 +61,55 @@ Kirigami.ScrollablePage
                     Label {
                         horizontalAlignment: Text.AlignHCenter
                         text: qsTr("%1 steps").arg(pahist.pasteps)
+                        width: parent.width
+                    }
+                }
+            }
+
+            // Nutrition
+            Kirigami.Card {
+                banner {
+                    iconSource: Qt.resolvedUrl("../images/calories-icon.svg")
+                    title: qsTr("Nutrition")
+                }
+                actions: [
+                    Kirigami.Action {
+                        icon.name: "view-visible"
+                        text: qsTr("View Chart")
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageNutritionChart.qml"))
+                    },
+                    Kirigami.Action {
+                        icon.name: "document-edit"
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageNutrition.qml"))
+                        text: qsTr("Add Nutrition info")
+                    }
+                ]
+                contentItem: Column {
+                    id: nutrihist
+                    readonly property var nutrinfo: ghlifestyle.nutrition
+                    readonly property var nutridate: nutrinfo[0]
+                    readonly property var nutrimorning: nutrinfo[1]
+                    readonly property var nutriafternoon: nutrinfo[2]
+                    readonly property var nutrievening: nutrinfo[3]
+                    readonly property var nutritotal: nutrinfo[4]
+
+                    Label {
+                        id: txtNutridate
+                        horizontalAlignment: Text.AlignHCenter
+                        text: nutrihist.nutridate
+                        width: parent.width
+                    }
+
+                    Label {
+                        text: qsTr("%1 morning | %2 afternoon | %3 evening").arg(nutrihist.nutrimorning).arg(nutrihist.nutriafternoon).arg(nutrihist.nutrievening)
+                        horizontalAlignment: Text.AlignHCenter
+                        width: parent.width
+                        font.weight: Font.Bold
+                    }
+
+                    Label {
+                        horizontalAlignment: Text.AlignHCenter
+                        text: qsTr("Total Kcalories %1").arg(nutrihist.nutritotal)
                         width: parent.width
                     }
                 }

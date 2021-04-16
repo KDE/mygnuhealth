@@ -238,6 +238,7 @@ Kirigami.ScrollablePage {
                     id: txtKey
                     Layout.alignment: Qt.AlignHCenter
                     focus: true
+                    horizontalAlignment: TextInput.AlignHCenter
                     onAccepted: accountManager.login(txtKey.text.trim())
                 }
                 Button {

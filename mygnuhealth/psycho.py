@@ -46,20 +46,6 @@ class GHPsycho(QObject):
 
         return moodobj
 
-    def getMoodHist(self):
-        # Retrieves all the history and packages into an array.
-        moodhist = self.read_mood()
-
-        mood = []
-        energy = []
-        for element in moodhist:
-            mood.append(element['mood'])
-            energy.append(element['energy'])
-        moodhist.append(mood)
-        moodhist.append(energy)
-
-        return moodhist
-
     def moodplot(self):
         # Retrieves all the history and packages into an array.
         moodhist = self.read_mood()
