@@ -130,6 +130,7 @@ class GHLifestyle(QObject):
         nutri_calmorning = []
         nutri_calafternoon = []
         nutri_calevening = []
+        nutri_caltotal = []
         nutri_date = []
         lastreading = ''
         for element in nutrihist:
@@ -154,7 +155,7 @@ class GHLifestyle(QObject):
         axs[0].plot(nutri_date, nutri_calmorning)
         axs[1].plot(nutri_date, nutri_calafternoon, color='teal')
         axs[2].plot(nutri_date, nutri_calevening)
-        axs[3].plot(nutri_date, nutri_total)
+        axs[3].plot(nutri_date, nutri_caltotal)
 
         axs[0].set_ylabel('Morning', size=13)
         axs[1].set_ylabel('Afternoon', size=13)

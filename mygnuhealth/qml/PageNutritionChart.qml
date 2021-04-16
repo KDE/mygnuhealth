@@ -6,9 +6,9 @@ import GHLifestyle 0.1
 Kirigami.Page
 {
 id: pahist
-title: qsTr("Physical Activity")
+title: qsTr("Nutrition")
     GHLifestyle { // GHBio object registered at mygh.py
-        id: ghpa
+        id: ghnutrition
     }
 
     ColumnLayout {
@@ -17,7 +17,7 @@ title: qsTr("Physical Activity")
         Layout.fillHeight: true
 
         Rectangle {
-            id: bphistchart
+            id: nutrichart
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: 350
             Layout.preferredHeight: 250
@@ -25,9 +25,9 @@ title: qsTr("Physical Activity")
             border.color: "#108498"
 
             Image {
-                id:bphistplot
+                id:nutriplot
                 anchors.fill: parent
-                source: ghpa.paplot
+                source: ghnutrition.nutritionplot
                 fillMode:Image.PreserveAspectFit
             }
        }
