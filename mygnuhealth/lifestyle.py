@@ -177,6 +177,72 @@ class GHLifestyle(QObject):
         # Call the notifying signal
         self.nutritionChanged.emit()
 
+
+
+    # SLEEP
+    def read_sleep(self):
+        # Retrieve the sleep history
+        sleep = self.db.table('sleep')
+        sleephist = sleep.all()
+        return sleephist
+
+    def getSleep(self):
+        # Extracts the latest readings from Sleep table
+        sleephist = self.read_sleep()
+        # Init to empty string to avoid undefined val
+        sleepobj = ['', '', '', '']
+        if sleephist:
+            sleep = sleephist[-1]  # Get the latest (newest) record
+
+            dateobj = datefromisotz(sleep['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
+
+            sleepobj = [str(date_repr), str(sleep['sleeptime']),
+                        str(sleep['sleepquality'])]
+
+        return sleepobj
+
+    def sleepplot(self):
+        # Retrieves all the history and packages into an array.
+        sleephist = self.read_sleep()
+        sleep_time = []
+        sleep_date = []
+        lastreading = ''
+        for element in sleephist:
+
+            dateobj = datefromisotz(element['timestamp'])
+            date_repr = dateobj.strftime("%a, %b %d '%y")
+
+            # Only print one value per day to avoid artifacts in plotting.
+            # if (lastreading != date_repr):
+            sleep_date.append(dateobj)
+            sleep_time.append(element['sleeptime'])
+            # End of block
+
+            lastreading = date_repr
+
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+
+        ax.plot(sleep_date, sleep_time, color="blue")
+
+        ax.set_ylabel('Hours', size=13)
+        fig.autofmt_xdate()
+        fig.suptitle("Sleep hours", size=20)
+
+        holder = io.BytesIO()
+        fig.savefig(holder, format="svg")
+        image = "data:image/svg+xml;base64," + \
+            base64.b64encode(holder.getvalue()).decode()
+
+        holder.close()
+        return image
+
+    def setSleep(self, sleep):
+        self.current_sleep = sleep
+        # Call the notifying signal
+        self.sleepChanged.emit()
+
     # PROPERTIES BLOCK
     # BP property to be accessed to and from QML and Python.
     # It is used in the context of showing the PA last results
@@ -189,8 +255,8 @@ class GHLifestyle(QObject):
     # Notifying signal - to be used in qml as "onPAChanged"
     nutritionChanged = Signal()
 
-    # PA property to be accessed to and from QML and Python.
-    # It is used in the context of showing the PA last results
+    # Nutrition property to be accessed to and from QML and Python.
+    # It is used in the context of showing the Nutrition last results
     # in the main Lifestyle screen.
     nutrition = Property("QVariantList", getNutrition,
                          setNutrition, notify=nutritionChanged)
@@ -199,3 +265,15 @@ class GHLifestyle(QObject):
     nutritionplot = Property(str, nutriplot, setNutrition,
                              notify=nutritionChanged)
 
+    # Notifying signal - to be used in qml as "onSleepChanged"
+    sleepChanged = Signal()
+
+    # Nutrition property to be accessed to and from QML and Python.
+    # It is used in the context of showing the Nutrition last results
+    # in the main Lifestyle screen.
+    sleep = Property("QVariantList", getSleep,
+                     setSleep, notify=sleepChanged)
+
+    # Property to retrieve the plot of the Physical Activity.
+    sleepplot = Property(str, sleepplot, setSleep,
+                         notify=sleepChanged)

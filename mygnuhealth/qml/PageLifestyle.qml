@@ -114,6 +114,59 @@ Kirigami.ScrollablePage
                     }
                 }
             }
+
+
+            // Sleep
+            Kirigami.Card {
+                banner {
+                    iconSource: Qt.resolvedUrl("../images/sleep-icon.svg")
+                    title: qsTr("Sleep")
+                }
+                actions: [
+                    Kirigami.Action {
+                        icon.name: "view-visible"
+                        text: qsTr("View Chart")
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageSleepChart.qml"))
+                    },
+                    Kirigami.Action {
+                        icon.name: "document-edit"
+                        onTriggered: pageStack.push(Qt.resolvedUrl("PageSleep.qml"))
+                        text: qsTr("Add Sleep info")
+                    }
+                ]
+                contentItem: Column {
+                    id: sleephist
+                    readonly property var sleepinfo: ghlifestyle.sleep
+                    readonly property var sleepdate: sleepinfo[0]
+                    readonly property var sleephours: sleepinfo[1]
+                    readonly property var sleepquality: sleepinfo[2]
+
+                    Label {
+                        id: sleepDate
+                        horizontalAlignment: Text.AlignHCenter
+                        text: sleephist.sleepdate
+                        width: parent.width
+                    }
+
+                    Label {
+                        text: qsTr("Sleep hours %1").arg(sleephist.sleephours)
+                        horizontalAlignment: Text.AlignHCenter
+                        width: parent.width
+                        font.weight: Font.Bold
+                    }
+
+                    Label {
+                        horizontalAlignment: Text.AlignHCenter
+                        text: qsTr("Quality: %1").arg(sleephist.sleepquality)
+                        width: parent.width
+                    }
+                }
+            }
+
+            
+            
+            
+            
         }
     }
 }
