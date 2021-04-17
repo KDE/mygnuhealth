@@ -197,28 +197,33 @@ Kirigami.Page {
                     Layout.preferredWidth: parent.width*0.2
                     placeholderText: qsTr("Gene")
                     horizontalAlignment: TextInput.Center
+                    readOnly: true
                 }
                 TextField {
                     id:aachange
                     placeholderText: qsTr("AA change")
                     horizontalAlignment: TextInput.Center
+                    readOnly: true
                 }
                 TextField {
                     id:variantid
                     Layout.preferredWidth: parent.width*0.3
                     placeholderText: qsTr("Variant")
                     horizontalAlignment: TextInput.Center
+                    readOnly: true
                 }
                 TextField {
                     id:proteinid
                     Layout.preferredWidth: parent.width*0.3
                     placeholderText: qsTr("Protein ID")
                     horizontalAlignment: TextInput.Center
+                    readOnly: true
                 }
                 TextField {
                     id:significance
                     placeholderText: qsTr("Significance")
                     horizontalAlignment: TextInput.Center
+                    readOnly: true
                 }
                 TextField {
                     id:disease
@@ -226,6 +231,7 @@ Kirigami.Page {
                     Layout.fillWidth: true
                     placeholderText: qsTr("Disease")
                     horizontalAlignment: TextInput.Center
+                    readOnly: true
                 }
             }
         }
