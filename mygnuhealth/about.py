@@ -27,6 +27,7 @@ __thanks__ = "Axel Braun\n" \
              "Paul Brown\n" \
              "Yuri Chornoivan\n" \
              "Leonardo D'Acchille\n" \
+             "Marco Gebhardt" \
              "Riccardo Iaconelli\n" \
              "Cristian Maureira-Fredes\n" \
              "Karl Ove Hufthammer\n" \
