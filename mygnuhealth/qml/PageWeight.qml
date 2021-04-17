@@ -14,7 +14,7 @@ Kirigami.Page {
     id: weightpage
     title: qsTr("Body Weight")
 
-    Weight { // Weight object registered at main.py
+    Weight { // Weight object registered at mygh.py
         id: body_weight
         // Return to main monitor page once values are stored
         onSetOK: pageStack.pop()
