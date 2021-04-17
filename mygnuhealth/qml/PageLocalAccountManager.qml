@@ -62,6 +62,8 @@ Kirigami.ScrollablePage {
             // Initialization Component to show on the first startup.
             id:componentinit
             ColumnLayout {
+                spacing: 10
+                anchors.fill: parent
                 Image {
                     source: "../images/gnu_health-logo.svg"
                     fillMode: Image.PreserveAspectFit
@@ -75,15 +77,15 @@ Kirigami.ScrollablePage {
 
                 Text {
                     id: introtext
-                    Layout.preferredWidth: profileinit.width * 0.9
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.preferredWidth: profileinit.width
                     horizontalAlignment: Text.AlignJustify
                     wrapMode: Text.WordWrap
-                    text: qsTr("Welcome! To get the best results out of MyGNUHealth, "
+                    text: qsTr("To get the best results out of MyGNUHealth, "
                         + "let's start with some information about yourself. "
                         + "In this page, you will register your sex, birthdate and height.\n"
                         + "You will also set your personal private key that will give "
                         + "you access to the application.")
-
                     }
 
                 Kirigami.Separator {
@@ -103,6 +105,8 @@ Kirigami.ScrollablePage {
 
                 RowLayout {
                     Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignHCenter
+                    
                     Label {
                         text: qsTr("Sex")
                     }
@@ -163,6 +167,7 @@ Kirigami.ScrollablePage {
                             to: profileinit.datenow[2]
                             value: profileinit.datenow[2]
                             stepSize: 1
+                            editable: false
                         }
                     }
 
