@@ -14,26 +14,23 @@ __description__ = "The GNU Health Personal Health Record"
 
 __homepage__ = "https://www.gnuhealth.org"
 
-__author__ = "GNU Solidario"
+__author__ = "Luis Falcon"
 
 __email__ = "info@gnuhealth.org"
 
 __download_url__ = 'https://ftp.gnu.org/gnu/health'
 
-__team__ = [
-    {"name": "Luis Falcon", "email": "falcon@gnuhealth.org",
-     "tasks": "Author and project leader"},
-    {"name": "Leonardo D'Acchille", "email": "ldacchille@thymbra.com",
-     "tasks": "Artwork"},
-    {"name": "Carl Schwan", "email": "carlschwan@kde.org",
-     "tasks": "Kirigami, QML"},
-    {"name": "Aleix Pol", "email": "aleixpol@kde.org",
-     "tasks": "Kirigami, packaging"},
-    {"name": "Cristian Maureira-Fredes",
-     "email": "Cristian.Maureira-Fredes@qt.io", "tasks": "PySide"},
-    {"name": "Axel Braun", "email": "axel.braun@gnuhealth.org",
-     "tasks": "Packaging"},
-    ]
-
 __license__ = "GPL v3+"
-__copyright__ = "Copyright 2008-2021 {0}".format(__author__)
+__copyright__ = "Copyright 2008-2021 GNU Solidario"
+
+__thanks__ = "Axel Braun\n" \
+             "Paul Brown\n" \
+             "Yuri Chornoivan\n" \
+             "Leonardo D'Acchille\n" \
+             "Riccardo Iaconelli\n" \
+             "Cristian Maureira-Fredes\n" \
+             "Karl Ove Hufthammer\n" \
+             "Aleix Pol\n" \
+             "Carl Schwan\n" \
+             "Pino Toscano\n" \
+             "Niccolò Venerandi"

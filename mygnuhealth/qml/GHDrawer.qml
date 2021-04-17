@@ -35,6 +35,15 @@ Kirigami.GlobalDrawer {
                 root.isLoggedIn = false;
             }
             enabled: isLoggedIn && pageStack.layers.depth === 1
+        },
+        Kirigami.Action {
+            text: qsTr("About")
+            icon.name: "help-about"
+            onTriggered: {
+                pageStack.push(Qt.resolvedUrl("PageAbout.qml"))
+                root.isLoggedIn = false;
+            }
+            enabled: true
         }
     ]
 }
