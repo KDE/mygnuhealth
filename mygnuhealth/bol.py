@@ -83,6 +83,27 @@ class GHBol(QObject):
                             f"energy: {measure['mood_energy']['energy']}\n"
                     summ = summ + msr
 
+                # Include the Lifestyle measures
+                if (pageoflife['domain'] == 'lifestyle'):
+                    # Show / format the Physical activity values ("pa" key)
+                    if 'pa' in pageoflife['measurements'][0].keys():
+                        for key, value in \
+                                pageoflife['measurements'][0]['pa'].items():
+                            summ = summ + f"{key}: {value}\n"
+
+                    # Show / format the nutrition values ("nutrition" key)
+                    if 'nutrition' in pageoflife['measurements'][0].keys():
+                        for key, value in \
+                                pageoflife['measurements'][0]['nutrition'].items():
+                            summ = summ + f"{key}: {value}\n"
+
+                    # Show / format the sleep values ("sleep" key)
+                    if 'sleep' in pageoflife['measurements'][0].keys():
+                        for key, value in \
+                                pageoflife['measurements'][0]['sleep'].items():
+                            summ = summ + f"{key}: {value}\n"
+
+
             if ('genetic_info' in pageoflife.keys() and
                     pageoflife['genetic_info']):
                 genetics = pageoflife['genetic_info']
