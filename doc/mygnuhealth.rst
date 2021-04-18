@@ -16,7 +16,7 @@ The GNU Health Personal Health Record
 
 Introduction
 ============
-MyGNUHealth is a desktop and mobile application that can help you to take 
+MyGNUHealth is a desktop and mobile application that helps you to take 
 control of your health. As a Personal Health Record, you will be able to assess, 
 record and take action upon the determinants of the main health spheres 
 (bio-psycho-social).
@@ -57,11 +57,18 @@ Starting up the application
 ---------------------------
 |InitialScreen|
 
-Double click or tap into the MyGNUHealth icon on your mobile device or desktop.
+Click or tap into the MyGNUHealth icon on your mobile device or desktop.
 You will be presented with the welcoming screen.
 
 
-Touch or click on the initial screen and you'll be ready to sign into the PHR.
+Profile initialization
+----------------------
+The very firt time MyGNUHealth is run, you need to enter very basic information
+about yourself. The date of birth, height and sex are the main parameters to be included. They are used in medical contexts, so is important that you fill them in.
+In this step, you will also set up your personal key.
+|ProfileInitialization|
+
+
 
 Signing in to MyGNUHealth
 -------------------------
@@ -82,21 +89,19 @@ The main screen
 Once you sign in, you are presented to the MyGNUHealth main screen, with the 
 main components:
 
-* **Bio**: Vital signs and other clinical information history
+* **Health Tracker**: This section records quantifiable events,
+    from the biological, lifestyle and psychological domains.
+     
 * **Book of Life**: The book of life is your personal health diary, made of 
     *Pages of Life*. From the genetic and molecular components to the social 
     events throughout your life that make you a unique individual.
-* **Documents**: In this section you will be able to add files into the persnal
-    database. In some cases, you will find useful to link them to specific
-    *Page of Life*
-* **Emergency**: It will contact the number you have registered as the emergency
-    number.
 
 .. note:: The main screen components and layout might change from one release
     to another.
 
 
-.. |MainScreen| image:: ./images/main_screen.png
-.. |MyGNUHealth| image:: ./images/mygnuhealth.png
 .. |InitialScreen| image:: ./images/initial_screen.png
+.. |MainScreen| image:: ./images/main_screen.png
+.. |ProfileInitialization| image:: ./images/user_profile_initialization.png
+.. |MyGNUHealth| image:: ./images/mygnuhealth.png
 .. |LoginScreen| image:: ./images/login_screen.png
