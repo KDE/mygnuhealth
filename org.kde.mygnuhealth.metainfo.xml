@@ -12,6 +12,7 @@
   <name xml:lang="it">MyGNUHealth</name>
   <name xml:lang="nl">MyGNUHealth</name>
   <name xml:lang="nn">MyGNUHealth</name>
+  <name xml:lang="pl">MyGNUHealth</name>
   <name xml:lang="pt">MyGNUHealth</name>
   <name xml:lang="pt-BR">MyGNUHealth</name>
   <name xml:lang="sk">MyGNUHealth</name>
@@ -29,6 +30,7 @@
   <summary xml:lang="it">Cartella clinica personale di GNU Health</summary>
   <summary xml:lang="nl">GNU Health persoonlijk medisch document</summary>
   <summary xml:lang="nn">GNU Health personleg helsejournal</summary>
+  <summary xml:lang="pl">Osobisty dziennik zdrowia GNU</summary>
   <summary xml:lang="pt">Registo Médico Pessoal do GNU Health</summary>
   <summary xml:lang="pt-BR">Registro pessoal de saúde do GNU Health</summary>
   <summary xml:lang="sk">GNU záznam osobného zdravia</summary>
@@ -56,6 +58,7 @@
     <p xml:lang="it">Monitoraggio delle cartelle cliniche personali.</p>
     <p xml:lang="nl">Persoonlijke medische documenten volgen.</p>
     <p xml:lang="nn">Registrering av personlege helseopplysningar.</p>
+    <p xml:lang="pl">Obsługa osobistego dziennika zdrowia</p>
     <p xml:lang="pt">Acompanhamento dos registos médicos pessoais.</p>
     <p xml:lang="pt-BR">Rastreamento de registros pessoais de saúde.</p>
     <p xml:lang="sk">Záznam osobných zdravotným záznamov.</p>
