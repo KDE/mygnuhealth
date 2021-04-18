@@ -23,7 +23,7 @@ setup(
     long_description=long_desc,
     keywords='eHealth PHIMS PHR mHealth GNUHealth',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: X11 Applications :: KDE',
         'Environment :: X11 Applications :: Qt',
         'Topic :: Desktop Environment :: K Desktop Environment (KDE)',
