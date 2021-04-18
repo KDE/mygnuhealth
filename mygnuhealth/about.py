@@ -6,7 +6,7 @@
 #   Please read the COPYRIGHT and LICENSE files of the package
 ####################################################################
 
-__version__ = "0.7a13"
+__version__ = "0.7a14"
 
 __appname__ = "MyGNUHealth"
 

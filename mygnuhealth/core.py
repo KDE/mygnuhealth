@@ -78,7 +78,10 @@ def get_federation_account():
     fedacct = None
     if (len(federation_table) > 0):
         # Federation Account table holds a singleton, so only one record
-        fedacct = federation_table.all()[0]['federation_account']
+        res = federation_table.all()[0]
+        if 'federation_account' in res.keys():
+            fedacct = res['federation_account']
+            print("Fed account ", fedacct)
     return fedacct
 
 
