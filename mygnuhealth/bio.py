@@ -88,6 +88,9 @@ class GHBio(QObject):
         axs[0].set_ylabel('Systolic', size=13)
         axs[1].set_ylabel('Diastolic', size=13)
 
+        axs[0].grid(color="gray", linewidth=0.5)
+        axs[1].grid(color="gray", linewidth=0.5)
+
         fig.autofmt_xdate()
         fig.suptitle("Blood Pressure (mm Hg)", size=20)
         holder = io.BytesIO()
@@ -112,7 +115,7 @@ class GHBio(QObject):
             hr_date.append(dateobj)
             hr.append(element['heart_rate'])
             # End block
-            
+
             lastreading = date_repr
 
         fig = plt.figure()
@@ -121,6 +124,7 @@ class GHBio(QObject):
         ax.plot(hr_date, hr, color="orange")
 
         ax.set_ylabel('Frequency', size=13)
+        ax.grid(color="gray", linewidth=0.5)
         fig.autofmt_xdate()
         fig.suptitle("Heart Rate (bpm)", size=20)
 
@@ -181,6 +185,7 @@ class GHBio(QObject):
         ax.plot(glucose_date, glucose, color="red")
 
         ax.set_ylabel('mg/dl', size=13)
+        ax.grid(color="gray", linewidth=0.5)
         fig.autofmt_xdate()
         fig.suptitle("Glucose level (mg/dl)", size=20)
 
@@ -248,6 +253,10 @@ class GHBio(QObject):
 
         axes[0].set_ylabel('kg', size=13)
         axes[1].set_ylabel('kg/m2', size=13)
+
+        axes[0].grid(color="gray", linewidth=0.5)
+        axes[1].grid(color="gray", linewidth=0.5)
+
         fig.autofmt_xdate()
         fig.suptitle("Weight & Body Mass Index", size=20)
 
@@ -302,6 +311,7 @@ class GHBio(QObject):
         ax.plot(osat_date, osat, color="red")
 
         ax.set_ylabel('%', size=13)
+        ax.grid(color="gray", linewidth=0.5)
         fig.autofmt_xdate()
         fig.suptitle("Osat (%)", size=20)
 
@@ -326,7 +336,7 @@ class GHBio(QObject):
     bpplot = Property(str, BPplot, setBP, notify=bpChanged)
 
     # Retrieve the heart rate history.
-    # I made a different plot because the dates can differ from those of the 
+    # I made a different plot because the dates can differ from those of the
     # Blood pressure monitor readings.
     hrplot = Property(str, HRplot, setBP, notify=bpChanged)
 
