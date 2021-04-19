@@ -22,16 +22,17 @@ record and take action upon the determinants of the main health spheres
 (bio-psycho-social).
 
 MyGNUHealth will be your health companion, and it will allow to connect you
-with your health professionals, to proactively be on top of your health.
-MyGNUHealth puts you in the driver's seat, an active member of the system of
+with your health professionals, and share the health data you wish to share 
+with them in real time.
+MyGNUHealth puts you in the driver's seat, as an active member of the system of
 health.
 
 
-The need of a Libre PHR
-=======================
+The need of a Libre Personal Health Record
+==========================================
 A Personal Health Record must respect the freedom of the individual.
-We need to make sure that we are in charge of our health, and that the information
-we store is private.
+We need to make sure that we are in charge of our health, and with your health
+related data.
 
 There are be different Health record applications in the market, but one of
 the key benefits of MyGNUHealth is that is Libre. By Libre we mean that the source
@@ -44,11 +45,27 @@ technology to deliver Social Medicine, equity, freedom and privacy in healthcare
 MyGNUHealth is licensed under the GNU General Public License v3. It is Libre, and
 it will remain Libre.
 
-Downloading the application
-===========================
+Downloading and installing the application
+==========================================
 
-MyGNUHealth will be available from different sources. The easiest way is to
-check your current operating system or distribution.
+MyGNUHealth will be available from different sources. Check if your operating
+system already has the MyGNUHealth package.
+
+MyGNUHealth depends on both Kirigami2 and PySide2 to be installed at a system
+level, and will not properly work otherwise.
+Using the system's package manager will be enough to install those dependencies
+keeping in mind the required versions on the system:
+
+* PySide2 5.15+
+* Python 3.6+
+
+After installing those dependencies on the system,
+you can install MyGNUHealth via pip::
+
+ $ pip install --user --upgrade MyGNUHealth
+
+(Keep in mind some systems might have `pip3` instead of `pip`)
+
 
 Using MyGNUHealth
 =================
@@ -64,9 +81,26 @@ You will be presented with the welcoming screen.
 Profile initialization
 ----------------------
 The very firt time MyGNUHealth is run, you need to enter very basic information
-about yourself. The date of birth, height and sex are the main parameters to be included. They are used in medical contexts, so is important that you fill them in.
-In this step, you will also set up your personal key.
+about yourself. The date of birth, height and sex are the main parameters to 
+be included. They are used in medical contexts, so is important that you 
+fill them in. In this step, you will also set up your **personal key**
+
 |ProfileInitialization|
+
+The button to create the profile will activate when the following requirements
+are met:
+* The height value is set
+* The personal key is 4 characters or longer
+* The personal key is entered twice correctly
+
+Navigation
+----------
+MyGNUHealth uses a "stack" navigation model. That is, when you enter a
+page, you move forward, and do a "push" operation on it. The opposite 
+also applies. When moving backwards, you do a "pop" operation on the
+current page, and move back one level.
+
+
 
 
 
@@ -93,6 +127,62 @@ main components:
 
 .. note:: The main screen components and layout might change from one release
     to another.
+
+
+The Menu (Drawer)
+-----------------
+
+User profile
+~~~~~~~~~~~~
+
+Network Settings (Federation)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Logout
+~~~~~~
+
+The About page
+~~~~~~~~~~~~~~
+
+
+The Health Tracker
+==================
+
+Bio / clinical assessment
+-------------------------
+
+
+Lifestyle
+---------
+
+
+Psychological assessment
+------------------------
+
+
+The Book of Life
+================
+
+Domains and contexts
+--------------------
+
+Medical domain
+--------------
+
+The Medical Genetics context
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Social Domain
+-------------
+
+Lifesytle domain
+----------------
+
+
+Biographical Information
+------------------------
+
+
 
 
 .. |InitialScreen| image:: ./images/initial_screen.png
