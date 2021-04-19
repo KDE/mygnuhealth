@@ -10,7 +10,17 @@ and mobile devices that integrates with the GNU Health Federation.
 
 Installation
 ------------
-You can install MyGNUHealth via pip::
+
+MyGNUHealth depends on both Kirigami2 and PySide2 to be installed at a system
+level, and will not properly work otherwise.
+Using the system's package manager will be enough to install those dependencies
+keeping in mind the required versions on the system:
+
+* PySide2 5.15+
+* Python 3.6+
+
+After installing those dependencies on the system,
+you can install MyGNUHealth via pip::
 
  $ pip install --user --upgrade MyGNUHealth
 
@@ -86,8 +96,8 @@ your NGO or government:
 
 * An introduction of the current needs
 * The project will only use Libre software technology
-* There will be a local designated person that will be in charge of  the project 
-  and the know-how transfer to the rest of the community.This person must be 
+* There will be a local designated person that will be in charge of  the project
+  and the know-how transfer to the rest of the community.This person must be
   committed to be from the beginning of the project until two years after its
   completion.
 * There must be a commitment of knowledge transfer to the rest of the team.
@@ -128,14 +138,14 @@ GNU Health is licensed under GPL v3+::
 
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- 
+
 
 License of the Human Natural variants Database
 ------------------------------------------------
 
- Many thanks to the UniProt Consortium for providing the excellent list of 
+ Many thanks to the UniProt Consortium for providing the excellent list of
  human variants. MyGNUHealth natural variants database is based on it.
 
  Copyrighted by the UniProt Consortium, see https://www.uniprot.org/terms
  Distributed under the Creative Commons Attribution (CC BY 4.0) License
- 
+
