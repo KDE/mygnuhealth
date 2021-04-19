@@ -11,7 +11,6 @@ from uuid import uuid4
 from mygnuhealth.myghconf import dbfile
 from mygnuhealth.core import check_date, PageOfLife, vardb
 
-import logging
 import datetime
 
 
@@ -171,7 +170,6 @@ class PoL(QObject):
                     page.update({'genetic_info': rsinfo})
                 self.new_page(page)
             else:
-                validation_process = False
                 self.wrongDate.emit()
 
         self.createSuccess.emit()

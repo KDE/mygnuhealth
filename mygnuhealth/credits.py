@@ -7,7 +7,7 @@
 ####################################################################
 
 from mygnuhealth import about
-from PySide2.QtCore import QObject, Signal, Property
+from PySide2.QtCore import QObject, Property
 
 
 class GHAbout(QObject):

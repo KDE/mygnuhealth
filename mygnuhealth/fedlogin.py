@@ -32,4 +32,3 @@ def test_federation_connection(protocol, host, port, acct, passwd):
 
     print(login_status)
     return login_status
-

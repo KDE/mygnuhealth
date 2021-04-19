@@ -7,8 +7,8 @@
 
 import datetime
 from uuid import uuid4
-from PySide2.QtCore import QObject, Signal, Slot, Property
-from tinydb import TinyDB, Query
+from PySide2.QtCore import QObject, Signal, Slot
+from tinydb import TinyDB
 from mygnuhealth.myghconf import dbfile
 from mygnuhealth.core import PageOfLife
 

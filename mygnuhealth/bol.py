@@ -5,15 +5,13 @@
 #   Please read the COPYRIGHT and LICENSE files of the package
 ####################################################################
 
-import datetime
 import json
 import requests
 
-from uuid import uuid4
-from PySide2.QtCore import QObject, Signal, Slot, Property
+from PySide2.QtCore import QObject, Slot, Property
 from tinydb import TinyDB, Query
 from mygnuhealth.myghconf import bolfile, dbfile
-from mygnuhealth.core import PageOfLife, datefromisotz
+from mygnuhealth.core import datefromisotz
 
 
 class GHBol(QObject):
@@ -103,7 +101,6 @@ class GHBol(QObject):
                                 pageoflife['measurements'][0]['sleep'].items():
                             summ = summ + f"{key}: {value}\n"
 
-
             if ('genetic_info' in pageoflife.keys() and
                     pageoflife['genetic_info']):
                 genetics = pageoflife['genetic_info']
@@ -184,11 +181,11 @@ class GHBol(QObject):
                         print("Setting fsynced to True on page... ", id)
                         Page = Query()
                         booktable.update({'fsynced': True}, Page.page == id)
-                    
+
                     else:
                         print("Error sending the page.",
                               send_data.status_code)
-                        
+
                 else:
                     if privacy:
                         print("This page is private, not syncing", pol)
@@ -201,4 +198,3 @@ class GHBol(QObject):
     # Expose to QML the value of sync status
     # It will disable the password field if sync is not enabled.
     sync_status = Property(bool, check_sync_status, constant=True)
-

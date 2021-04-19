@@ -6,12 +6,10 @@
 ####################################################################
 
 import io
-import datetime
-from PySide2.QtCore import QObject, Signal, Slot, Property
-from tinydb import TinyDB, Query
+from PySide2.QtCore import QObject, Signal, Property
+from tinydb import TinyDB
 import matplotlib.pyplot as plt
 import base64
-import numpy as np
 from mygnuhealth.core import datefromisotz
 from mygnuhealth.myghconf import dbfile
 
@@ -52,20 +50,15 @@ class GHPsycho(QObject):
         mood = []
         energy = []
         mood_date = []
-        lastreading = ''
         for element in moodhist:
 
             dateobj = datefromisotz(element['timestamp'])
-            date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
-            #if (lastreading != date_repr):
             mood_date.append(dateobj)
             mood.append(element['mood'])
             energy.append(element['energy'])
             # end block
-    
-            lastreading = date_repr
 
         print(f"Info to plot...{mood} {energy} {moodhist}")
 
@@ -105,6 +98,5 @@ class GHPsycho(QObject):
     # in the main bio screen.
     mood = Property("QVariantList", getMood, setMood, notify=moodChanged)
 
-    # Property to retrieve the plot of the Mood and Energy 
+    # Property to retrieve the plot of the Mood and Energy
     moodplot = Property(str, moodplot, setMood, notify=moodChanged)
-

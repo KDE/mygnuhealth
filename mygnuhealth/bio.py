@@ -6,9 +6,8 @@
 ####################################################################
 
 import io
-import datetime
-from PySide2.QtCore import QObject, Signal, Slot, Property
-from tinydb import TinyDB, Query
+from PySide2.QtCore import QObject, Signal, Property
+from tinydb import TinyDB
 import matplotlib.pyplot as plt
 import base64
 import numpy as np
@@ -64,20 +63,15 @@ class GHBio(QObject):
         bpsys = []
         bpdia = []
         bp_date = []
-        lastreading = ''
         for element in bphist:
 
             dateobj = datefromisotz(element['timestamp'])
-            date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
-            # if (lastreading != date_repr):
             bp_date.append(dateobj)
             bpsys.append(element['systolic'])
             bpdia.append(element['diastolic'])
             # end block
-
-            lastreading = date_repr
 
         fig, axs = plt.subplots(2)
 
@@ -106,17 +100,12 @@ class GHBio(QObject):
         hrhist = self.read_hr()
         hr = []
         hr_date = []
-        lastreading = ''
         for element in hrhist:
             dateobj = datefromisotz(element['timestamp'])
-            date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
-            # if (lastreading != date_repr):
             hr_date.append(dateobj)
             hr.append(element['heart_rate'])
             # End block
-
-            lastreading = date_repr
 
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
@@ -170,12 +159,9 @@ class GHBio(QObject):
         glucosehist = self.read_glucose()
         glucose = []
         glucose_date = []
-        lastreading = ''
         for element in glucosehist:
             dateobj = datefromisotz(element['timestamp'])
-            date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
-            # if (lastreading != date_repr):
             glucose_date.append(dateobj)
             glucose.append(element['glucose'])
 
@@ -229,13 +215,10 @@ class GHBio(QObject):
         weight = []
         weight_date = []
         bmi = []
-        lastreading = ''
         for element in weighthist:
             # dateobj = datetime.datetime.fromisoformat(element['timestamp'])
             dateobj = datefromisotz(element['timestamp'])
-            date_repr = dateobj.strftime("%a, %b %d '%y")
             # Only print one value per day to avoid artifacts in plotting.
-            # if (lastreading != date_repr):
             weight_date.append(dateobj)
             weight.append(element['weight'])
             if ('bmi' in element.keys()):
@@ -298,10 +281,8 @@ class GHBio(QObject):
         osathist = self.read_osat()
         osat = []
         osat_date = []
-        lastreading = ''
         for element in osathist:
             dateobj = datefromisotz(element['timestamp'])
-            date_repr = dateobj.strftime("%a, %b %d '%y")
             osat_date.append(dateobj)
             osat.append(element['osat'])
 

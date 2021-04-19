@@ -6,12 +6,10 @@
 ####################################################################
 
 import io
-import datetime
-from PySide2.QtCore import QObject, Signal, Slot, Property
-from tinydb import TinyDB, Query
+from PySide2.QtCore import QObject, Signal, Property
+from tinydb import TinyDB
 import matplotlib.pyplot as plt
 import base64
-import numpy as np
 from mygnuhealth.core import datefromisotz
 from mygnuhealth.myghconf import dbfile
 
@@ -55,20 +53,15 @@ class GHLifestyle(QObject):
         pa_anaerobic = []
         pa_steps = []
         pa_date = []
-        lastreading = ''
         for element in pahist:
 
             dateobj = datefromisotz(element['timestamp'])
-            date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
-            # if (lastreading != date_repr):
             pa_date.append(dateobj)
             pa_aerobic.append(element['aerobic'])
             pa_anaerobic.append(element['anaerobic'])
             pa_steps.append(element['steps'])
-
-            lastreading = date_repr
 
         fig, axs = plt.subplots(3)
 
@@ -132,22 +125,17 @@ class GHLifestyle(QObject):
         nutri_calevening = []
         nutri_caltotal = []
         nutri_date = []
-        lastreading = ''
         for element in nutrihist:
 
             dateobj = datefromisotz(element['timestamp'])
-            date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
-            # if (lastreading != date_repr):
             nutri_date.append(dateobj)
             nutri_calmorning.append(element['calmorning'])
             nutri_calafternoon.append(element['calafternoon'])
             nutri_calevening.append(element['calevening'])
             nutri_caltotal.append(element['caltotal'])
             # End of block
-            
-            lastreading = date_repr
 
         fig, axs = plt.subplots(4)
 
@@ -177,8 +165,6 @@ class GHLifestyle(QObject):
         # Call the notifying signal
         self.nutritionChanged.emit()
 
-
-
     # SLEEP
     def read_sleep(self):
         # Retrieve the sleep history
@@ -207,19 +193,14 @@ class GHLifestyle(QObject):
         sleephist = self.read_sleep()
         sleep_time = []
         sleep_date = []
-        lastreading = ''
         for element in sleephist:
 
             dateobj = datefromisotz(element['timestamp'])
-            date_repr = dateobj.strftime("%a, %b %d '%y")
 
             # Only print one value per day to avoid artifacts in plotting.
-            # if (lastreading != date_repr):
             sleep_date.append(dateobj)
             sleep_time.append(element['sleeptime'])
             # End of block
-
-            lastreading = date_repr
 
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)

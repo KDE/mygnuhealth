@@ -8,7 +8,7 @@
 
 from PySide2.QtCore import QObject, Signal, Slot, Property
 import bcrypt
-from tinydb import TinyDB, Query
+from tinydb import TinyDB
 from mygnuhealth.myghconf import dbfile
 from mygnuhealth.core import get_personal_key, check_date, get_user_profile
 
