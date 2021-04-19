@@ -95,8 +95,8 @@ class GHBio(QObject):
         fig.suptitle("Blood Pressure (mm Hg)", size=20)
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
-        image = "data:image/svg+xml;base64," + \
-            base64.b64encode(holder.getvalue()).decode()
+        decoded_holder = base64.b64encode(holder.getvalue()).decode()
+        image = f"data:image/svg+xml;base64,{decoded_holder}"
 
         holder.close()
         return image
@@ -130,8 +130,8 @@ class GHBio(QObject):
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
-        image = "data:image/svg+xml;base64," + \
-            base64.b64encode(holder.getvalue()).decode()
+        decoded_holder = base64.b64encode(holder.getvalue()).decode()
+        image = f"data:image/svg+xml;base64,{decoded_holder}"
 
         holder.close()
         return image
@@ -191,8 +191,8 @@ class GHBio(QObject):
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
-        image = "data:image/svg+xml;base64," + \
-            base64.b64encode(holder.getvalue()).decode()
+        decoded_holder = base64.b64encode(holder.getvalue()).decode()
+        image = f"data:image/svg+xml;base64,{decoded_holder}"
 
         holder.close()
         return image
@@ -262,8 +262,8 @@ class GHBio(QObject):
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
-        image = "data:image/svg+xml;base64," + \
-            base64.b64encode(holder.getvalue()).decode()
+        decoded_holder = base64.b64encode(holder.getvalue()).decode()
+        image = f"data:image/svg+xml;base64,{decoded_holder}"
 
         holder.close()
         return (image)
@@ -317,8 +317,8 @@ class GHBio(QObject):
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
-        image = "data:image/svg+xml;base64," + \
-            base64.b64encode(holder.getvalue()).decode()
+        decoded_holder = base64.b64encode(holder.getvalue()).decode()
+        image = f"data:image/svg+xml;base64,{decoded_holder}"
 
         holder.close()
         return (image)

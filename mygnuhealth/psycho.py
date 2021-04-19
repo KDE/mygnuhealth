@@ -64,7 +64,7 @@ class GHPsycho(QObject):
             mood.append(element['mood'])
             energy.append(element['energy'])
             # end block
-    
+
             lastreading = date_repr
 
         print(f"Info to plot...{mood} {energy} {moodhist}")
@@ -85,8 +85,8 @@ class GHPsycho(QObject):
         fig.suptitle("Mood and Energy", size=20)
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
-        image = "data:image/svg+xml;base64," + \
-            base64.b64encode(holder.getvalue()).decode()
+        decoded_holder = base64.b64encode(holder.getvalue()).decode()
+        image = f"data:image/svg+xml;base64,{decoded_holder}"
 
         holder.close()
         return image
@@ -105,6 +105,6 @@ class GHPsycho(QObject):
     # in the main bio screen.
     mood = Property("QVariantList", getMood, setMood, notify=moodChanged)
 
-    # Property to retrieve the plot of the Mood and Energy 
+    # Property to retrieve the plot of the Mood and Energy
     moodplot = Property(str, moodplot, setMood, notify=moodChanged)
 

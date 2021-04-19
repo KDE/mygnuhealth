@@ -45,8 +45,7 @@ class GHBol(QObject):
             date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
             pol['date'] = date_repr
-            pol['domain'] = f"{pageoflife['domain']}\
-                \n{pageoflife['context']}"
+            pol['domain'] = f"{pageoflife['domain']}\n{pageoflife['context']}"
 
             summ = ''
             msr = ''
@@ -59,58 +58,60 @@ class GHBol(QObject):
 
             if ('measurements' in pageoflife.keys() and
                     pageoflife['measurements']):
+                measure_d = {
+                    "bg": ("Blood glucose", "mg/dl"),
+                    "hr": ("Heart rate", "bpm"),
+                    "wt": ("Weight", "kg"),
+                    "bmi": ("BMI", "kg/m2"),
+                    "osat": ("osat", "%"),
+                }
+
                 for measure in pageoflife['measurements']:
-                    if 'bg' in measure.keys():
-                        msr = msr + f"Blood glucose: {measure['bg']} mg/dl\n"
-                    if 'hr' in measure.keys():
-                        msr = msr + f"Heart rate: {measure['hr']} bpm\n"
-                    if 'bp' in measure.keys():
-                        msr = msr + \
-                            f"BP: {measure['bp']['systolic']} / " \
-                            f"{measure['bp']['diastolic']} mmHg\n"
-                    if 'wt' in measure.keys():
-                        msr = msr + f"Weight: {measure['wt']} kg\n"
+                    measure_keys = measure.keys()
 
-                    if 'bmi' in measure.keys():
-                        msr = msr + f"BMI: {measure['bmi']} kg/m2\n"
+                    for key, value in measure_d.items():
+                        if key in measure_keys:
+                            msr = f"{msr}{value[0]}: {measure[key]} {value[1]}\n"
 
-                    if 'osat' in measure.keys():
-                        msr = msr + f"osat: {measure['osat']} %\n"
+                    if 'bp' in measure_keys:
+                        msr = (f"{msr}"
+                               f"BP: {measure['bp']['systolic']} / "
+                               f"{measure['bp']['diastolic']} mmHg\n")
 
-                    if 'mood_energy' in measure.keys():
-                        msr = msr + \
-                            f"mood: {measure['mood_energy']['mood']} " \
-                            f"energy: {measure['mood_energy']['energy']}\n"
+                    if 'mood_energy' in measure_keys:
+                        msr = (f"{msr}"
+                               f"mood: {measure['mood_energy']['mood']} "
+                               f"energy: {measure['mood_energy']['energy']}\n")
                     summ = summ + msr
 
                 # Include the Lifestyle measures
                 if (pageoflife['domain'] == 'lifestyle'):
+                    measurements = pageoflife["measurements"][0]
+                    measurements_keys = measurements.keys()
+
                     # Show / format the Physical activity values ("pa" key)
-                    if 'pa' in pageoflife['measurements'][0].keys():
-                        for key, value in \
-                                pageoflife['measurements'][0]['pa'].items():
-                            summ = summ + f"{key}: {value}\n"
+                    if 'pa' in measurements_keys:
+                        for key, value in measurements['pa'].items():
+                            summ = f"{summ}{key}: {value}\n"
 
                     # Show / format the nutrition values ("nutrition" key)
-                    if 'nutrition' in pageoflife['measurements'][0].keys():
-                        for key, value in \
-                                pageoflife['measurements'][0]['nutrition'].items():
-                            summ = summ + f"{key}: {value}\n"
+                    if 'nutrition' in measurements_keys:
+                        for key, value in measurements['nutrition'].items():
+                            summ = f"{summ}{key}: {value}\n"
 
                     # Show / format the sleep values ("sleep" key)
-                    if 'sleep' in pageoflife['measurements'][0].keys():
-                        for key, value in \
-                                pageoflife['measurements'][0]['sleep'].items():
-                            summ = summ + f"{key}: {value}\n"
+                    if 'sleep' in measurements_keys:
+                        for key, value in measurements['sleep'].items():
+                            summ = f"{summ}{key}: {value}\n"
 
 
             if ('genetic_info' in pageoflife.keys() and
                     pageoflife['genetic_info']):
                 genetics = pageoflife['genetic_info']
-                summ = summ + f'{genetics}\n'
+                summ = f'{summ}{genetics}\n'
 
             if details:
-                summ = summ + f'{details}\n'
+                summ = f'{summ}{details}\n'
 
             pol['summary'] = summ
 
@@ -157,7 +158,7 @@ class GHBol(QObject):
         for pol in book:
             timestamp = pol['page_date']
             node = pol['node']
-            id = pol['page']
+            page_id = pol['page']
             synced = pol['fsynced']
 
             # Only sync those pages that are not private
@@ -168,9 +169,9 @@ class GHBol(QObject):
                                      'node': node}
 
                     pol['creation_info'] = creation_info
-                    pol['id'] = id
+                    pol['id'] = page_id
 
-                    url = f"{protocol}://{server}:{port}/pols/{user}/{id}"
+                    url = f"{protocol}://{server}:{port}/pols/{user}/{page_id}"
 
                     pol['fsynced'] = True
                     send_data = requests.request('POST', url,
@@ -181,14 +182,14 @@ class GHBol(QObject):
                         print("Page successfully sent to the GH Federation",
                               send_data.status_code)
                         # Update page of life sync status locally to true
-                        print("Setting fsynced to True on page... ", id)
+                        print("Setting fsynced to True on page... ", page_id)
                         Page = Query()
-                        booktable.update({'fsynced': True}, Page.page == id)
-                    
+                        booktable.update({'fsynced': True}, Page.page == page_id)
+
                     else:
                         print("Error sending the page.",
                               send_data.status_code)
-                        
+
                 else:
                     if privacy:
                         print("This page is private, not syncing", pol)

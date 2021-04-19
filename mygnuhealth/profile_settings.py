@@ -10,8 +10,8 @@ from PySide2.QtCore import QObject, Signal, Slot, Property
 from tinydb import TinyDB, Query
 import bcrypt
 from mygnuhealth.myghconf import dbfile
-from mygnuhealth.core import get_personal_key, get_user_profile, \
-    get_federation_account
+from mygnuhealth.core import (get_personal_key, get_user_profile,
+                              get_federation_account)
 
 
 class ProfileSettings(QObject):

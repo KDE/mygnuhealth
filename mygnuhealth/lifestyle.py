@@ -85,8 +85,8 @@ class GHLifestyle(QObject):
         fig.suptitle("Time (minutes)", size=20)
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
-        image = "data:image/svg+xml;base64," + \
-            base64.b64encode(holder.getvalue()).decode()
+        decoded_holder = base64.b64encode(holder.getvalue()).decode()
+        image = f"data:image/svg+xml;base64,{decoded_holder}
 
         holder.close()
         return image
@@ -146,7 +146,7 @@ class GHLifestyle(QObject):
             nutri_calevening.append(element['calevening'])
             nutri_caltotal.append(element['caltotal'])
             # End of block
-            
+
             lastreading = date_repr
 
         fig, axs = plt.subplots(4)
@@ -166,8 +166,8 @@ class GHLifestyle(QObject):
         fig.suptitle("Calories", size=20)
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
-        image = "data:image/svg+xml;base64," + \
-            base64.b64encode(holder.getvalue()).decode()
+        decoded_holder = base64.b64encode(holder.getvalue()).decode()
+        image = f"data:image/svg+xml;base64,{decoded_holder}"
 
         holder.close()
         return image
@@ -232,8 +232,8 @@ class GHLifestyle(QObject):
 
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
-        image = "data:image/svg+xml;base64," + \
-            base64.b64encode(holder.getvalue()).decode()
+        decoded_holder = base64.b64encode(holder.getvalue()).decode()
+        image = f"data:image/svg+xml;base64,{decoded_holder}"
 
         holder.close()
         return image

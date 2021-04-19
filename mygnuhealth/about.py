@@ -23,15 +23,15 @@ __download_url__ = 'https://ftp.gnu.org/gnu/health'
 __license__ = "GPL v3+"
 __copyright__ = "Copyright 2008-2021 GNU Solidario"
 
-__thanks__ = "Axel Braun\n" \
-             "Paul Brown\n" \
-             "Yuri Chornoivan\n" \
-             "Leonardo D'Acchille\n" \
-             "Marco Gebhardt\n" \
-             "Riccardo Iaconelli\n" \
-             "Cristian Maureira-Fredes\n" \
-             "Karl Ove Hufthammer\n" \
-             "Aleix Pol\n" \
-             "Carl Schwan\n" \
-             "Pino Toscano\n" \
-             "Niccolò Venerandi"
+__thanks__ = ("Axel Braun\n"
+             "Paul Brown\n"
+             "Yuri Chornoivan\n"
+             "Leonardo D'Acchille\n"
+             "Marco Gebhardt\n"
+             "Riccardo Iaconelli\n"
+             "Cristian Maureira-Fredes\n"
+             "Karl Ove Hufthammer\n"
+             "Aleix Pol\n"
+             "Carl Schwan\n"
+             "Pino Toscano\n"
+             "Niccolò Venerandi")

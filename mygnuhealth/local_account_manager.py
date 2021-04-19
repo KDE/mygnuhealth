@@ -90,7 +90,7 @@ class LocalAccountManager(QObject):
             logging.info("Initializing credentials table")
             credentialstable.insert({'personal_key': encrypted_key})
 
-        logging.info("Initialized personal key: {}".format(encrypted_key))
+        logging.info(f"Initialized personal key: {encrypted_key}")
         return encrypted_key
 
     def get_username(self):
