@@ -74,12 +74,7 @@ Signing in to MyGNUHealth
 -------------------------
 |LoginScreen|
 
-The first time you use the application, the initial key is *mygh*
-(no quotes).
 
-
-.. Note:: For security reasons, you're strongly adviced to change the personal
-    key once you log in. You can change your key in the **profile setttings**
 
 
 The main screen

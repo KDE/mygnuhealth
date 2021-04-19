@@ -41,7 +41,6 @@ Kirigami.GlobalDrawer {
             icon.name: "help-about"
             onTriggered: {
                 pageStack.push(Qt.resolvedUrl("PageAbout.qml"))
-                root.isLoggedIn = false;
             }
             enabled: true
         }
