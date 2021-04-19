@@ -7,8 +7,8 @@
 
 import datetime
 from uuid import uuid4
-from PySide2.QtCore import QObject, Signal, Slot, Property
-from tinydb import TinyDB, Query
+from PySide2.QtCore import QObject, Signal, Slot
+from tinydb import TinyDB
 from mygnuhealth.myghconf import dbfile
 from mygnuhealth.core import PageOfLife
 
@@ -20,7 +20,6 @@ class GHPhysicalActivity(QObject):
     def insert_values(self, aerobic, anaerobic, steps):
         physical_activity = self.db.table('physicalactivity')
         current_date = datetime.datetime.now().isoformat()
-        pamon = stepsmon = False  # Init to false 
         domain = 'lifestyle'
         context = 'physical_activity'
 

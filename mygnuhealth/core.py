@@ -29,7 +29,7 @@
 import datetime
 import dateutil.parser
 import os
-from tinydb import TinyDB, Query
+from tinydb import TinyDB
 from mygnuhealth.myghconf import dbfile, bolfile
 
 ''' Import the Natural variants database from the data
@@ -193,7 +193,7 @@ class PageOfLife():
 
         Parameters
         ----------
-        pol_vals: Takes all the values from the page of life, which is a 
+        pol_vals: Takes all the values from the page of life, which is a
         dictionary. Some of them:
             domain: the domain (medical, psycho, social)
             context: the context within a domain (possible contexts are listed
@@ -227,7 +227,7 @@ class PageOfLife():
         page_of_life['domain'] = domain
 
         page_of_life['context'] = context
-    
+
         if ('relevance' in pol_vals.keys()):
             page_of_life['relevance'] = pol_vals['relevance']
 
@@ -248,7 +248,7 @@ class PageOfLife():
         # GNU Health Federation HIS (Health Information System)
         page_of_life['fsynced'] = False
         # create the new PoL entry
-        
+
         print("New Page of Life:", page_of_life)
         data = page_of_life
         poltable.insert(data)
@@ -257,4 +257,3 @@ class PageOfLife():
         #  {'bp': {'systolic': 116, 'diastolic': 79}, 't': 36.0, 'hr': 756, '
         #    rr': 16,
         #  'osat': 99, 'wt': 68.0, 'ht': 168.0, 'bmi': 24.09, 'bg': 116}
-

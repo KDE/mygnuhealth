@@ -5,9 +5,6 @@
 #   Please read the COPYRIGHT and LICENSE files of the package
 ####################################################################
 import os
-import sys
-import bcrypt
-import getpass
 from pathlib import Path
 import configparser
 from mygnuhealth import about

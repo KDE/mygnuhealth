@@ -5,13 +5,10 @@
 #   Please read the COPYRIGHT and LICENSE files of the package
 ####################################################################
 
-import datetime
 from PySide2.QtCore import QObject, Signal, Slot, Property
-from tinydb import TinyDB, Query
-import bcrypt
+from tinydb import TinyDB
 from mygnuhealth.myghconf import dbfile
 from mygnuhealth.fedlogin import test_federation_connection as fc
-import json
 
 
 class NetworkSettings(QObject):
@@ -20,7 +17,7 @@ class NetworkSettings(QObject):
         self.db = TinyDB(dbfile)
         self.fed_table = self.db.table('federation')
         self.fedinfo = {}
-        # Cast to dict the resulting tinydb.table.Document 
+        # Cast to dict the resulting tinydb.table.Document
         if (len(self.fed_table) > 0):
             self.fedinfo = dict(self.fed_table.all()[0])
 

@@ -30,7 +30,7 @@ import sys
 import os
 import dateutil.parser
 from PySide2.QtWidgets import QApplication
-from PySide2.QtCore import QObject, QUrl, Signal, Slot
+from PySide2.QtCore import QUrl
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 
 from mygnuhealth.myghconf import verify_installation_status
