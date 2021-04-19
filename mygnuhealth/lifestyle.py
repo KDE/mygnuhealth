@@ -79,7 +79,7 @@ class GHLifestyle(QObject):
         holder = io.BytesIO()
         fig.savefig(holder, format="svg")
         decoded_holder = base64.b64encode(holder.getvalue()).decode()
-        image = f"data:image/svg+xml;base64,{decoded_holder}
+        image = f"data:image/svg+xml;base64,{decoded_holder}"
 
         holder.close()
         return image
