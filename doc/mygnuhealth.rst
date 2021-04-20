@@ -80,7 +80,7 @@ You will be presented with the welcoming screen.
 
 Profile initialization
 ----------------------
-The very firt time MyGNUHealth is run, you need to enter very basic information
+The very first time MyGNUHealth is run, you need to enter very basic information
 about yourself. The date of birth, height and sex are the main parameters to 
 be included. They are used in medical contexts, so is important that you 
 fill them in. In this step, you will also set up your **personal key**

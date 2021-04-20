@@ -31,7 +31,7 @@ Technology
 ----------
 MyGNUHealth is intended for Libre operating systems. (BSD, GNU/Linux..)
 It uses the Qt and Kirigami frameworks, and can be installed in desktops
-(KDE Plasma) and mobile devices (eg, PinePhone).
+(KDE Plasma) and mobile devices (e.g., PinePhone).
 
 .. image:: https://www.gnuhealth.org/downloads/artwork/mygnuhealth/PinePhone_800.png
 
@@ -91,7 +91,7 @@ the health of your country or region. We want the project to be a success,
 and since our resources are limited, we need to work together to make a great
 and sustainable project.
 
-In order to be elegible, we need the following information from you,
+In order to be eligible, we need the following information from you,
 your NGO or government:
 
 * An introduction of the current needs
@@ -105,7 +105,7 @@ your NGO or government:
 We will do our best to help you out with the implementation and training
 for the local team, to build local capacity and make your project sustainable.
 
-Please contect us and we'll back to you as soon as possible::
+Please contact us and we'll back to you as soon as possible::
 
  Dr. Luis Falcón, MD, MSc
  Author and project leader
