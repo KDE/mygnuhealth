@@ -52,11 +52,13 @@ class GHBol(QObject):
             title = pageoflife['summary']
             details = pageoflife['info']
 
+            mvals = pageoflife['measurements']
+
             if title:
                 summ = f'{title}\n'
 
             if ('measurements' in pageoflife.keys() and
-                    pageoflife['measurements']):
+                    mvals):
                 measure_d = {
                     "bg": ("Blood glucose", "mg/dl"),
                     "hr": ("Heart rate", "bpm"),
@@ -65,7 +67,7 @@ class GHBol(QObject):
                     "osat": ("osat", "%"),
                 }
 
-                for measure in pageoflife['measurements']:
+                for measure in mvals:
                     measure_keys = measure.keys()
 
                     for key, value in measure_d.items():
@@ -73,20 +75,22 @@ class GHBol(QObject):
                             msr = (f"{msr}{value[0]}: {measure[key]} "
                                    f"{value[1]}\n")
 
-                    if 'bp' in measure_keys:
-                        msr = (f"{msr}"
-                               f"BP: {measure['bp']['systolic']} / "
-                               f"{measure['bp']['diastolic']} mmHg\n")
+                if 'bp' in mvals[0].keys():
 
-                    if 'mood_energy' in measure_keys:
-                        msr = (f"{msr}"
-                               f"mood: {measure['mood_energy']['mood']} "
-                               f"energy: {measure['mood_energy']['energy']}\n")
-                    summ = summ + msr
+                    msr = (f"{msr}"
+                           f"BP: {mvals[0]['bp']['systolic']} / "
+                           f"{mvals[0]['bp']['diastolic']} mmHg\n")
+
+                if 'mood_energy' in mvals[0].keys():
+                    msr = (f"{msr}"
+                           f"mood: {mvals[0]['mood_energy']['mood']} "
+                           f"energy: {mvals[0]['mood_energy']['energy']}\n")
+
+                summ = summ + msr
 
                 # Include the Lifestyle measures
                 if (pageoflife['domain'] == 'lifestyle'):
-                    measurements = pageoflife["measurements"][0]
+                    measurements = mvals[0]
                     measurements_keys = measurements.keys()
 
                     # Show / format the Physical activity values ("pa" key)
@@ -182,7 +186,8 @@ class GHBol(QObject):
                         # Update page of life sync status locally to true
                         print("Setting fsynced to True on page... ", page_id)
                         Page = Query()
-                        booktable.update({'fsynced': True}, Page.page == page_id)
+                        booktable.update({'fsynced': True},
+                                         Page.page == page_id)
 
                     else:
                         print("Error sending the page.",
