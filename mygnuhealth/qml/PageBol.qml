@@ -61,29 +61,20 @@ Kirigami.Page {
 
             RowLayout {
                 spacing: 5
-                Layout.fillWidth: true
-                Column{
-                    width: bolscroll.width * 0.25
-                    Layout.fillWidth: true
+                TextArea {
+                    text: ghbol.book[index].date
+                    wrapMode: Text.WordWrap
+                    color: "steelblue"
+                    }
 
-                    Text {
-                        text: ghbol.book[index].date
-                        color: "steelblue"
-                    }
-                }
-                Column{
-                    width: bolscroll.width * 0.25
+                TextArea {
                     Layout.fillWidth: true
-                    Text {
-                        text: ghbol.book[index].domain
-                    }
-                }
-                Column {
-                    width: bolscroll.width * 0.75
-                    Text {
-                        text: ghbol.book[index].summary
-                        wrapMode: Text.WordWrap
-                    }
+                    readOnly: true
+                    textFormat: TextEdit.RichText
+                    property var header: "<b>%1</b><br/>".arg(ghbol.book[index].domain)
+                    width: 200
+                    text: header + ghbol.book[index].summary
+                    wrapMode: Text.WordWrap
                 }
             }
         }

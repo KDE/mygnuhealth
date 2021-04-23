@@ -43,7 +43,7 @@ class GHBol(QObject):
             date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
             pol['date'] = date_repr
-            pol['domain'] = (f"{pageoflife['domain']}\n"
+            pol['domain'] = (f"{pageoflife['domain']} "
                              f"({pageoflife['context']})")
 
             summ = ''
@@ -73,18 +73,18 @@ class GHBol(QObject):
                     for key, value in measure_d.items():
                         if key in measure_keys:
                             msr = (f"{msr}{value[0]}: {measure[key]} "
-                                   f"{value[1]}\n")
+                                   f"{value[1]}<br/>")
 
                 if 'bp' in mvals[0].keys():
 
                     msr = (f"{msr}"
                            f"BP: {mvals[0]['bp']['systolic']} / "
-                           f"{mvals[0]['bp']['diastolic']} mmHg\n")
+                           f"{mvals[0]['bp']['diastolic']} mmHg<br/>")
 
                 if 'mood_energy' in mvals[0].keys():
                     msr = (f"{msr}"
                            f"mood: {mvals[0]['mood_energy']['mood']} "
-                           f"energy: {mvals[0]['mood_energy']['energy']}\n")
+                           f"energy: {mvals[0]['mood_energy']['energy']}<br/>")
 
                 summ = summ + msr
 
@@ -96,25 +96,25 @@ class GHBol(QObject):
                     # Show / format the Physical activity values ("pa" key)
                     if 'pa' in measurements_keys:
                         for key, value in measurements['pa'].items():
-                            summ = f"{summ}{key}: {value}\n"
+                            summ = f"{summ}{key}: {value}<br/>"
 
                     # Show / format the nutrition values ("nutrition" key)
                     if 'nutrition' in measurements_keys:
                         for key, value in measurements['nutrition'].items():
-                            summ = f"{summ}{key}: {value}\n"
+                            summ = f"{summ}{key}: {value}<br/>"
 
                     # Show / format the sleep values ("sleep" key)
                     if 'sleep' in measurements_keys:
                         for key, value in measurements['sleep'].items():
-                            summ = f"{summ}{key}: {value}\n"
+                            summ = f"{summ}{key}: {value}<br/>"
 
             if ('genetic_info' in pageoflife.keys() and
                     pageoflife['genetic_info']):
                 genetics = pageoflife['genetic_info']
-                summ = f'{summ}{genetics}\n'
+                summ = f'{summ}{genetics}<br/>'
 
             if details:
-                summ = f'{summ}{details}\n'
+                summ = f'{summ}{details}<br/>'
 
             pol['summary'] = summ
             book.append(pol)
