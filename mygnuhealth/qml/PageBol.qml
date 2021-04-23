@@ -61,10 +61,9 @@ Kirigami.Page {
 
             RowLayout {
                 spacing: 5
-                TextArea {
+                Text {
                     text: ghbol.book[index].date
-                    wrapMode: Text.WordWrap
-                    color: "steelblue"
+                    color: "#60b6c2"
                     }
 
                 TextArea {
