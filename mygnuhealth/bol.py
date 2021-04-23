@@ -43,7 +43,8 @@ class GHBol(QObject):
             date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
 
             pol['date'] = date_repr
-            pol['domain'] = f"{pageoflife['domain']}\n{pageoflife['context']}"
+            pol['domain'] = (f"{pageoflife['domain']}\n"
+                             f"({pageoflife['context']})")
 
             summ = ''
             msr = ''
@@ -69,7 +70,8 @@ class GHBol(QObject):
 
                     for key, value in measure_d.items():
                         if key in measure_keys:
-                            msr = f"{msr}{value[0]}: {measure[key]} {value[1]}\n"
+                            msr = (f"{msr}{value[0]}: {measure[key]} "
+                                   f"{value[1]}\n")
 
                     if 'bp' in measure_keys:
                         msr = (f"{msr}"
@@ -111,7 +113,6 @@ class GHBol(QObject):
                 summ = f'{summ}{details}\n'
 
             pol['summary'] = summ
-
             book.append(pol)
         return book
 

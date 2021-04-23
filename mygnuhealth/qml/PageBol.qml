@@ -2,13 +2,17 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 import org.kde.kirigami 2.5 as Kirigami
-import Qt.labs.qmlmodels 1.0
 import GHBol 0.1
 
 
-Kirigami.ScrollablePage {
+Kirigami.Page {
     id: bolpage
     title: qsTr("My Book of Life")
+
+    GHBol {
+        // GHBol object registered at mygh.py
+        id: ghbol
+    }
 
     header: RowLayout {
         id:poldomains
@@ -37,31 +41,50 @@ Kirigami.ScrollablePage {
         }
     }
 
-    TableView {
-        id: bolview
-        columnSpacing: 1
-        rowSpacing: 1
-        boundsBehavior: Flickable.StopAtBounds
+    ScrollView {
+        id: bolscroll
+        contentHeight: parent.height * 0.9
+        contentWidth: parent.width
 
-        GHBol {
-            // GHBol object registered at mygh.py
-            id: ghbol
+        ListView {
+            id: bolview
+            anchors.fill: parent
+            anchors.margins: 5
+            clip: true
+            model: ghbol.book
+            delegate: bookDelegate
+            spacing: 3
         }
 
-        model: TableModel {
-            TableModelColumn { display: "date" }
-            TableModelColumn { display: "domain" }
-            TableModelColumn { display: "summary" }
+        Component {
+            id: bookDelegate
 
-            // Add rows as per each page of life
-            rows: ghbol.book
-        }
+            RowLayout {
+                spacing: 5
+                Layout.fillWidth: true
+                Column{
+                    width: bolscroll.width * 0.25
+                    Layout.fillWidth: true
 
-        delegate: Rectangle {
-            implicitWidth: 160
-            implicitHeight: 40
-            Label {
-                text: model.display
+                    Text {
+                        text: ghbol.book[index].date
+                        color: "steelblue"
+                    }
+                }
+                Column{
+                    width: bolscroll.width * 0.25
+                    Layout.fillWidth: true
+                    Text {
+                        text: ghbol.book[index].domain
+                    }
+                }
+                Column {
+                    width: bolscroll.width * 0.75
+                    Text {
+                        text: ghbol.book[index].summary
+                        wrapMode: Text.WordWrap
+                    }
+                }
             }
         }
     }
