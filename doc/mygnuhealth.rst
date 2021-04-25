@@ -131,9 +131,28 @@ main components:
 
 The Menu (Drawer)
 -----------------
+|Menu| 
 
-User profile
-~~~~~~~~~~~~
+You will find the main menu on the upper left corner. 
+The main entries are:
+
+* Profile Settings: Updates your user information and 
+* Network Settings: Tests the connection to the GNU Health Federation
+* Logout: Sign out from MyGNUHealth and takes you to the initial screen.
+* About page: Displays the **version** and credits.
+
+
+|MenuActive|
+
+Most of the items, except the "About" entry can only be accesible once 
+you have logged into the application. Inactive entries are in grey.
+
+
+Once you signed it, all the menu entries are enabled, as you can see from the
+previous image.
+
+Profile Settings
+~~~~~~~~~~~~~~~~
 
 Network Settings (Federation)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -187,6 +206,8 @@ Biographical Information
 
 .. |InitialScreen| image:: ./images/initial_screen.png
 .. |MainScreen| image:: ./images/main_screen.png
+.. |Menu| image:: ./images/menu_global_drawer.png
+.. |MenuActive| image:: ./images/menu_global_drawer_active.png
 .. |ProfileInitialization| image:: ./images/user_profile_initialization.png
 .. |MyGNUHealth| image:: ./images/mygnuhealth.png
 .. |LoginScreen| image:: ./images/login_screen.png
