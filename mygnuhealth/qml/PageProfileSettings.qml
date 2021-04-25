@@ -26,11 +26,22 @@ Kirigami.Page {
     }
 
 
-    Kirigami.FormLayout {
-        id: content
-        anchors.fill: parent
+    ColumnLayout {
+        spacing: 20
+ 
+        RowLayout {
+            Layout.alignment: Qt.AlignHCenter
+            Image {
+                id: profileIcon
+                Layout.preferredWidth: 250
+                source: "../images/profile-icon.svg"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
 
         RowLayout {
+            Layout.alignment: Qt.AlignHCenter
+
             Label {
                 text: qsTr("Height")
             }
@@ -55,10 +66,8 @@ Kirigami.Page {
             }
         }
 
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-        }
         RowLayout {
+            Layout.alignment: Qt.AlignHCenter
             Label {
                 text: qsTr("Fed Acct")
             }
@@ -80,48 +89,65 @@ Kirigami.Page {
                 }
             }
         }
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-        }
 
-        TextField {
-            id: userPassword
+        ColumnLayout {
             Layout.alignment: Qt.AlignHCenter
-            placeholderText: qsTr("Current Key")
-            horizontalAlignment: TextInput.AlignHCenter
-            echoMode: TextInput.Password
-            Kirigami.FormData.label: qsTr("Personal key")
-        }
-
-        RowLayout {
+               
             TextField {
-                id: newPassword1
+                id: userPassword
                 Layout.alignment: Qt.AlignHCenter
-                placeholderText: qsTr("New Password")
+                placeholderText: qsTr("Current Personal Key")
                 horizontalAlignment: TextInput.AlignHCenter
                 echoMode: TextInput.Password
-                Kirigami.FormData.label: qsTr("New password")
-                focus: true
             }
-            TextField {
-                id: newPassword2
+
+            RowLayout {
                 Layout.alignment: Qt.AlignHCenter
-                placeholderText: qsTr("Repeat")
-                horizontalAlignment: TextInput.AlignHCenter
-                echoMode: TextInput.Password
-                Kirigami.FormData.label: qsTr("Repeat")
-                focus: true
+
+                TextField {
+                    id: newPassword1
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.preferredWidth: 100
+                    placeholderText: qsTr("New key")
+                    horizontalAlignment: TextInput.AlignHCenter
+                    echoMode: TextInput.Password
+                }
+                TextField {
+                    id: newPassword2
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.preferredWidth: 100
+                    placeholderText: qsTr("Repeat")
+                    horizontalAlignment: TextInput.AlignHCenter
+                    echoMode: TextInput.Password
+                }
+
+            }
+            Button {
+                id: buttonSetSettings
+                Layout.alignment: Qt.AlignHCenter
+                text: qsTr("Update Key")
+                flat: false
+                onClicked: {
+                    profile_settings.get_personalkey(userPassword.text,newPassword1.text,
+                                            newPassword2.text);
+                }
             }
         }
-        Button {
-            id: buttonSetSettings
-            Layout.alignment: Qt.AlignHCenter
-            text: qsTr("Update")
-            flat: false
-            onClicked: {
-                profile_settings.get_personalkey(userPassword.text,newPassword1.text,
-                                        newPassword2.text);
-            }
-        }
+        
+
     }
+    
+    footer: Rectangle{
+                id: rectfooter
+                width: 160
+                height: 40
+                Image {
+                    id: myghIcon
+                    anchors.centerIn: rectfooter
+                    source: "../images/myGH-horizontal-icon.svg"
+                    width: 160
+                    fillMode: Image.PreserveAspectFit
+                }
+            }
+
 }

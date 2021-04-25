@@ -242,9 +242,9 @@ Kirigami.ScrollablePage {
                 Kirigami.PasswordField {
                     id: txtKey
                     Layout.alignment: Qt.AlignHCenter
-                    focus: true
                     horizontalAlignment: TextInput.AlignHCenter
                     onAccepted: accountManager.login(txtKey.text.trim())
+                    focus: true
                 }
                 Button {
                     id: buttonKey
