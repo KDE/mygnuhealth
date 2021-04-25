@@ -153,6 +153,26 @@ previous image.
 
 Profile Settings
 ~~~~~~~~~~~~~~~~
+In the profile settings page you can set or update the information related to
+your height, Federation account (if you have one) and update your personal
+key (password).
+
+|ProfileSettings|
+
+It's important that you set your **height**. It will be used to calculate your
+current Body Mass Index (BMI) any time you enter your weight in the health
+tracker.
+
+The height is shown in centimeters, so "178" corresponds to "1.78 m"
+
+The **Federation account** is a unique ID that identifies you within a 
+*GNU Health Federation* . If your country, province or health professional are
+part of the GNU Health Federation, then you can share information with them
+in real time.
+The GNU Health Federation is revolutionary. It connects individuals with their
+health professionals, health institutions, laboratories, research institutions,
+social services and other entities related to the system of health.
+
 
 Network Settings (Federation)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -206,8 +226,9 @@ Biographical Information
 
 .. |InitialScreen| image:: ./images/initial_screen.png
 .. |MainScreen| image:: ./images/main_screen.png
-.. |Menu| image:: ./images/menu_global_drawer.png
-.. |MenuActive| image:: ./images/menu_global_drawer_active.png
 .. |ProfileInitialization| image:: ./images/user_profile_initialization.png
 .. |MyGNUHealth| image:: ./images/mygnuhealth.png
 .. |LoginScreen| image:: ./images/login_screen.png
+.. |Menu| image:: ./images/menu_global_drawer.png
+.. |MenuActive| image:: ./images/menu_global_drawer_active.png
+.. |ProfileSettings| image:: ./images/profile_settings.png
