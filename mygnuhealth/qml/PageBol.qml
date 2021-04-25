@@ -78,4 +78,18 @@ Kirigami.Page {
             }
         }
     }
+
+   footer: Rectangle{
+            id: rectfooter
+            width: 160
+            height: 40
+            Image {
+                id: myghIcon
+                anchors.centerIn: rectfooter
+                source: "../images/myGH-horizontal-icon.svg"
+                width: 160
+                fillMode: Image.PreserveAspectFit
+            }
+        }
+    
 }
