@@ -54,11 +54,11 @@ Kirigami.Page {
 
         ListView {
             id: bolview
-            anchors.margins: 5
+            anchors.margins: 3
+            spacing: 10
             clip: true
             model: ghbol.book
             delegate: bookDelegate
-            spacing: 3
         }
 
         Component {
@@ -90,6 +90,7 @@ Kirigami.Page {
                         color: "#d9e7ea"
                         Text {
                             id: pageDescription
+                            color: "#108599"
                             leftPadding: 10
                             topPadding: 10
                             textFormat: TextEdit.RichText
