@@ -54,8 +54,7 @@ Kirigami.Page {
 
         ListView {
             id: bolview
-            anchors.margins: 3
-            spacing: 10
+            spacing: 6
             clip: true
             model: ghbol.book
             delegate: bookDelegate
@@ -65,7 +64,12 @@ Kirigami.Page {
             id: bookDelegate
 
             ColumnLayout {
-                spacing: 15
+                Rectangle {
+                    Layout.preferredWidth: bolpage.width
+                    Layout.preferredHeight: 1
+                    color: "#b9dadf"
+                }
+
                 RowLayout {
                     id: pageoflifeRow
                     Layout.preferredWidth: bolpage.width * 0.2
