@@ -16,33 +16,36 @@ Kirigami.Page {
 
     header: RowLayout {
         id:poldomains
-        height: Kirigami.Units.gridUnit * 3
-        Layout.preferredWidth: bolpage.width
-        spacing: Kirigami.Units.smallSpcing
-        Layout.alignment: Qt.AlignCenter
-        Layout.fillWidth: true
-
-        ItemDelegate {
-            id: addpageoflife
-            Layout.preferredWidth: 50
+        anchors.margins: 10
+        Rectangle {
+            color: "transparent"
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: 300
             Layout.preferredHeight: 50
-            Layout.alignment: Qt.AlignCenter
-            onClicked: pageStack.push(Qt.resolvedUrl("PageofLife.qml"))
             Image {
-                anchors.fill: parent
-                source: "../images/new_page_of_life-icon.svg"
+                id: newpolicon
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                height: parent.height * 0.9
                 fillMode: Image.PreserveAspectFit
+                source: "../images/new_page_of_life-icon.svg"
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: pageStack.push(Qt.resolvedUrl("PageofLife.qml"))
+                }
             }
-        }
-        TextField {
-            id: fedkey
-            Layout.preferredWidth: 250
-            Layout.alignment: Qt.AlignCenter
-            enabled: ghbol.sync_status
-            placeholderText: qsTr("Enter Federation key to sync")
-            horizontalAlignment: TextInput.AlignHCenter
-            echoMode: TextInput.Password
-            onAccepted: ghbol.sync_book(fedkey.text)
+
+            TextField {
+                id: fedkey
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+
+                enabled: ghbol.sync_status
+                placeholderText: qsTr("Enter Federation key to sync")
+                horizontalAlignment: TextInput.AlignHCenter
+                echoMode: TextInput.Password
+                onAccepted: ghbol.sync_book(fedkey.text)
+            }
         }
     }
 
