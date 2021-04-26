@@ -17,13 +17,16 @@ Kirigami.Page {
     header: RowLayout {
         id:poldomains
         height: Kirigami.Units.gridUnit * 3
-        width: bolpage.width
+        Layout.preferredWidth: bolpage.width
         spacing: Kirigami.Units.smallSpcing
+        Layout.alignment: Qt.AlignCenter
+        Layout.fillWidth: true
 
         ItemDelegate {
             id: addpageoflife
-            Layout.fillHeight: true
-            Layout.fillWidth: true
+            Layout.preferredWidth: 50
+            Layout.preferredHeight: 50
+            Layout.alignment: Qt.AlignCenter
             onClicked: pageStack.push(Qt.resolvedUrl("PageofLife.qml"))
             Image {
                 anchors.fill: parent
@@ -33,6 +36,8 @@ Kirigami.Page {
         }
         TextField {
             id: fedkey
+            Layout.preferredWidth: 250
+            Layout.alignment: Qt.AlignCenter
             enabled: ghbol.sync_status
             placeholderText: qsTr("Enter Federation key to sync")
             horizontalAlignment: TextInput.AlignHCenter
@@ -43,12 +48,12 @@ Kirigami.Page {
 
     ScrollView {
         id: bolscroll
-        contentHeight: parent.height * 0.9
+        contentHeight: parent.height
         contentWidth: parent.width
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 
         ListView {
             id: bolview
-            anchors.fill: parent
             anchors.margins: 5
             clip: true
             model: ghbol.book
@@ -59,21 +64,41 @@ Kirigami.Page {
         Component {
             id: bookDelegate
 
-            RowLayout {
-                spacing: 5
-                Text {
-                    text: ghbol.book[index].date
-                    color: "#60b6c2"
+            ColumnLayout {
+                spacing: 15
+                RowLayout {
+                    id: pageoflifeRow
+                    Layout.preferredWidth: bolpage.width * 0.2
+                    Rectangle {
+                        Layout.preferredWidth: 120
+                        Layout.preferredHeight: pageDescription.height
+                        color: "transparent"
+                        Text {
+                            // Date of the page of life
+                            text: ghbol.book[index].date
+                            anchors.verticalCenter: parent.verticalCenter
+                            color: "#60b6c2"
+                            font.pointSize: 10
+                            font.bold: true
+                        }
                     }
 
-                TextArea {
-                    Layout.fillWidth: true
-                    readOnly: true
-                    textFormat: TextEdit.RichText
-                    property var header: "<b>%1</b><br/>".arg(ghbol.book[index].domain)
-                    width: 200
-                    text: header + ghbol.book[index].summary
-                    wrapMode: Text.WordWrap
+                    Rectangle {
+                        Layout.preferredWidth: bolpage.width * 0.8
+                        Layout.preferredHeight: pageDescription.height
+                        Layout.minimumHeight: 75
+                        color: "#d9e7ea"
+                        Text {
+                            id: pageDescription
+                            leftPadding: 10
+                            topPadding: 10
+                            textFormat: TextEdit.RichText
+                            property var header: "<b>%1</b><br/>".arg(ghbol.book[index].domain)
+                            width: 200
+                            text: header + ghbol.book[index].summary
+                            wrapMode: Text.WordWrap
+                        }
+                    }
                 }
             }
         }

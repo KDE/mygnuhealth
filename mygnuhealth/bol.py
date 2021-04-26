@@ -40,7 +40,7 @@ class GHBol(QObject):
             pol = {}
             dateobj = datefromisotz(pageoflife['page_date'])
             # Use a localized and easy to read date format
-            date_repr = dateobj.strftime("%a, %b %d '%y - %H:%M")
+            date_repr = dateobj.strftime("%a, %b %d '%y\n%H:%M")
 
             pol['date'] = date_repr
             pol['domain'] = (f"{pageoflife['domain']} "
@@ -83,7 +83,7 @@ class GHBol(QObject):
 
                 if 'mood_energy' in mvals[0].keys():
                     msr = (f"{msr}"
-                           f"mood: {mvals[0]['mood_energy']['mood']} "
+                           f"mood: {mvals[0]['mood_energy']['mood']}<br/>"
                            f"energy: {mvals[0]['mood_energy']['energy']}<br/>")
 
                 summ = summ + msr
