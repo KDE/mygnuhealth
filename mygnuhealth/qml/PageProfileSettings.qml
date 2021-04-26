@@ -43,7 +43,7 @@ Kirigami.Page {
             Layout.alignment: Qt.AlignHCenter
 
             Label {
-                text: qsTr("Height")
+                text: qsTr("Height (cm)")
             }
             SpinBox {
                 id: heightspin
