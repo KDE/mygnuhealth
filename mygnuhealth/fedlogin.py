@@ -18,17 +18,22 @@ def test_federation_connection(protocol, host, port, acct, passwd):
 
     try:
         conn = requests.get(url, auth=(acct, passwd), verify=False)
+        # If there is an error, raise the exception
+        conn.raise_for_status()
 
-    except Exception as e:
+    # Connection / Network errors
+    except requests.exceptions.ConnectionError as e:
         print(f"Connection error: {e}")
         login_status = -2
+
+    # Catch HTTP exceptions, including unauthorized (401) and (404)
+    except requests.exceptions.HTTPError as e:
+        print(f"HTPP error: {e}")
+        login_status = -1
 
     if conn:
         print("***** Connection to Thalamus Server OK !******")
         login_status = 0
-    else:
-        print("##### Wrong credentials ####")
-        login_status = -1
 
-    print(login_status)
     return login_status
+
