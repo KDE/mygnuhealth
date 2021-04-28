@@ -109,8 +109,6 @@ Signing in to MyGNUHealth
 |LoginScreen|
 
 
-
-
 The main screen
 ---------------
 |MainScreen|
@@ -176,6 +174,31 @@ social services and other entities related to the system of health.
 
 Network Settings (Federation)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MyGNUHealth can work in an autonomous way, that is, without sharing information, or
+integrated in the **GNU Health Federation**.
+If you choose to integrate yourself with the system of health and your healthcare
+professionals, then MyGNUHealth will be able to share the information that with them.
+
+|NetworkSettings|
+
+Your health center will provide you with all the required information to integrate to
+the GNU Health Federation. The information required is:
+
+* Thalamus server Information : protocol, server name and port
+* Federation Account: An account that uniquely identifies you in the Federation.
+* Account password
+
+Once you have entered all the information, you can test the network and credentials by
+pressing the "Test connection" button.
+
+.. list-table::
+
+    * - |ConnectionOK|
+        Connection test OK
+      - |InvalidCredentials|
+        Wrong Credentials
+      - |ConnectionError|
+        Network Error
 
 Logout
 ~~~~~~
@@ -232,3 +255,10 @@ Biographical Information
 .. |Menu| image:: ./images/menu_global_drawer.png
 .. |MenuActive| image:: ./images/menu_global_drawer_active.png
 .. |ProfileSettings| image:: ./images/profile_settings.png
+.. |NetworkSettings| image:: ./images/network_settings.png
+.. |ConnectionOK| image:: ./images/test_connection_success.png
+                           :width: 80%
+.. |ConnectionError| image:: ./images/test_connection_error.png
+                           :width: 80%
+.. |InvalidCredentials| image:: ./images/test_connection_invalid.png
+                           :width: 80%
