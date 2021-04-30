@@ -7,8 +7,8 @@
 
 .. contents::
 
-MyGNUHealth is a Libre Personal Health Record that is part of the GNU Health
-ecosystem. This application can be run both in desktop and mobile devices.
+MyGNUHealth is the GNU Health **Personal Health Record**. This application can
+be run in desktops and mobile devices.
 
 The GNU Health Personal Health Record 
 =====================================
@@ -21,29 +21,29 @@ control of your health. As a Personal Health Record, you will be able to assess,
 record and take action upon the determinants of the main health spheres 
 (bio-psycho-social).
 
-MyGNUHealth will be your health companion, and it will allow to connect you
-with your health professionals, and share the health data you wish to share 
-with them in real time.
+MyGNUHealth will be your health companion. You will be able to connect with your
+health professionals, and share the health data you wish to share with them in
+real time.
+
 MyGNUHealth puts you in the driver's seat, as an active member of the system of
 health.
 
 
 The need of a Libre Personal Health Record
 ==========================================
-A Personal Health Record must respect the freedom of the individual.
-We need to make sure that we are in charge of our health, and with your health
-related data.
+A Personal Health Record must respect the freedom and privacy of the individual.
 
-There are be different Health record applications in the market, but one of
-the key benefits of MyGNUHealth is that is Libre. By Libre we mean that the source
-code of the application is available; the user can modify it if she wishes, and
-interact with the community to improve the application. 
+There are Personal Health Record applications in the market, but MyGNUHealth is
+unique. MyGNUHealth is a Libre program respects your freedom and privacy. By
+Libre we mean that the source code of the application is available; the user can
+modify it if she wishes, and interact with the community to improve the application.
 
-MyGNUHealth is part of the GNU Health ecosystem, a social project that uses
-technology to deliver Social Medicine, equity, freedom and privacy in healthcare.
+MyGNUHealth is part of the GNU Health ecosystem (https://www.gnuhealth.org),
+a project that uses state-of-the-art technology to deliver Social Medicine, equity,
+freedom and privacy in healthcare.
 
-MyGNUHealth is licensed under the GNU General Public License v3. It is Libre, and
-it will remain Libre.
+MyGNUHealth is licensed under the **GNU General Public License v3+**. It is Libre,
+and it will remain Libre.
 
 Downloading and installing the application
 ==========================================
@@ -100,11 +100,7 @@ page, you move forward, and do a "push" operation on it. The opposite
 also applies. When moving backwards, you do a "pop" operation on the
 current page, and move back one level.
 
-
-
-
-
-Signing in to MyGNUHealth
+Signing into MyGNUHealth
 -------------------------
 |LoginScreen|
 
@@ -187,6 +183,9 @@ the GNU Health Federation. The information required is:
 * Thalamus server Information : protocol, server name and port
 * Federation Account: An account that uniquely identifies you in the Federation.
 * Account password
+* Enable Federation Synchronization (optional): If you set this option, you will
+    be able to push the pages of life to the GNU Health Federation.
+
 
 Once you have entered all the information, you can test the network and credentials by
 pressing the "Test connection" button.
@@ -200,11 +199,26 @@ pressing the "Test connection" button.
       - |ConnectionError|
         Network Error
 
+
+.. Note:: The user name (Federation account) and the password are not stored. They just
+    serve as a way to test the connection to Thalamus. If you have a definitive federation
+    account, you can store in on your user profile.
+
+Once you are ready, you can press the "Update" button to save the network information.
+
+
 Logout
 ~~~~~~
 
+The logout action closes all the pages, signs you out from MyGNUHealth and takes you to the
+initial screen.
+
 The About page
 ~~~~~~~~~~~~~~
+The about page gives you license information, credits and the **version**.
+Knowing the version is important so you can report issues or know the latest functionality.
+
+|About|
 
 
 The Health Tracker
@@ -262,3 +276,5 @@ Biographical Information
                            :width: 80%
 .. |InvalidCredentials| image:: ./images/test_connection_invalid.png
                            :width: 80%
+
+.. |About| image:: ./images/about.png
