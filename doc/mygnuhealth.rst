@@ -223,9 +223,38 @@ Knowing the version is important so you can report issues or know the latest fun
 
 The Health Tracker
 ==================
+As we mentioned in the introduction, MyGNUHealth has two main sections, the Health tracker
+and the book of life.
+
+The Health Tracker currently has three main blocks:
+
+* Bio: This section focuses on monitoring common physiological and
+  anthropometric parameters of medical importance, such as blood pressure, heart rate, glucose level or weight.
+* Lifestyle: The section covers basic lifesytle patterns. Eating habits and calorie intake,
+  sleep and physical activity.
+* Psychological assessment: A basic self-assessment of mood and energy levels.
+
+.. figure:: ./images/mygnuhealth_wide_bio.png
+
+   Workflow from the main PHR page to the Blood pressure history
+
+   When you are using MyGNUHealth desktop client, you can resize the application, so the
+   you can have two or three pages on the same screen. In this example, clicking on
+   the "Health Tracker" section, it will show the three main areas (Bio, lifestyle and
+   pyschological assessment). If you select the bio section, MyGNUHealth will present
+   the contexts (Blood pressure, glucose level...) that make up the "Bio" page.
+
+
+
+
 
 Bio / clinical assessment
 -------------------------
+
+* Blood pressure
+* Blood glucose level
+* Weight
+* Hemoglobin (Hb) oxygen saturation (Osat)
 
 
 Lifestyle
@@ -278,3 +307,6 @@ Biographical Information
                            :width: 80%
 
 .. |About| image:: ./images/about.png
+
+
+
