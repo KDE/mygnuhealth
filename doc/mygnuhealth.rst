@@ -30,13 +30,15 @@ health.
 
 
 The need of a Libre Personal Health Record
-==========================================
+------------------------------------------
 A Personal Health Record must respect the freedom and privacy of the individual.
 
 There are Personal Health Record applications in the market, but MyGNUHealth is
 unique. MyGNUHealth is a Libre program respects your freedom and privacy. By
 Libre we mean that the source code of the application is available; the user can
 modify it if she wishes, and interact with the community to improve the application.
+You are in control of the application. Unlike other closed-source health applications,
+you can rest assured that your health information won't be leaked or sold to anyone.
 
 MyGNUHealth is part of the GNU Health ecosystem (https://www.gnuhealth.org),
 a project that uses state-of-the-art technology to deliver Social Medicine, equity,
@@ -244,26 +246,90 @@ The Health Tracker currently has three main blocks:
    pyschological assessment). If you select the bio section, MyGNUHealth will present
    the contexts (Blood pressure, glucose level...) that make up the "Bio" page.
 
+.. Note:: In upcoming versions, MyGNUHealth will support for smartwatches, such as the
+    *PineTime*, glucometers, oximeters and other devices that are open hardware and use
+    open protocols.
 
 
+Health tracker cards
+--------------------
 
+The different contexts within the health tracker are encapsulated into items called
+"cards". The layout and contents of the cards contain a descriptive icon, a title and the
+last reading (date and values). In the lower corners of the cards there are two icons, one
+for the **chart** and in the lower right corner one to **add** a new entry.
+
+|BloodPressureCard|
+
+All health tracker cards share the same layout.
 
 Bio / clinical assessment
 -------------------------
 
 * Blood pressure
-* Blood glucose level
-* Weight
+* Heart rate: The heart frequency is recorded in the same card as the blood pressure, since
+  many BP monitors measure both parameters.
+* Blood glucose level (mg/dL)
+* Weight: The Unit of measure is in kilograms
 * Hemoglobin (Hb) oxygen saturation (Osat)
 
+.. Note:: You can take as many measures as you need during the day. It is normal for
+    some parameters to be taken several times during the day, like in the case of glucose. However, there are some parameters that usually are taken once a day (i.e., weight).
 
 Lifestyle
 ---------
 
+|LifeStyleSummary|
 
-Psychological assessment
-------------------------
+* Physical Activity
 
+ * Steps
+ * Aerobic and anaerobic activity (minutes)
+
+* Nutrition: Total Kcal per day divided in morning, afternoon and night.
+* Sleep: Records the number of hours and quality of the sleep.
+
+
+Psychological self assessment
+-----------------------------
+MyGNUHealth allows you to keep a log of your **mood and energy levels**, either on a daily basis or different times during a day.
+Keeping track of how you feel about your mood and energy provides a great deal of
+information to your health professional.
+
+Please also provide your **sleep** patterns (see lifestyle section) that complements this
+mood and energy tracker.
+
+
+The mood and energy meters
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+The mood and enery meters are *sliders* situated on the left side of the page. In oder to
+register a new entry, you need to activate (click on the slider) and set the current level.
+
+On the center of the page, there are two emoticons, that change depending on the mood and
+energy levels.
+
+|MoodEnergyAssessment|
+
+**Mood levels**: The mood level has the **[-3:3] range**. Frequent values on the extremes
+(extremely happy (+3) or extremely sad (-3)) could be associated to mood disorders.
+
+**Energy level**: The energy level is represented by the battery emoticon, and the interval
+has a **range from 0 to 3** [0:3]. Zero being exhausted and 3 supercharged. As in the the case of
+mood levels, frequent values on the extreme might be a warning sign of a mood disorder or
+other medical condition.
+
+.. Note:: It is your **health professional** who will make the best reading out of this and
+    other logs from MyGNUHealth. Please consult with her. She will be able to **interpret**
+    the recordings in a much broader context, with your help and other domains and readings
+    from MyGNUHealth.
+
+
+A note on charts
+----------------
+MyGNUHealth, thanks to the excellent *mathplotlib* package, has the ability to automatically
+set the x axis (time) value. You will notice, specially when there are few records, that the
+x-axis will show values in the unit of hours (time of the day) and days. That is the expected
+behaviour.
 
 The Book of Life
 ================
@@ -305,6 +371,11 @@ Biographical Information
                            :width: 80%
 .. |InvalidCredentials| image:: ./images/test_connection_invalid.png
                            :width: 80%
+.. |BloodPressureCard| image:: ./images/blood_pressure_card.png
+
+.. |LifeStyleSummary| image:: ./images/lifestyle_summary.png
+
+.. |MoodEnergyAssessment| image:: ./images/mood_and_energy_assessment.png
 
 .. |About| image:: ./images/about.png
 
