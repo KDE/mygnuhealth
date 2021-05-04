@@ -292,7 +292,8 @@ Lifestyle
 
 Psychological self assessment
 -----------------------------
-MyGNUHealth allows you to keep a log of your **mood and energy levels**, either on a daily basis or different times during a day.
+MyGNUHealth allows you to keep a log of your **mood and energy levels**, either on a daily basis
+or different times during a day.
 Keeping track of how you feel about your mood and energy provides a great deal of
 information to your health professional.
 
@@ -326,7 +327,7 @@ other medical condition.
 
 A note on charts
 ----------------
-MyGNUHealth, thanks to the excellent *mathplotlib* package, has the ability to automatically
+MyGNUHealth, thanks to the excellent *matplotlib* package, has the ability to automatically
 set the x axis (time) value. You will notice, specially when there are few records, that the
 x-axis will show values in the unit of hours (time of the day) and days. That is the expected
 behaviour.
@@ -334,27 +335,108 @@ behaviour.
 The Book of Life
 ================
 
-Domains and contexts
---------------------
+The other major section on MyGNUHealth is the **Book of Life** (BoL). Think about it as a health dairy,
+where you can register any event that happens in your lifetime, and that it can have an impact
+in your health and wellbeing. Each entry in the BoL is called a **Page of Life**. A difference with
+a traditional diary is that in MyGNUHealth, you can have many pages of life per day.
 
-Medical domain
---------------
+In the previous chapters and section, we covered the Personal Health Record (PHR). Anytime you register
+a new reading on your bloood pressure, steps, calories, mood, etc.. MyGNUHealth generates an associated
+Page of Life entry.
+
+|BookOfLifeList|
+
+.. Note:: If you have configured MyGNUhealth to be part of the GNU Health Federation, the password field
+    next to the "Create a new page" icon will be enabled
+
+Creating a new Page of Life
+---------------------------
+At the top of the book of life you will find to widgets:
+* New Page Icon
+* GNU Health Federation account password: Enabled only if you have such user and specify to sync
+
+Click on the New Page icon and you will be able to create a new page.
+
+Structure of a Page of Life
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A new Page of Life is created by clicking on the top
+
+|PageofLifeFields|
+
+Domains and contexts
+~~~~~~~~~~~~~~~~~~~~
+
+As we just mentioned, the **basic unit of information in MyGNUHealth is the Page of Life**, and corresponds
+to a health-related event. To facilitate data gathering and information processing, each page of life has
+a category (**domain**), and each domain has several sections (**contexts**).
+
+At the moment that you choose a particular domain, the context selection field automatically sets the list
+of contexts associated to that domain.
+
+.. list-table:: Health domains and their contexts
+    :header-rows: 1
+
+    * - Domain
+      - Contexts
+    * - **Medical**
+      - Health condition, encounter, procedure, **Self monitoring**, Immunizaton, Prescription,
+        Surgery, Hospitalization, Lab test, Dx Imaging, Genetics, Family History
+    * - **Social** [#who]_
+      - Social Gradient, Early life development, Stress, Social exclusion, Working conditions,
+        Education, Physical environment, Unemployement, Social Support, Addiction, Food,
+        Transportation, Health services, Family functionality, Family violence, Bullying, War,
+        Misc
+    * - **Lifesyle**
+      - Physical activity, Nutrition, Sleep
+    * - **Biographical**
+      - Birth, Death, Misc
+    * - **Other**
+      - Misc
+
+
 
 The Medical Genetics context
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The structucture of a Page of Life is constant for all domains and contexts, with the **exception**
+of the *Medical Genetics* context.
 
-Social Domain
--------------
+Thanks to **UniProt** [#uniprot]_, MyGNUHealth provides an up-to-date dataset of over 31000 natural variants and genetic conditions.
 
-Lifesytle domain
-----------------
+In this context, you can enter any sort of information related to genetics. The natural variants /
+mutations are one of them.
+
+.. list-table::
+
+    * - |MedicalGeneticsFields|
+         Medical genetics fields
+      - |NaturalVariantExample|
+         RefSNP example on MyGNUHealth
 
 
-Biographical Information
-------------------------
+**Example on Cystic Fibrosis**
 
 
 
+A call for Open Science
+=======================
+
+
+Data backup
+===========
+MyGNUHealth profile and databases are stored in your home directory, under **"mygh"**. You can backup
+that directory.
+
+Contact and suggestions
+=======================
+You can contact us at info@gnuhealth.org
+
+To report bugs, please subscribe to the general GNU Health mailing list
+(https://lists.gnu.org/mailman/listinfo/health)
+
+.. rubric:: Footnotes
+.. [#who] Many of the Social contexts are from the World Health Organization social determinants of
+         health.
+.. [#uniprot] The Unitprot Consortium - www.uniprot.org
 
 .. |InitialScreen| image:: ./images/initial_screen.png
 .. |MainScreen| image:: ./images/main_screen.png
@@ -372,12 +454,11 @@ Biographical Information
 .. |InvalidCredentials| image:: ./images/test_connection_invalid.png
                            :width: 80%
 .. |BloodPressureCard| image:: ./images/blood_pressure_card.png
-
 .. |LifeStyleSummary| image:: ./images/lifestyle_summary.png
-
 .. |MoodEnergyAssessment| image:: ./images/mood_and_energy_assessment.png
-
+.. |BookOfLifeList| image:: ./images/book_of_life_list.png
+.. |PageofLifeFields| image:: ./images/page_of_life_fields.png
+.. |MedicalGeneticsFields| image:: ./images/medical_genetics_fields.png
+.. |NaturalVariantExample| image:: ./images/natural_variant_example.png
 .. |About| image:: ./images/about.png
-
-
 
