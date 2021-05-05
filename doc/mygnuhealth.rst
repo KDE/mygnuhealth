@@ -2,20 +2,22 @@
  |MyGNUHealth|
 ===============
 
+
 .. Note:: This document is licensed under Creative Commons 
     Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) 
 
+:Author: Luis Falcon
+:Contact: info@gnuhealth.org
+:Version: 0.9b3
+
 .. contents::
-
-MyGNUHealth is the GNU Health **Personal Health Record**. This application can
-be run in desktops and mobile devices.
-
-The GNU Health Personal Health Record 
-=====================================
 
 
 Introduction
 ============
+MyGNUHealth is the GNU Health Libre **Personal Health Record**. This application can
+be used in desktops and mobile devices.
+
 MyGNUHealth is a desktop and mobile application that helps you to take 
 control of your health. As a Personal Health Record, you will be able to assess, 
 record and take action upon the determinants of the main health spheres 
@@ -74,7 +76,6 @@ Using MyGNUHealth
 
 Starting up the application
 ---------------------------
-|InitialScreen|
 
 Click or tap into the MyGNUHealth icon on your mobile device or desktop.
 You will be presented with the welcoming screen.
@@ -82,15 +83,22 @@ You will be presented with the welcoming screen.
 
 Profile initialization
 ----------------------
-The very first time MyGNUHealth is run, you need to enter very basic information
-about yourself. The date of birth, height and sex are the main parameters to 
-be included. They are used in medical contexts, so is important that you 
-fill them in. In this step, you will also set up your **personal key**
+The very first time MyGNUHealth is run, you need to enter very basic
+information about yourself. The date of birth, height and sex are the
+main parameters to be included. They are used in medical contexts, so
+is important that you fill them in. In this step, you will also create
+your **personal key**
 
-|ProfileInitialization|
+.. list-table::
+
+    * - |InitialScreen|
+        Initial Page
+      - |ProfileInitialization|
+        Profile Initialization
 
 The button to create the profile will activate when the following requirements
 are met:
+
 * The height value is set
 * The personal key is 4 characters or longer
 * The personal key is entered twice correctly
@@ -115,11 +123,11 @@ Once you sign in, you are presented to the MyGNUHealth main screen, with the
 main components:
 
 * **Health Tracker**: This section records quantifiable events,
-    from the biological, lifestyle and psychological domains.
+  from the biological, lifestyle and psychological domains.
      
 * **Book of Life**: The book of life is your personal health diary, made of 
-    *Pages of Life*. From the genetic and molecular components to the social 
-    events throughout your life that make you a unique individual.
+  *Pages of Life*. From the genetic and molecular components, to the social
+  events throughout your life that make you a unique individual.
 
 .. note:: The main screen components and layout might change from one release
     to another.
@@ -202,9 +210,9 @@ pressing the "Test connection" button.
         Network Error
 
 
-.. Note:: The user name (Federation account) and the password are not stored. They just
-    serve as a way to test the connection to Thalamus. If you have a definitive federation
-    account, you can store in on your user profile.
+.. Note:: The user name (Federation account) and the password are not stored.
+    They just serve as a way to test the connection to Thalamus. If you have
+    a definitive federation account, you can store in on your user profile.
 
 Once you are ready, you can press the "Update" button to save the network information.
 
@@ -223,6 +231,12 @@ Knowing the version is important so you can report issues or know the latest fun
 |About|
 
 
+Data directory and backup
+-------------------------
+MyGNUHealth profile and databases are stored in your home directory, under **"mygh"**.
+You can backup that directory.
+
+
 The Health Tracker
 ==================
 As we mentioned in the introduction, MyGNUHealth has two main sections, the Health tracker
@@ -231,7 +245,8 @@ and the book of life.
 The Health Tracker currently has three main blocks:
 
 * Bio: This section focuses on monitoring common physiological and
-  anthropometric parameters of medical importance, such as blood pressure, heart rate, glucose level or weight.
+  anthropometric parameters of medical importance, such as blood pressure,
+  heart rate, glucose level or weight.
 * Lifestyle: The section covers basic lifesytle patterns. Eating habits and calorie intake,
   sleep and physical activity.
 * Psychological assessment: A basic self-assessment of mood and energy levels.
@@ -274,7 +289,8 @@ Bio / clinical assessment
 * Hemoglobin (Hb) oxygen saturation (Osat)
 
 .. Note:: You can take as many measures as you need during the day. It is normal for
-    some parameters to be taken several times during the day, like in the case of glucose. However, there are some parameters that usually are taken once a day (i.e., weight).
+    some parameters to be taken several times during the day, like in the case of glucose.
+    However, there are some parameters that usually are taken once a day (i.e., weight).
 
 Lifestyle
 ---------
@@ -335,25 +351,28 @@ behaviour.
 The Book of Life
 ================
 
-The other major section on MyGNUHealth is the **Book of Life** (BoL). Think about it as a health dairy,
-where you can register any event that happens in your lifetime, and that it can have an impact
-in your health and wellbeing. Each entry in the BoL is called a **Page of Life**. A difference with
-a traditional diary is that in MyGNUHealth, you can have many pages of life per day.
+The other major section on MyGNUHealth is the **Book of Life** (BoL). Think about
+it as a health dairy, where you can register any event that happens in your
+lifetime, and that it can have an impact in your health and wellbeing. Each entry
+in the BoL is called a **Page of Life**. A difference with a traditional diary is
+that in MyGNUHealth, you can have many pages of life per day.
 
-In the previous chapters and section, we covered the Personal Health Record (PHR). Anytime you register
-a new reading on your bloood pressure, steps, calories, mood, etc.. MyGNUHealth generates an associated
-Page of Life entry.
+In the previous chapters and section, we covered the Personal Health Record (PHR).
+Anytime you register a new reading on your bloood pressure, steps, calories,
+mood, etc.. MyGNUHealth generates an associated Page of Life entry.
 
 |BookOfLifeList|
 
-.. Note:: If you have configured MyGNUhealth to be part of the GNU Health Federation, the password field
-    next to the "Create a new page" icon will be enabled
+.. Note:: If you have configured MyGNUhealth to be part of the GNU Health Federation,
+    the password field next to the "Create a new page" icon will be enabled
 
 Creating a new Page of Life
 ---------------------------
 At the top of the book of life you will find to widgets:
+
 * New Page Icon
-* GNU Health Federation account password: Enabled only if you have such user and specify to sync
+* GNU Health Federation account password: Enabled only if you have such user
+  and specify to sync
 
 Click on the New Page icon and you will be able to create a new page.
 
@@ -366,12 +385,13 @@ A new Page of Life is created by clicking on the top
 Domains and contexts
 ~~~~~~~~~~~~~~~~~~~~
 
-As we just mentioned, the **basic unit of information in MyGNUHealth is the Page of Life**, and corresponds
-to a health-related event. To facilitate data gathering and information processing, each page of life has
+As we just mentioned, the **basic unit of information** in MyGNUHealth
+is the **Page of Life**, and corresponds to relevant event.
+To facilitate data gathering and information processing, each page of life has
 a category (**domain**), and each domain has several sections (**contexts**).
 
-At the moment that you choose a particular domain, the context selection field automatically sets the list
-of contexts associated to that domain.
+At the moment that you choose a particular domain, the context selection field
+automatically sets the list of contexts associated to that domain.
 
 .. list-table:: Health domains and their contexts
     :header-rows: 1
@@ -397,13 +417,14 @@ of contexts associated to that domain.
 
 The Medical Genetics context
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The structucture of a Page of Life is constant for all domains and contexts, with the **exception**
-of the *Medical Genetics* context.
+The structucture of a Page of Life is constant for all domains and
+contexts, with the **exception** of the *Medical Genetics* context.
 
-Thanks to **UniProt** [#uniprot]_, MyGNUHealth provides an up-to-date dataset of over 31000 natural variants and genetic conditions.
+Thanks to **UniProt** [#uniprot]_, MyGNUHealth provides an up-to-date dataset
+of over 31000 natural variants and genetic conditions.
 
-In this context, you can enter any sort of information related to genetics. The natural variants /
-mutations are one of them.
+In this context, you can enter any sort of information related to genetics.
+The natural variants / mutations are one of them.
 
 .. list-table::
 
@@ -415,16 +436,95 @@ mutations are one of them.
 
 **Example on Cystic Fibrosis**
 
+The example will help to better understand how to create a Medical Genetics
+page of life.
+A health professional, after the evaluation of a patient, is suspicious about
+the clinical signs being compatible with cystic fibrosis and orders a genetic
+test to confirm.
+A genetic test was performed on the Cystic Fibrosis Transmembrane Conductance
+Regulator (**CFTR**) gene.
+The molecular test on CFTR gene confirmed the clinical suspicion of the
+health professional, with this result:
 
+* RefSNP (rs): rs397508635
+* Gene: CFTR
+* Aminoacid (AA) change: p.Ser13Phe
+* Natural variant: VAR_000101
+* Protein ID: P13569
+* Significance: LP/P
+* Disease: Cystic fibrosis (CF) [MIM:219700]
+
+**Discussion**
+MyGNUHealth only requires the **RefSNP ("rs") id** related to the natural variant.
+Once the rsid is entered, the rest of the fields are automatically filled. In fact
+the rest of the fields related to the RefSNP are **read-only**.
+
+**Gene**: The gene associated to that natural variant (eg, P13569)
+**AA Change**: The aminoacid change and position (eg, p.Ser13Phe)
+**Natural variant**: The specific variant ID are related to the refSNP.
+**Protein ID**: The UniprotKB protein ID (eg, P13569)
+**Significance**: The clinical significance of the protein natural variant can have the
+following values:
+
+* **LB/B**: Likely benign or benign
+* **LP/P**: Likely pathogenic or pathogenic
+* **US**: Unknown significance
+
+**Disease**: If the natural variant is pathogenic, MyGHNUHealth will also display the
+associated disease(s). Along with the disease name, the MIM code is included in
+brackets (eg, [MIM:219700]).
+
+**Details textbox**: The last relevant field is the "details" textbox. In this text area
+you can enter extra information about the variant or genetic condition in
+your personal experience. Information about age of onset, family history, clinical
+manifestations, etc..
+
+**Getting more information about a protein and variants**
+There are different ways to get more information about an specific variant.
+If we know the protein ID, one good approach is to search for it at **UniProtKB**.
+In this example, we would look for "P13569".
+Look at the section "*Involvement in disease*".
+The MIM code is part of the Online Mendelian Inheritance in Man (OMIM) database [#omim]_. You
+can get the latest information on that by entering the code (eg, 219700)
 
 A call for Open Science
 =======================
+Science can not evolve if the information is kept in private hands. If we, as a
+society and as a scientific community want to find solutions for neurodegerative
+diseases, cancer, metabolic and genetic disorders, we need open science.
+
+GNU Health is the Libre Digital Health ecosystem [#gnuhealth]_. It has several
+components, such as a Hospital Management Information System (HMIS), a Lab Information
+System (LIMS), and the Personal Health Record (MyGNUHealth), among others. One of
+our goals is to deliver universality in health informatics.
+
+All these components can interact with each other through the GNU Health Federation.
+The GNU Health Federation links patients, health professionals and researchers.
+
+MyGNUHealth is a unique Personal Health Care, because it combines the socioeconomic
+determinants of health with the molecular basis of disease. The environment plays
+a crucial role in many of today's most devastating and elusive diseases.
+MyGNUHealth and the GNU Health Federation open a fantastic opportunity
+in the areas of epigenetics and precision medicine. There are still many
+genetic variants of unknown significance.
+
+The GNU Health ecosystem and its international community provide the key for
+boosting the research in bioinformatics, social medicine and public health. We need
+our governments to use Free/Libre software in the public administration, particularly,
+in the education and public health systems.
+
+The need for a Kinder Science
+=============================
+Last but not least, we need to work on human-relevant, animal free research.
+Science can not be complicit of the enslaving, torture and killing of millions of
+innocent beings in laboratories around the world.
+Speciesism and any other type of discrimination (racism, sexism,..) are appalling and
+must be abolished.
+In 2020 I signed with other scientists an open letter lead by Animal Free Research
+UK, a call to accelerate human-focussed medical research [#kinderscience]_. Today there
+are safer, effective and cruelty free alternatives. Let's embrace them.
 
 
-Data backup
-===========
-MyGNUHealth profile and databases are stored in your home directory, under **"mygh"**. You can backup
-that directory.
 
 Contact and suggestions
 =======================
@@ -436,7 +536,11 @@ To report bugs, please subscribe to the general GNU Health mailing list
 .. rubric:: Footnotes
 .. [#who] Many of the Social contexts are from the World Health Organization social determinants of
          health.
-.. [#uniprot] The Unitprot Consortium - www.uniprot.org
+.. [#uniprot] The Unitprot Consortium - https://www.uniprot.org
+.. [#omim] Online Mendelian Inheritance in Man - https://www.omim.org
+.. [#gnuhealth] The Libre Digital Health ecosystem - https://www.gnuhealth.org
+.. [#kinderscience] A call to accelerate human-focussed medical research
+                    https://www.animalfreeresearchuk.org/openletter/
 
 .. |InitialScreen| image:: ./images/initial_screen.png
 .. |MainScreen| image:: ./images/main_screen.png
