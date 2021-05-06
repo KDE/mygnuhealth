@@ -10,17 +10,21 @@
 :Contact: info@gnuhealth.org
 :Version: 0.9b3
 
+.. warning::
+   MyGNUHealth Personal Health Record is not intended to replace the advice of
+   a health professional. Your doctor, nurse, nutritionist and psychologist are
+   the best sources for your health and well-being.
 .. contents::
 
 
 Introduction
 ============
 MyGNUHealth is the GNU Health Libre **Personal Health Record**. This application can
-be used in desktops and mobile devices.
+be used on desktops and mobile devices.
 
 MyGNUHealth is a desktop and mobile application that helps you to take 
-control of your health. As a Personal Health Record, you will be able to assess, 
-record and take action upon the determinants of the main health spheres 
+control of your health. As a Personal Health Record, you will be able to record,
+assess and proactively take action upon the determinants of the main health spheres
 (bio-psycho-social).
 
 MyGNUHealth will be your health companion. You will be able to connect with your
@@ -38,7 +42,7 @@ A Personal Health Record must respect the freedom and privacy of the individual.
 There are Personal Health Record applications in the market, but MyGNUHealth is
 unique. MyGNUHealth is a Libre program respects your freedom and privacy. By
 Libre we mean that the source code of the application is available; the user can
-modify it if she wishes, and interact with the community to improve the application.
+modify it if they wish, and interact with the community to improve the application.
 You are in control of the application. Unlike other closed-source health applications,
 you can rest assured that your health information won't be leaked or sold to anyone.
 
@@ -114,6 +118,12 @@ Signing into MyGNUHealth
 -------------------------
 |LoginScreen|
 
+You need to enter the **personal key** that you created when setting up your
+profile. Remember the password is **case sensitive**.
+
+If you later want to change your current password, you can do it on the
+"**Profile settings**" menu.
+
 
 The main screen
 ---------------
@@ -148,7 +158,7 @@ The main entries are:
 
 |MenuActive|
 
-Most of the items, except the "About" entry can only be accesible once 
+Most of the items, except the "About" entry can only be accessible once
 you have logged into the application. Inactive entries are in grey.
 
 
@@ -212,7 +222,7 @@ pressing the "Test connection" button.
 
 .. Note:: The user name (Federation account) and the password are not stored.
     They just serve as a way to test the connection to Thalamus. If you have
-    a definitive federation account, you can store in on your user profile.
+    a definitive federation account, you can store it in your user profile.
 
 Once you are ready, you can press the "Update" button to save the network information.
 
@@ -258,7 +268,7 @@ The Health Tracker currently has three main blocks:
    When you are using MyGNUHealth desktop client, you can resize the application, so the
    you can have two or three pages on the same screen. In this example, clicking on
    the "Health Tracker" section, it will show the three main areas (Bio, lifestyle and
-   pyschological assessment). If you select the bio section, MyGNUHealth will present
+   psychological assessment). If you select the bio section, MyGNUHealth will present
    the contexts (Blood pressure, glucose level...) that make up the "Bio" page.
 
 .. Note:: In upcoming versions, MyGNUHealth will support for smartwatches, such as the
@@ -319,7 +329,7 @@ mood and energy tracker.
 
 The mood and energy meters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-The mood and enery meters are *sliders* situated on the left side of the page. In oder to
+The mood and energy meters are *sliders* situated on the left side of the page. In order to
 register a new entry, you need to activate (click on the slider) and set the current level.
 
 On the center of the page, there are two emoticons, that change depending on the mood and
@@ -336,7 +346,7 @@ mood levels, frequent values on the extreme might be a warning sign of a mood di
 other medical condition.
 
 .. Note:: It is your **health professional** who will make the best reading out of this and
-    other logs from MyGNUHealth. Please consult with her. She will be able to **interpret**
+    other logs from MyGNUHealth. Please consult with them. They will be able to **interpret**
     the recordings in a much broader context, with your help and other domains and readings
     from MyGNUHealth.
 
@@ -346,19 +356,19 @@ A note on charts
 MyGNUHealth, thanks to the excellent *matplotlib* package, has the ability to automatically
 set the x axis (time) value. You will notice, specially when there are few records, that the
 x-axis will show values in the unit of hours (time of the day) and days. That is the expected
-behaviour.
+behavior.
 
 The Book of Life
 ================
 
 The other major section on MyGNUHealth is the **Book of Life** (BoL). Think about
 it as a health dairy, where you can register any event that happens in your
-lifetime, and that it can have an impact in your health and wellbeing. Each entry
+lifetime, and that it can have an impact in your health and well-being. Each entry
 in the BoL is called a **Page of Life**. A difference with a traditional diary is
 that in MyGNUHealth, you can have many pages of life per day.
 
 In the previous chapters and section, we covered the Personal Health Record (PHR).
-Anytime you register a new reading on your bloood pressure, steps, calories,
+Anytime you register a new reading on your blood pressure, steps, calories,
 mood, etc.. MyGNUHealth generates an associated Page of Life entry.
 
 |BookOfLifeList|
@@ -399,11 +409,11 @@ automatically sets the list of contexts associated to that domain.
     * - Domain
       - Contexts
     * - **Medical**
-      - Health condition, encounter, procedure, **Self monitoring**, Immunizaton, Prescription,
+      - Health condition, encounter, procedure, **Self monitoring**, Immunization, Prescription,
         Surgery, Hospitalization, Lab test, Dx Imaging, Genetics, Family History
     * - **Social** [#who]_
       - Social Gradient, Early life development, Stress, Social exclusion, Working conditions,
-        Education, Physical environment, Unemployement, Social Support, Addiction, Food,
+        Education, Physical environment, Unemployment, Social Support, Addiction, Food,
         Transportation, Health services, Family functionality, Family violence, Bullying, War,
         Misc
     * - **Lifesyle**
@@ -417,7 +427,7 @@ automatically sets the list of contexts associated to that domain.
 
 The Medical Genetics context
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The structucture of a Page of Life is constant for all domains and
+The structure of a Page of Life is constant for all domains and
 contexts, with the **exception** of the *Medical Genetics* context.
 
 Thanks to **UniProt** [#uniprot]_, MyGNUHealth provides an up-to-date dataset
@@ -448,7 +458,7 @@ health professional, with this result:
 
 * RefSNP (rs): rs397508635
 * Gene: CFTR
-* Aminoacid (AA) change: p.Ser13Phe
+* Amino acid (AA) change: p.Ser13Phe
 * Natural variant: VAR_000101
 * Protein ID: P13569
 * Significance: LP/P
@@ -490,7 +500,7 @@ can get the latest information on that by entering the code (eg, 219700)
 A call for Open Science
 =======================
 Science can not evolve if the information is kept in private hands. If we, as a
-society and as a scientific community want to find solutions for neurodegerative
+society and as a scientific community, want to find solutions for neuro-degenerative
 diseases, cancer, metabolic and genetic disorders, we need open science.
 
 GNU Health is the Libre Digital Health ecosystem [#gnuhealth]_. It has several
@@ -504,9 +514,11 @@ The GNU Health Federation links patients, health professionals and researchers.
 MyGNUHealth is a unique Personal Health Care, because it combines the socioeconomic
 determinants of health with the molecular basis of disease. The environment plays
 a crucial role in many of today's most devastating and elusive diseases.
+
 MyGNUHealth and the GNU Health Federation open a fantastic opportunity
 in the areas of epigenetics and precision medicine. There are still many
-genetic variants of unknown significance.
+genetic variants of unknown significance, and many environmental factors
+that can regulate gene expression.
 
 The GNU Health ecosystem and its international community provide the key for
 boosting the research in bioinformatics, social medicine and public health. We need
@@ -536,7 +548,7 @@ To report bugs, please subscribe to the general GNU Health mailing list
 .. rubric:: Footnotes
 .. [#who] Many of the Social contexts are from the World Health Organization social determinants of
          health.
-.. [#uniprot] The Unitprot Consortium - https://www.uniprot.org
+.. [#uniprot] The UnitProt Consortium - https://www.uniprot.org
 .. [#omim] Online Mendelian Inheritance in Man - https://www.omim.org
 .. [#gnuhealth] The Libre Digital Health ecosystem - https://www.gnuhealth.org
 .. [#kinderscience] A call to accelerate human-focussed medical research
